@@ -7,7 +7,7 @@ public class ClienteDAO {
     public ArrayList<Cliente> doRetrieveAll(){
         ArrayList<Cliente> result=new ArrayList<Cliente>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM utente");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Cliente p = new Cliente();
@@ -19,7 +19,6 @@ public class ClienteDAO {
                 p.setIndirizzo(rs.getString(6));
                 p.setIdCliente(rs.getLong(7));
                 p.setRegistrato(rs.getBoolean(8));
-                p.setOrdini((ArrayList<Ordine>) rs.getArray(9));
                 result.add(p);
             }
             return result;
@@ -29,7 +28,7 @@ public class ClienteDAO {
     }
     public boolean doRetrieveByUserPass(String us,String pas){
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM utente WHERE username=? and password=SHA1(?)");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE username=? and password=SHA1(?)");
             ps.setString(1,us);
             ps.setString(2,pas);
             ResultSet rs = ps.executeQuery();
@@ -53,7 +52,6 @@ public class ClienteDAO {
             ps.setString(6,p.getIndirizzo());
             ps.setLong(7,p.getIdCliente());
             ps.setBoolean(8,p.isRegistrato());
-            ps.setArray(9, (Array) p.getOrdini());
 
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
