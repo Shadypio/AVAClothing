@@ -40,10 +40,10 @@ public class ClienteDAO {
         }
     }
 
-    public void addCliente(Cliente p){
+    /*public void addCliente(Cliente p){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cliente (username, password, email, nome, cognome,indirizzo, id, isRegistrato, Ordini) VALUES(?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO cliente (username, password, email, nome, cognome,indirizzo, id, isRegistrato) VALUES(?,?,?,?,?,?,?,?)");
             ps.setString(1, p.getUsername());
             ps.setString(2, p.getPassword());
             ps.setString(3, p.getEmail());
@@ -59,5 +59,5 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }
