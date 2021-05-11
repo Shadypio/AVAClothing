@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Cliente {// ciao sono ale
+public class Cliente {
     public Cliente(){ super(); }
     public String getCognome() { return cognome; }
     public void setCognome(String cognome) { this.cognome = cognome; }
