@@ -23,8 +23,7 @@ public class ProdottoDAO {
                 p.setDescrizioneBreve((rs.getString(3)));
                 p.setDescrizioneDettagliata((rs.getString(4)));
                 p.setInOfferta(rs.getBoolean(5));
-                p.setIdProdotto(6);
-
+                p.setIdProdotto(rs.getLong(6));
                 return p;
             }
             return null;

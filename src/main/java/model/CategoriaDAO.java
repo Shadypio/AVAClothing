@@ -40,7 +40,7 @@ public class CategoriaDAO {
                 Categoria c = new Categoria();
                 c.setNome(rs.getString(1));
                 c.setDescrizione(rs.getString(2));
-                c.setIdCategoria(rs.getLong(1));
+                c.setIdCategoria(rs.getLong(3));
                 result.add(c);
             }
             return result;
