@@ -24,6 +24,23 @@ public class Cliente {
     public ArrayList<Ordine> getOrdini() { return ordini; }
     public void setOrdini(ArrayList<Ordine> order) { this.ordini = ordini; }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return idCliente == cliente.idCliente;
+    }
+
+    @Override
     public String toString() {
         return "Cliente{" +
                 "cognome='" + cognome + '\'' +
@@ -32,17 +49,10 @@ public class Cliente {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", indirizzo='" + indirizzo + '\'' +
+                ", telefono='" + telefono + '\'' +
                 ", idCliente=" + idCliente +
                 ", isRegistrato=" + isRegistrato +
-                ", order=" + ordini +
                 '}';
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return idCliente == cliente.idCliente;
     }
 
     private String cognome;
@@ -51,6 +61,7 @@ public class Cliente {
     private String username;
     private String password;
     private String indirizzo;
+    private String telefono;
     private long idCliente;
     private boolean isRegistrato;
     ArrayList<Ordine> ordini;

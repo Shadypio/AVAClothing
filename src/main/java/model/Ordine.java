@@ -7,15 +7,15 @@ public class Ordine {
 
     public long getIdOrdine() { return idOrdine; }
     public void setIdOrdine(long idOrdine) { this.idOrdine = idOrdine; }
-    public Double getIVA() { return IVA; }
-    public void setIVA(Double IVA) { this.IVA = IVA; }
+    public Double getIva() { return iva; }
+    public void setIva(Double iva) { this.iva = iva; }
     public Date getDataInserimento() { return dataInserimento; }
     public void setDataInserimento(Date dataInserimento) { this.dataInserimento = dataInserimento; }
 
     public String toString() {
         return "Ordine{" +
                 "idOrdine=" + idOrdine +
-                ", IVA=" + IVA +
+                ", IVA=" + iva +
                 ", dataInserimento=" + dataInserimento +
                 '}';
     }
@@ -28,6 +28,6 @@ public class Ordine {
     }
 
     private long idOrdine;
-    private Double IVA;
+    private Double iva;
     private Date dataInserimento;
 }

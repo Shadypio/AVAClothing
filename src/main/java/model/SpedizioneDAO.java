@@ -3,21 +3,25 @@ package model;
 import java.sql.*;
 import java.util.LinkedList;
 
+/**
+ *
+ * GESTIRE LE FOREIGN KEY PER OGNI METODO
+ */
+
 public class SpedizioneDAO {
 
-    public Spedizione doRetrieveByIdSpedizione(long id) {
+    public Spedizione doRetrieveById(long id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT * FROM spedizione WHERE id=?");
+                    con.prepareStatement("SELECT * FROM spedizione WHERE idSpedizione=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Spedizione p = new Spedizione();
-                p.setIdSpedizione(rs.getLong(1));
-                p.setData(rs.getDate(2));
-                p.setStatus(rs.getString(3));
-                p.setSpese(rs.getDouble(4));
-                // p.setOrdine
+                p.setData(rs.getDate(1));
+                p.setStatus(rs.getString(2));
+                p.setSpese(rs.getDouble(3));
+                p.setIdSpedizione(rs.getLong(4));
                 return p;
             }
             return null;
@@ -33,11 +37,10 @@ public class SpedizioneDAO {
             ResultSet rs = s.executeQuery();
             while(rs.next()){
                 Spedizione p = new Spedizione();
-                p.setIdSpedizione(rs.getLong(1));
-                p.setData(rs.getDate(2));
-                p.setStatus(rs.getString(3));
-                p.setSpese(rs.getDouble(4));
-                // p.setOrdine
+                p.setData(rs.getDate(1));
+                p.setStatus(rs.getString(2));
+                p.setSpese(rs.getDouble(3));
+                p.setIdSpedizione(rs.getLong(4));
                 spedizioni.add(p);
             }
             return spedizioni;
@@ -46,7 +49,8 @@ public class SpedizioneDAO {
         }
     }
 
-    public boolean doChanges(Spedizione spedizione){
+    // da' errori, commentato per evitare problemi nel commmit
+    /*public boolean doChanges(Spedizione spedizione){
         try(Connection con = ConPool.getConnection()){
             long idSpedizione = spedizione.getIdSpedizione();
             Date data = (Date) spedizione.getData();
@@ -61,17 +65,17 @@ public class SpedizioneDAO {
         } catch(SQLException e){
             return false;
         }
-    }
+    }*/
 
     public void addSpedizione(Spedizione spedizione) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO spedizione (id, data, status, spese) VALUES(?,?,?,?)",
+                    "INSERT INTO spedizione (dataSpedizione, statusSpedizione, spese, idSpedizione) VALUES(?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, spedizione.getIdSpedizione());
-            ps.setDate(2, (Date) spedizione.getData());
-            ps.setString(3, spedizione.getStatus());
-            ps.setDouble(4, spedizione.getSpese());
+            ps.setDate(1, (Date) spedizione.getData());
+            ps.setString(2, spedizione.getStatus());
+            ps.setDouble(3, spedizione.getSpese());
+            ps.setLong(4, spedizione.getIdSpedizione());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

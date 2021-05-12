@@ -11,14 +11,15 @@ public class ClienteDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Cliente p = new Cliente();
-                p.setUsername(rs.getString(1));
-                p.setPassword(rs.getString(2));
+                p.setNome(rs.getString(1));
+                p.setCognome(rs.getString(2));
                 p.setEmail(rs.getString(3));
-                p.setNome(rs.getString(4));
-                p.setCognome(rs.getString(5));
+                p.setUsername(rs.getString(4));
+                p.setPassword(rs.getString(5));
                 p.setIndirizzo(rs.getString(6));
-                p.setIdCliente(rs.getLong(7));
-                p.setRegistrato(rs.getBoolean(8));
+                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setTelefono(rs.getString(8));
+                p.setIdCliente(rs.getLong(9));
                 result.add(p);
             }
             return result;
@@ -26,7 +27,9 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
     }
-    public boolean doRetrieveByUserPass(String us,String pas){
+
+    // Serve davvero?
+    /*public boolean doRetrieveByUserPass(String us,String pas){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE username=? and password=SHA1(?)");
             ps.setString(1,us);
@@ -38,20 +41,34 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }*/
+
+    public boolean doRetrieveById(long id){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE idCliente=?");
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+                return true;
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    /*public void addCliente(Cliente p){
+    public void addCliente(Cliente p){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cliente (username, password, email, nome, cognome,indirizzo, id, isRegistrato) VALUES(?,?,?,?,?,?,?,?)");
-            ps.setString(1, p.getUsername());
-            ps.setString(2, p.getPassword());
+                    "INSERT INTO cliente (nome, cognome, email, username, password, indirizzo, isRegistrato, telefono, idCliente) VALUES(?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, p.getNome());
+            ps.setString(2, p.getCognome());
             ps.setString(3, p.getEmail());
-            ps.setString(4,p.getNome());
-            ps.setString(5,p.getCognome());
+            ps.setString(4,p.getUsername());
+            ps.setString(5,p.getPassword());
             ps.setString(6,p.getIndirizzo());
-            ps.setLong(7,p.getIdCliente());
-            ps.setBoolean(8,p.isRegistrato());
+            ps.setBoolean(7, p.isRegistrato());
+            ps.setString(8, p.getTelefono());
+            ps.setLong(9,p.getIdCliente());
 
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
@@ -59,5 +76,5 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }

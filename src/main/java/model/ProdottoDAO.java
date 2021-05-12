@@ -3,21 +3,28 @@ package model;
 import java.sql.*;
 import java.util.LinkedList;
 
+/**
+ *
+ * GESTIRE LE FOREIGN KEY PER OGNI METODO
+ */
+
 public class ProdottoDAO {
 
-    public Prodotto doRetrieveByIdProdotto(long id) {
+    public Prodotto doRetrieveById(long id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT * FROM prodotto WHERE id=?");
+                    con.prepareStatement("SELECT * FROM prodotto WHERE idProdotto=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Prodotto p = new Prodotto();
-                p.setNome(rs.getString(2));
-                p.setPrezzo(rs.getDouble(3));
-                p.setInOfferta(rs.getBoolean(4));
-                p.setDescrizioneBreve((rs.getString(5)));
-                p.setDescrizioneDettagliata((rs.getString(6)));
+                p.setNome(rs.getString(1));
+                p.setPrezzo(rs.getDouble(2));
+                p.setDescrizioneBreve((rs.getString(3)));
+                p.setDescrizioneDettagliata((rs.getString(4)));
+                p.setInOfferta(rs.getBoolean(5));
+                p.setIdProdotto(6);
+
                 return p;
             }
             return null;
@@ -47,7 +54,8 @@ public class ProdottoDAO {
         }
     }
 
-    public boolean doChanges(Prodotto prodotto){
+    // da' errori, commentato per evitare problemi nel commmit
+    /*public boolean doChanges(Prodotto prodotto){
         try(Connection con = ConPool.getConnection()){
             long idProdotto = prodotto.getIdProdotto();
             String nome = prodotto.getNome();
@@ -57,26 +65,26 @@ public class ProdottoDAO {
             String descrizioneDettagliata = prodotto.getDescrizioneDettagliata();
             String query = "UPDATE prodotto p SET p.nome = \"" + nome + "\", p.prezzo = " + prezzo +
                     "\", p.inofferta = " + inOfferta + ", p.descrizioneBreve = \"" + descrizioneBreve + "\", " +
-                    "p.descrizionDettagliata = \"" + descrizioneDettagliata + "\" WHERE p.Id = " + idProdotto + "";
+                    "p.descrizionDettagliata = \"" + descrizioneDettagliata + "\" WHERE p.IdProdotto = " + idProdotto + "";
             PreparedStatement s = con.prepareStatement(query);
             s.execute();
             return true;
         } catch(SQLException e){
             return false;
         }
-    }
+    }*/
 
     public void addProdotto(Prodotto prodotto) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO prodotto (id, nome, prezzo, inOfferta, descrizioneBreve, descrizioneDettagliata) VALUES(?,?,?,?,?,?)",
+                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto) VALUES(?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, prodotto.getIdProdotto());
-            ps.setString(2, prodotto.getNome());
-            ps.setDouble(3, prodotto.getPrezzo());
-            ps.setBoolean(4, prodotto.isInOfferta());
-            ps.setString(5, prodotto.getDescrizioneBreve());
-            ps.setString(5, prodotto.getDescrizioneDettagliata());
+            ps.setString(1, prodotto.getNome());
+            ps.setDouble(2, prodotto.getPrezzo());
+            ps.setString(3, prodotto.getDescrizioneBreve());
+            ps.setString(4, prodotto.getDescrizioneDettagliata());
+            ps.setBoolean(5, prodotto.isInOfferta());
+            ps.setLong(6, prodotto.getIdProdotto());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

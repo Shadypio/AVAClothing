@@ -8,9 +8,9 @@ public class MagazzinoDAO {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO magazzino (idMagazzino, nome, indirizzo) VALUES(?,?,?)");
-            ps.setLong(1, m.getIdMagazzino());
-            ps.setString(2, m.getNome());
-            ps.setString(3, m.getIndirizzo());
+            ps.setString(1, m.getNome());
+            ps.setString(2, m.getIndirizzo());
+            ps.setLong(3, m.getIdMagazzino());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -23,7 +23,7 @@ public class MagazzinoDAO {
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
             String query = "update magazzino set idMagazzino='" + m.getIdMagazzino() + "', nome='" +
-                    m.getNome() + "', indirizzo=" + m.getIndirizzo() + " where id=" + m.getIdMagazzino() + ";";
+                    m.getNome() + "', indirizzo=" + m.getIndirizzo() + " where idMagazzino=" + m.getIdMagazzino() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {
@@ -38,9 +38,9 @@ public class MagazzinoDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Magazzino m = new Magazzino();
-                m.setIdMagazzino(rs.getLong(1));
-                m.setNome(rs.getString(2));
-                m.setIndirizzo(rs.getString(3));
+                m.setNome(rs.getString(1));
+                m.setIndirizzo(rs.getString(2));
+                m.setIdMagazzino(rs.getLong(3));
                 result.add(m);
             }
             return result;
@@ -50,7 +50,7 @@ public class MagazzinoDAO {
 
     }
 
-    public ArrayList<Magazzino> doRetrieveByIdCat(long idMagazzino){
+    public ArrayList<Magazzino> doRetrieveById(long idMagazzino){
         ArrayList<Magazzino> result=new ArrayList<Magazzino>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino WHERE idMagazzino=?");
@@ -58,9 +58,9 @@ public class MagazzinoDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Magazzino m = new Magazzino();
-                m.setIdMagazzino(rs.getInt(1));
-                m.setNome(rs.getString(2));
-                m.setIndirizzo(rs.getString(3));
+                m.setNome(rs.getString(1));
+                m.setIndirizzo(rs.getString(2));
+                m.setIdMagazzino(rs.getInt(3));
                 result.add(m);
             }
             return result;

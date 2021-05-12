@@ -3,15 +3,20 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ *
+ * GESTIRE LE FOREIGN KEY PER OGNI METODO
+ */
+
 public class OrdineDAO {
 
     public void addOrdine(Ordine p){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO ordine (id, IVA, dataInserimento) VALUES(?,?,?)");
-            ps.setLong(1, p.getIdOrdine());
-            ps.setDouble(2, p.getIVA());
-            ps.setDate(3, p.getDataInserimento());
+                    "INSERT INTO ordine (iva, dataInserimento, idOrdine) VALUES(?,?,?)");
+            ps.setDouble(1, p.getIva());
+            ps.setDate(2, p.getDataInserimento());
+            ps.setLong(3, p.getIdOrdine());
 
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
@@ -24,8 +29,8 @@ public class OrdineDAO {
     public void doChanges(Ordine p){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-            String query = "update Ordine set id='" + p.getIdOrdine() + "', IVA='" +
-                    p.getIVA() + "', data="+p.getDataInserimento() + " where id=" + p.getIdOrdine() + ";";
+            String query = "update Ordine set idOrdine='" + p.getIdOrdine() + "', iva='" +
+                    p.getIva() + "', dataInserimento="+p.getDataInserimento() + " where idOrdine=" + p.getIdOrdine() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {
@@ -40,9 +45,9 @@ public class OrdineDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Ordine p = new Ordine();
-                p.setIdOrdine(rs.getInt(1));
-                p.setIVA(rs.getDouble(2));
-                p.setDataInserimento(rs.getDate(3));
+                p.setIva(rs.getDouble(1));
+                p.setDataInserimento(rs.getDate(2));
+                p.setIdOrdine(rs.getInt(3));
                 result.add(p);
             }
             return result;
@@ -55,14 +60,14 @@ public class OrdineDAO {
     public ArrayList<Ordine> doRetrieveByIdOrdine(long id){
         ArrayList<Ordine> result=new ArrayList<Ordine>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Ordine WHERE id=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Ordine WHERE idOrdine=?");
             ps.setLong(1,id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Ordine p = new Ordine();
-                p.setIdOrdine(rs.getInt(1));
-                p.setIVA(rs.getDouble(2));
-                p.setDataInserimento(rs.getDate(3));
+                p.setIva(rs.getDouble(1));
+                p.setDataInserimento(rs.getDate(2));
+                p.setIdOrdine(rs.getInt(3));
                 result.add(p);
             }
             return result;
