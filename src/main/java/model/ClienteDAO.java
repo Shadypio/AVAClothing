@@ -11,13 +11,13 @@ public class ClienteDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Cliente p = new Cliente();
-                p.setNome(rs.getString(1));
+                p.setNome(rs.getString(1));  // perche warning?????
                 p.setCognome(rs.getString(2));
                 p.setEmail(rs.getString(3));
                 p.setUsername(rs.getString(4));
                 p.setPassword(rs.getString(5));
                 p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setRegistrato(rs.getBoolean(7));   // Tinyint?
                 p.setTelefono(rs.getString(8));
                 p.setIdCliente(rs.getLong(9));
                 result.add(p);
@@ -27,21 +27,6 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
     }
-
-    // Serve davvero?
-    /*public boolean doRetrieveByUserPass(String us,String pas){
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE username=? and password=SHA1(?)");
-            ps.setString(1,us);
-            ps.setString(2,pas);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next())
-                return true;
-            return false;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 
     public Cliente doRetrieveClienteWithOrdini(long id){
         Cliente p = new Cliente();
@@ -67,8 +52,8 @@ public class ClienteDAO {
                     p.getOrdini().add(o);
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
         return p;
     }
@@ -95,7 +80,6 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
         return p;
-
     }
 
     public void addCliente(Cliente p){
@@ -111,12 +95,25 @@ public class ClienteDAO {
             ps.setBoolean(7, p.isRegistrato());
             ps.setString(8, p.getTelefono());
             ps.setLong(9,p.getIdCliente());
-
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void doChanges(Cliente c){
+        try (Connection con = ConPool.getConnection()) {
+            Statement st = con.createStatement();
+            String query = "update Cliente set nome='" + c.getNome() + "', " + "cognome='"+c.getCognome() + "', email='"+c.getEmail() +"'," +
+                    "username='"+c.getUsername()+"',password='"+c.getPassword()+"', indirizzo='"+c.getIndirizzo()+"', isRegistrato="+
+                    c.isRegistrato()+", telefono='"+c.getTelefono()+"',where idCliente=" + c.getIdCliente() + ";";
+            st.executeUpdate(query);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

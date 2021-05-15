@@ -23,11 +23,9 @@ public class Cliente {
     public void setRegistrato(boolean registrato) { isRegistrato = registrato; }
     public ArrayList<Ordine> getOrdini() { return ordini; }
     public void setOrdini(ArrayList<Ordine> order) { this.ordini = ordini; }
-
     public String getTelefono() {
         return telefono;
     }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }

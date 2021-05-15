@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 
 public class OrdineDAO {
-
     public void addOrdine(Ordine p, Cliente c){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -26,12 +25,11 @@ public class OrdineDAO {
         }
     }
 
-
     public void doChanges(Ordine p){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-            String query = "update Ordine set idOrdine='" + p.getIdOrdine() + "', iva='" +
-                    p.getIva() + "', dataInserimento="+p.getDataInserimento() + " where idOrdine=" + p.getIdOrdine() + ";";
+            String query = "update Ordine set iva='" + p.getIva() + "', " + "dataInserimento="+p.getDataInserimento() + " " +
+                    "where idOrdine=" + p.getIdOrdine() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {
@@ -39,7 +37,6 @@ public class OrdineDAO {
         }
 
     }
-
 
     public ArrayList<Ordine> doRetrieveAll(){
         ArrayList<Ordine> result=new ArrayList<Ordine>();
@@ -58,7 +55,6 @@ public class OrdineDAO {
             throw new RuntimeException(e);
         }
     }
-
 
     public Ordine doRetrieveById(long id){
         Ordine p = new Ordine();

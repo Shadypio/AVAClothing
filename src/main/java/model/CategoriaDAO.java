@@ -22,15 +22,15 @@ public class CategoriaDAO {
     public void doChanges(Categoria c){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-            /*String query = "update Prodotto set idCategoria='" + c.getIdCategoria() + "', nome='" +
-                    c.getNome() + "', descrizione=" + c.getDescrizione() + " where idCategoria=" + c.getIdCategoria() + ";";
-            st.executeUpdate(query);*/ // Si può cambiare l'ID?
+            String query = "update Categoria c set c.nome='" + c.getNome() + "', descrizione=" + c.getDescrizione() + " where idCategoria=" + c.getIdCategoria() + ";";
+            st.executeUpdate(query);
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
+
     public ArrayList<Categoria> doRetrieveAll(){
         ArrayList<Categoria> result=new ArrayList<Categoria>();
         try (Connection con = ConPool.getConnection()) {
@@ -60,7 +60,6 @@ public class CategoriaDAO {
                 c.setNome(rs.getString(1));
                 c.setDescrizione(rs.getString(2));
                 c.setIdCategoria(rs.getLong(3));
-
             }
             return c;
         } catch (SQLException e) {

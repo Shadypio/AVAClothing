@@ -49,29 +49,26 @@ public class SpedizioneDAO {
         }
     }
 
-    // da' errori, commentato per evitare problemi nel commmit
-    /*public boolean doChanges(Spedizione spedizione){
+    public boolean doChanges(Spedizione spedizione){
         try(Connection con = ConPool.getConnection()){
             long idSpedizione = spedizione.getIdSpedizione();
             Date data = (Date) spedizione.getData();
             String status = spedizione.getStatus();
             double spese = spedizione.getSpese();
-            // gestire l'ordine
-            String query = "UPDATE spedizione s SET s.data = \"" + data + "\", s.status = \"" + status + "\", " +
-                    "s.spese = " + spese + " WHERE s.Id = " + idSpedizione + "";
+            String query = "UPDATE spedizione s SET s.dataSpedizione = '" + data + "', s.statusSpedizione = '" + status + "', " +
+                    "s.spese = " + spese + " WHERE s.idSpedizione = " + idSpedizione + ";";
             PreparedStatement s = con.prepareStatement(query);
             s.execute();
             return true;
         } catch(SQLException e){
             return false;
         }
-    }*/
+    }
 
     public void addSpedizione(Spedizione spedizione) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO spedizione (dataSpedizione, statusSpedizione, spese, idSpedizione) VALUES(?,?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
+                    "INSERT INTO spedizione (dataSpedizione, statusSpedizione, spese, idSpedizione) VALUES(?,?,?,?)");
             ps.setDate(1, (Date) spedizione.getData());
             ps.setString(2, spedizione.getStatus());
             ps.setDouble(3, spedizione.getSpese());
@@ -79,11 +76,6 @@ public class SpedizioneDAO {
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            long id = rs.getLong(1);
-            spedizione.setIdSpedizione(id);
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -106,8 +98,8 @@ public class SpedizioneDAO {
                 o.setIdOrdine(rs.getLong(7));
                 p.setOrdine(o);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
         return p;
     }

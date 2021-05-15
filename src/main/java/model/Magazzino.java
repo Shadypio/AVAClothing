@@ -4,9 +4,6 @@ public class Magazzino {
     public Magazzino(){
         super();
     }
-    private long idMagazzino;
-    private String nome;
-    private String indirizzo;
 
     public long getIdMagazzino() {return idMagazzino;}
     public void setIdMagazzino(long idMagazzino) {this.idMagazzino = idMagazzino;}
@@ -29,5 +26,9 @@ public class Magazzino {
                 ", indirizzo='" + indirizzo + '\'' +
                 '}';
     }
+
+    private long idMagazzino;
+    private String nome;
+    private String indirizzo;
 }
 

@@ -23,8 +23,8 @@ public class MagazzinoDAO {
     public void doChanges(Magazzino m){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-            String query = "update magazzino set idMagazzino='" + m.getIdMagazzino() + "', nome='" +
-                    m.getNome() + "', indirizzo=" + m.getIndirizzo() + " where idMagazzino=" + m.getIdMagazzino() + ";";
+            String query = "update magazzino set nome='" + m.getNome() + "', indirizzo=" + m.getIndirizzo() + " " +
+                    "where idMagazzino=" + m.getIdMagazzino() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {
