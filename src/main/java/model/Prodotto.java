@@ -110,8 +110,6 @@ public class Prodotto {
     private boolean isInOfferta;
     private String descrizioneBreve;
     private String descrizioneDettagliata;
-    //private ArrayList<Ordine> ordini;
-    //private Magazzino magazzino;
     private Categoria categoria;
     private int quantita;
 
