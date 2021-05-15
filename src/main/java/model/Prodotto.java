@@ -66,12 +66,20 @@ public class Prodotto {
         this.descrizioneDettagliata = descrizioneDettagliata;
     }
 
-    public ArrayList<Ordine> getOrdini() {
+    /*public ArrayList<Ordine> getOrdini() {
         return ordini;
     }
 
     public void setOrdini(ArrayList<Ordine> ordini) {
         this.ordini = ordini;
+    }*/
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
     }
 
     @Override
@@ -83,6 +91,8 @@ public class Prodotto {
                 ", isInOfferta=" + isInOfferta +
                 ", descrizioneBreve='" + descrizioneBreve + '\'' +
                 ", descrizioneDettagliata='" + descrizioneDettagliata + '\'' +
+                ", categoria=" + categoria +
+                ", quantita=" + quantita +
                 '}';
     }
 
@@ -100,8 +110,9 @@ public class Prodotto {
     private boolean isInOfferta;
     private String descrizioneBreve;
     private String descrizioneDettagliata;
-    private ArrayList<Ordine> ordini;
-    private Magazzino magazzino;
+    //private ArrayList<Ordine> ordini;
+    //private Magazzino magazzino;
     private Categoria categoria;
+    private int quantita;
 
 }

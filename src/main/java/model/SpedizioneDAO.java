@@ -89,4 +89,27 @@ public class SpedizioneDAO {
         }
     }
 
+    public Spedizione doRetrieveSpedizioneWithOrdine(long id){
+        Spedizione p = new Spedizione();
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM spedizione INNER JOIN ordine ON spedizione.ord_fk = ordine.idOrdine WHERE ordine.idOrdine = " + id;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                p.setData(rs.getDate(1));
+                p.setStatus(rs.getString(2));
+                p.setSpese(rs.getDouble(3));
+                p.setIdSpedizione(rs.getLong(4));
+                Ordine o = new Ordine();
+                o.setIva(rs.getDouble(5));
+                o.setDataInserimento(rs.getDate(6));
+                o.setIdOrdine(rs.getLong(7));
+                p.setOrdine(o);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return p;
+    }
+
 }

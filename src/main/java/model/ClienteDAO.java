@@ -43,17 +43,59 @@ public class ClienteDAO {
         }
     }*/
 
-    public boolean doRetrieveById(long id){
+    public Cliente doRetrieveClienteWithOrdini(long id){
+        Cliente p = new Cliente();
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM cliente INNER JOIN ordine ON cliente.idCliente = ordine.cli_fk WHERE cliente.idCliente = " + id;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                p.setNome(rs.getString(1));
+                p.setCognome(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setUsername(rs.getString(4));
+                p.setPassword(rs.getString(5));
+                p.setIndirizzo(rs.getString(6));
+                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setTelefono(rs.getString(8));
+                p.setIdCliente(rs.getLong(9));
+                while (rs.next()) {
+                    Ordine o = new Ordine();
+                    o.setIva(rs.getDouble(10));
+                    o.setDataInserimento(rs.getDate(11));
+                    o.setIdOrdine(rs.getLong(12));
+                    p.getOrdini().add(o);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return p;
+    }
+
+    public Cliente doRetrieveById(long id){
+        Cliente p = new Cliente();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE idCliente=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next())
-                return true;
-            return false;
+            if(rs.next()) {
+                p.setNome(rs.getString(1));
+                p.setCognome(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setUsername(rs.getString(4));
+                p.setPassword(rs.getString(5));
+                p.setIndirizzo(rs.getString(6));
+                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setTelefono(rs.getString(8));
+                p.setIdCliente(rs.getLong(9));
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return p;
+
     }
 
     public void addCliente(Cliente p){

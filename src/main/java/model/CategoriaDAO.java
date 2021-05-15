@@ -50,20 +50,19 @@ public class CategoriaDAO {
 
     }
 
-    public ArrayList<Categoria> doRetrieveById(long idCategoria){
-        ArrayList<Categoria> result=new ArrayList<Categoria>();
+    public Categoria doRetrieveById(long idCategoria){
+        Categoria c = new Categoria();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria WHERE idCategoria=?");
             ps.setLong(1,idCategoria);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                Categoria c = new Categoria();
+            if(rs.next()) {
                 c.setNome(rs.getString(1));
                 c.setDescrizione(rs.getString(2));
                 c.setIdCategoria(rs.getLong(3));
-                result.add(c);
+
             }
-            return result;
+            return c;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

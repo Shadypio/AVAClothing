@@ -47,6 +47,14 @@ public class Spedizione {
         this.spese = spese;
     }
 
+    public Ordine getOrdine() {
+        return ordine;
+    }
+
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
+
     @Override
     public String toString() {
         return "Spedizione{" +

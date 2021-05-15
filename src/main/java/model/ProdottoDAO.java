@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -39,12 +40,12 @@ public class ProdottoDAO {
             ResultSet rs = s.executeQuery();
             while(rs.next()){
                 Prodotto p = new Prodotto();
-                p.setIdProdotto(rs.getLong(1));
-                p.setNome(rs.getString(2));
-                p.setPrezzo(rs.getDouble(3));
-                p.setInOfferta(rs.getBoolean(4));
-                p.setDescrizioneBreve((rs.getString(5)));
-                p.setDescrizioneDettagliata((rs.getString(6)));
+                p.setNome(rs.getString(1));
+                p.setPrezzo(rs.getDouble(2));
+                p.setDescrizioneBreve((rs.getString(3)));
+                p.setDescrizioneDettagliata((rs.getString(4)));
+                p.setInOfferta(rs.getBoolean(5));
+                p.setIdProdotto(rs.getLong(6));
                 prodotti.add(p);
             }
             return prodotti;
@@ -95,5 +96,49 @@ public class ProdottoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<Prodotto> doRetrieveProdottiDiCategoria(long id){
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM prodotto INNER JOIN categoria ON prodotto.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Prodotto p = new Prodotto();
+                p.setNome(rs.getString(1));
+                p.setPrezzo(rs.getDouble(2));
+                p.setDescrizioneBreve((rs.getString(3)));
+                p.setDescrizioneDettagliata((rs.getString(4)));
+                p.setInOfferta(rs.getBoolean(5));
+                p.setIdProdotto(rs.getLong(6));
+                prodotti.add(p);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return prodotti;
+    }
+
+    public ArrayList<Prodotto> doRetrieveSpedizioneWithOrdine(long id){
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM prodotto INNER JOIN categoria ON prodotto.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Prodotto p = new Prodotto();
+                p.setNome(rs.getString(1));
+                p.setPrezzo(rs.getDouble(2));
+                p.setDescrizioneBreve((rs.getString(3)));
+                p.setDescrizioneDettagliata((rs.getString(4)));
+                p.setInOfferta(rs.getBoolean(5));
+                p.setIdProdotto(rs.getLong(6));
+                prodotti.add(p);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return prodotti;
     }
 }

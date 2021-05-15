@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class MagazzinoDAO {
+
     public void addMagazzino(Magazzino m){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -31,6 +32,7 @@ public class MagazzinoDAO {
         }
 
     }
+
     public ArrayList<Magazzino> doRetrieveAll(){
         ArrayList<Magazzino> result=new ArrayList<Magazzino>();
         try (Connection con = ConPool.getConnection()) {
@@ -50,20 +52,18 @@ public class MagazzinoDAO {
 
     }
 
-    public ArrayList<Magazzino> doRetrieveById(long idMagazzino){
-        ArrayList<Magazzino> result=new ArrayList<Magazzino>();
+    public Magazzino doRetrieveById(long idMagazzino){
+        Magazzino m = new Magazzino();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino WHERE idMagazzino=?");
             ps.setLong(1,idMagazzino);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                Magazzino m = new Magazzino();
+            if(rs.next()) {
                 m.setNome(rs.getString(1));
                 m.setIndirizzo(rs.getString(2));
                 m.setIdMagazzino(rs.getInt(3));
-                result.add(m);
             }
-            return result;
+            return m;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

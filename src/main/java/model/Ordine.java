@@ -30,4 +30,5 @@ public class Ordine {
     private long idOrdine;
     private Double iva;
     private Date dataInserimento;
+    //private cliente
 }
