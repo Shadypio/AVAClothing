@@ -66,14 +66,6 @@ public class Prodotto {
         this.descrizioneDettagliata = descrizioneDettagliata;
     }
 
-    /*public ArrayList<Ordine> getOrdini() {
-        return ordini;
-    }
-
-    public void setOrdini(ArrayList<Ordine> ordini) {
-        this.ordini = ordini;
-    }*/
-
     public int getQuantita() {
         return quantita;
     }
@@ -104,12 +96,29 @@ public class Prodotto {
         return idProdotto == prodotto.idProdotto;
     }
 
+    public Magazzino getMagazzino() {
+        return magazzino;
+    }
+
+    public void setMagazzino(Magazzino magazzino) {
+        this.magazzino = magazzino;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     private long idProdotto;
     private String nome;
     private double prezzo;
     private boolean isInOfferta;
     private String descrizioneBreve;
     private String descrizioneDettagliata;
+    private Magazzino magazzino;
     private Categoria categoria;
     private int quantita;
 

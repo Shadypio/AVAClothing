@@ -17,7 +17,7 @@ public class ClienteDAO {
                 p.setUsername(rs.getString(4));
                 p.setPassword(rs.getString(5));
                 p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7));   // Tinyint?
+                p.setRegistrato(rs.getBoolean(7));
                 p.setTelefono(rs.getString(8));
                 p.setIdCliente(rs.getLong(9));
                 result.add(p);
@@ -41,7 +41,7 @@ public class ClienteDAO {
                 p.setUsername(rs.getString(4));
                 p.setPassword(rs.getString(5));
                 p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setRegistrato(rs.getBoolean(7));
                 p.setTelefono(rs.getString(8));
                 p.setIdCliente(rs.getLong(9));
                 while (rs.next()) {
@@ -71,7 +71,7 @@ public class ClienteDAO {
                 p.setUsername(rs.getString(4));
                 p.setPassword(rs.getString(5));
                 p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7)); // Tinyint
+                p.setRegistrato(rs.getBoolean(7));
                 p.setTelefono(rs.getString(8));
                 p.setIdCliente(rs.getLong(9));
             }

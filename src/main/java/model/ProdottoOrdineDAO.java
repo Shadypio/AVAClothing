@@ -31,7 +31,7 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetrieveAll(){
+    public ArrayList<ProdottoOrdine> doRetrieveAll(){// SBAGLIATO
         ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine");
@@ -57,7 +57,7 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetriveByIdOrdine(long id){
+    public ArrayList<ProdottoOrdine> doRetriveByIdOrdine(long id){ // SBAGLIATO
         ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
         OrdineDAO a=new OrdineDAO();
         Ordine o=a.doRetrieveById(id);
@@ -79,7 +79,7 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetriveByIdProdotto(long id){
+    public ArrayList<ProdottoOrdine> doRetriveByIdProdotto(long id){ // SBAGLIATO
         ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
         ProdottoDAO b=new ProdottoDAO();
         Prodotto p=b.doRetrieveById(id);

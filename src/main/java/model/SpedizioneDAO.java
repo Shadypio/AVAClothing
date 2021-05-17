@@ -65,14 +65,15 @@ public class SpedizioneDAO {
         }
     }
 
-    public void addSpedizione(Spedizione spedizione) {
+    public void addSpedizione(Spedizione spedizione, Ordine ordine) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO spedizione (dataSpedizione, statusSpedizione, spese, idSpedizione) VALUES(?,?,?,?)");
+                    "INSERT INTO spedizione (dataSpedizione, statusSpedizione, spese, idSpedizione,ord_fk) VALUES(?,?,?,?,?)");
             ps.setDate(1, (Date) spedizione.getData());
             ps.setString(2, spedizione.getStatus());
             ps.setDouble(3, spedizione.getSpese());
             ps.setLong(4, spedizione.getIdSpedizione());
+            ps.setLong(5,ordine.getIdOrdine());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -97,11 +98,13 @@ public class SpedizioneDAO {
                 o.setDataInserimento(rs.getDate(6));
                 o.setIdOrdine(rs.getLong(7));
                 p.setOrdine(o);
+                return p;
             }
+
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-        return p;
+        return null;
     }
 
 }

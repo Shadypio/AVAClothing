@@ -12,6 +12,14 @@ public class Ordine {
     public Date getDataInserimento() { return dataInserimento; }
     public void setDataInserimento(Date dataInserimento) { this.dataInserimento = dataInserimento; }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public String toString() {
         return "Ordine{" +
                 "idOrdine=" + idOrdine +
@@ -30,4 +38,5 @@ public class Ordine {
     private long idOrdine;
     private Double iva;
     private Date dataInserimento;
+    private Cliente cliente;
 }

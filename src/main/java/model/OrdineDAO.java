@@ -3,16 +3,12 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- *
- * GESTIRE LE FOREIGN KEY PER OGNI METODO
- */
-
 public class OrdineDAO {
+
     public void addOrdine(Ordine p, Cliente c){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO ordine (iva, dataInserimento, idOrdine) VALUES(?,?,?,?)");
+                    "INSERT INTO ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES(?,?,?,?)");
             ps.setDouble(1, p.getIva());
             ps.setDate(2, p.getDataInserimento());
             ps.setLong(3, p.getIdOrdine());
@@ -35,7 +31,6 @@ public class OrdineDAO {
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public ArrayList<Ordine> doRetrieveAll(){
@@ -71,8 +66,8 @@ public class OrdineDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 
 }
 

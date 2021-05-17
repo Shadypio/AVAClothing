@@ -3,7 +3,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+//AGGIUNGI STRINGA IMMAGINE
 public class ProdottoDAO {
     public Prodotto doRetrieveById(long id) {
         try (Connection con = ConPool.getConnection()) {
@@ -67,16 +67,18 @@ public class ProdottoDAO {
         }
     }
 
-    public void addProdotto(Prodotto prodotto) {
+    public void addProdotto(Prodotto prodotto,Categoria categoria,Magazzino magazzino) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto) VALUES(?,?,?,?,?,?)");
+                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,mag_fk,cat_fk) VALUES(?,?,?,?,?,?,?,?)");
             ps.setString(1, prodotto.getNome());
             ps.setDouble(2, prodotto.getPrezzo());
             ps.setString(3, prodotto.getDescrizioneBreve());
             ps.setString(4, prodotto.getDescrizioneDettagliata());
             ps.setBoolean(5, prodotto.isInOfferta());
             ps.setLong(6, prodotto.getIdProdotto());
+            ps.setLong(7,magazzino.getIdMagazzino());
+            ps.setLong(8,categoria.getIdCategoria());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -85,7 +87,7 @@ public class ProdottoDAO {
         }
     }
 
-    public ArrayList<Prodotto> doRetrieveProdottiDiCategoria(long id){
+    public ArrayList<Prodotto> doRetrieveProdottiWithCategoria(long id){
         ArrayList<Prodotto> prodotti = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM prodotto INNER JOIN categoria ON prodotto.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
@@ -106,8 +108,8 @@ public class ProdottoDAO {
         }
         return prodotti;
     }
-
-    public ArrayList<Prodotto> doRetrieveSpedizioneWithOrdine(long id){
+//  /----------------------------------------------------------------------/
+    public ArrayList<Prodotto> doRetrieveSpedizioneWithOrdine(long id){ // CHE COS'è ?
         ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM prodotto INNER JOIN categoria ON prodotto.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
