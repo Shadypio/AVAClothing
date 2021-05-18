@@ -93,7 +93,6 @@ public class OrdineDAO {
                 prodotti.add(x);
                 while(rs.next()) {
                     Prodotto b;
-                    ProdottoExtractor proExtractor=new ProdottoExtractor();
                     b=proExtractor.extract(rs);
                     ProdottoOrdine y = new ProdottoOrdine();
                     y.setProdotto(b);
