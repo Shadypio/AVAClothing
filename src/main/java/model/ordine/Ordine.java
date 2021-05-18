@@ -1,4 +1,7 @@
-package model;
+package model.ordine;
+
+import model.prodottoordine.ProdottoOrdine;
+import model.cliente.Cliente;
 
 import java.sql.Date;
 import java.util.ArrayList;

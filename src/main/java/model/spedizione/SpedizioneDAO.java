@@ -1,4 +1,8 @@
-package model;
+package model.spedizione;
+
+import model.ConPool;
+import model.ordine.Ordine;
+import model.spedizione.Spedizione;
 
 import java.sql.*;
 import java.util.LinkedList;

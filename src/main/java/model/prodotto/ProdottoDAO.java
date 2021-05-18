@@ -1,4 +1,9 @@
-package model;
+package model.prodotto;
+
+import model.ConPool;
+import model.categoria.Categoria;
+import model.magazzino.Magazzino;
+import model.prodotto.Prodotto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -67,7 +72,7 @@ public class ProdottoDAO {
         }
     }
 
-    public void addProdotto(Prodotto prodotto,Categoria categoria,Magazzino magazzino) {
+    public void addProdotto(Prodotto prodotto, Categoria categoria, Magazzino magazzino) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,mag_fk,cat_fk) VALUES(?,?,?,?,?,?,?,?)");

@@ -1,6 +1,7 @@
-package model;
+package model.prodottoordine;
 
-import java.util.ArrayList;
+import model.ordine.Ordine;
+import model.prodotto.Prodotto;
 
 public class ProdottoOrdine {
     public ProdottoOrdine() { }

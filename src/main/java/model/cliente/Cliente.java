@@ -1,7 +1,8 @@
-package model;
+package model.cliente;
+
+import model.ordine.Ordine;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Cliente {
     public Cliente(){ super(); }

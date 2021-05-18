@@ -1,7 +1,7 @@
-package model;
+package model.prodotto;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import model.categoria.Categoria;
+import model.magazzino.Magazzino;
 
 public class Prodotto {
 

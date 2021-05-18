@@ -1,4 +1,7 @@
-package model;
+package model.categoria;
+
+import model.ConPool;
+import model.categoria.Categoria;
 
 import java.sql.*;
 import java.util.ArrayList;

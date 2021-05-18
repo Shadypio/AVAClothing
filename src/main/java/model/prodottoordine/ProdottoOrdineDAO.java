@@ -1,10 +1,15 @@
-package model;
+package model.prodottoordine;
+
+import model.ConPool;
+import model.ordine.Ordine;
+import model.prodotto.Prodotto;
+import model.prodottoordine.ProdottoOrdine;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class ProdottoOrdineDAO {
-    public void addProdottoOrdine(Ordine o, Prodotto p,int q){
+    public void addProdottoOrdine(Ordine o, Prodotto p, int q){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO prodotto_ordine (ord_fk,pro_fk,quantita) VALUES(?,?,?)");
@@ -65,25 +70,5 @@ public class ProdottoOrdineDAO {
         }
     }
 
-
-
-    public ArrayList<Ordine> doRetriveByIdProdotto(long idProdotto){ // ?????
-        ArrayList<Ordine> result=new ArrayList<Ordine>();
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
-                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
-                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine where po.ord_fk=?");
-            ps.setLong(1, idProdotto);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-
-
-                //??
-            }
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

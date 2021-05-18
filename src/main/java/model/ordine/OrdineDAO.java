@@ -1,4 +1,9 @@
-package model;
+package model.ordine;
+
+import model.ConPool;
+import model.prodotto.Prodotto;
+import model.prodottoordine.ProdottoOrdine;
+import model.cliente.Cliente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,7 +73,8 @@ public class OrdineDAO {
         }
     }
 
-    public Ordine doRetriveByIdOrdine(long idOrdine, long idCliente){
+    public Ordine doRetrieveByIdOrdine(long idOrdine, long idCliente){
+        Ordine p=new Ordine();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
                     "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
@@ -77,7 +83,6 @@ public class OrdineDAO {
             ps.setLong(2, idCliente);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                Ordine p=new Ordine();
                 p.setIva(rs.getDouble("ord.iva"));
                 p.setDataInserimento(rs.getDate("ord.dataInserimento"));
                 p.setIdOrdine(rs.getInt("ord.idOrdine"));
@@ -94,21 +99,21 @@ public class OrdineDAO {
                 x.setProdotto(a);
                 x.setQuantita(rs.getInt("po.quantita"));
                 prodotti.add(x);
-                while(rs.next()){
-                    Prodotto b=new Prodotto();
+                while(rs.next()) {
+                    Prodotto b = new Prodotto();
                     b.setNome(rs.getString("pro.nome"));
                     b.setPrezzo(rs.getDouble("pro.prezzo"));
                     b.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
                     b.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
                     b.setInOfferta(rs.getBoolean("pro.inOfferta"));
                     b.setIdProdotto(rs.getLong("pro.idProdotto"));
-                    ProdottoOrdine y=new ProdottoOrdine();
+                    ProdottoOrdine y = new ProdottoOrdine();
                     y.setProdotto(b);
                     y.setQuantita(rs.getInt("po.quantita"));
                     prodotti.add(y);
                 }
-                return p;
             }
+            return p;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -1,4 +1,7 @@
-package model;
+package model.magazzino;
+
+import model.ConPool;
+import model.magazzino.Magazzino;
 
 import java.sql.*;
 import java.util.ArrayList;

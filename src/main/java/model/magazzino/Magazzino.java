@@ -1,4 +1,4 @@
-package model;
+package model.magazzino;
 
 public class Magazzino {
     public Magazzino(){

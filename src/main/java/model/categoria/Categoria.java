@@ -1,4 +1,4 @@
-package model;
+package model.categoria;
 
 public class Categoria {
     public Categoria(){

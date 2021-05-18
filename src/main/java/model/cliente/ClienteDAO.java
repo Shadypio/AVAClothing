@@ -1,4 +1,7 @@
-package model;
+package model.cliente;
+
+import model.ConPool;
+import model.ordine.Ordine;
 
 import java.sql.*;
 import java.util.ArrayList;

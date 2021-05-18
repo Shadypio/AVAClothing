@@ -1,4 +1,6 @@
-package model;
+package model.spedizione;
+
+import model.ordine.Ordine;
 
 import java.util.Date;
 
