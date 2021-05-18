@@ -43,12 +43,9 @@ public class OrdineDAO {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM ordine as ord");
             ResultSet rs = ps.executeQuery();
+            OrdineExtractor ordExtractor = new OrdineExtractor();
             while(rs.next()) {
-                Ordine p = new Ordine();
-                p.setIva(rs.getDouble("ord.iva"));
-                p.setDataInserimento(rs.getDate("ord.dataInserimento"));
-                p.setIdOrdine(rs.getInt("ord.idOrdine"));
-                result.add(p);
+                result.add(ordExtractor.extract(rs));
             }
             return result;
         } catch (SQLException e) {
@@ -57,15 +54,14 @@ public class OrdineDAO {
     }
 
     public Ordine doRetrieveById(long id){
-        Ordine p = new Ordine();
+        Ordine p = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Ordine as ord WHERE idOrdine=?");
             ps.setLong(1,id);
             ResultSet rs = ps.executeQuery();
+            OrdineExtractor ordExtractor = new OrdineExtractor();
             if(rs.next()) {
-                p.setIva(rs.getDouble("ord.iva"));
-                p.setDataInserimento(rs.getDate("ord.dataInserimento"));
-                p.setIdOrdine(rs.getInt("ord.idOrdine"));
+               p=ordExtractor.extract(rs);
             }
             return p;
         } catch (SQLException e) {

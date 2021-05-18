@@ -2,6 +2,7 @@ package model.spedizione;
 
 import model.ConPool;
 import model.ordine.Ordine;
+import model.ordine.OrdineExtractor;
 import model.spedizione.Spedizione;
 
 import java.sql.*;
@@ -13,17 +14,15 @@ import java.util.LinkedList;
 public class SpedizioneDAO {
 
     public Spedizione doRetrieveById(long id) {
+        Spedizione p = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM spedizione as spe WHERE idSpedizione=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
+            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
             if (rs.next()) {
-                Spedizione p = new Spedizione();
-                p.setData(rs.getDate("spe.data"));
-                p.setStatus(rs.getString("spe.status"));
-                p.setSpese(rs.getDouble("spe.spese"));
-                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
+                p = speExtractor.extract(rs);
                 return p;
             }
             return null;
@@ -37,13 +36,9 @@ public class SpedizioneDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement s = con.prepareStatement("SELECT * FROM spedizione as spe");
             ResultSet rs = s.executeQuery();
+            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
             while(rs.next()){
-                Spedizione p = new Spedizione();
-                p.setData(rs.getDate("spe.data"));
-                p.setStatus(rs.getString("spe.status"));
-                p.setSpese(rs.getDouble("spe.spese"));
-                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
-                spedizioni.add(p);
+                spedizioni.add(speExtractor.extract(rs));
             }
             return spedizioni;
         } catch(SQLException e){
@@ -85,21 +80,14 @@ public class SpedizioneDAO {
     }
 
     public Spedizione doRetrieveSpedizioneWithOrdine(long id){
-        Spedizione p = new Spedizione();
+        Spedizione p = null;
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM spedizione as spe INNER JOIN ordine as ord ON spe.ord_fk = ord.idOrdine WHERE ord.idOrdine = " + id;
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
             if(rs.next()) {
-                p.setData(rs.getDate("spe.data"));
-                p.setStatus(rs.getString("spe.status"));
-                p.setSpese(rs.getDouble("spe.spese"));
-                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
-                Ordine o = new Ordine();
-                o.setIva(rs.getDouble("ord.iva"));
-                o.setDataInserimento(rs.getDate("ord.dataInserimento"));
-                o.setIdOrdine(rs.getInt("ord.idOrdine"));
-                p.setOrdine(o);
+                p = speExtractor.extract(rs);
                 return p;
             }
         } catch (SQLException throwable) {

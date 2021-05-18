@@ -11,19 +11,15 @@ import java.util.LinkedList;
 //AGGIUNGI STRINGA IMMAGINE
 public class ProdottoDAO {
     public Prodotto doRetrieveById(long id) {
+        Prodotto p = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM prodotto as pro WHERE idProdotto=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
+            ProdottoExtractor proExtractor = new ProdottoExtractor();
             if (rs.next()) {
-                Prodotto p = new Prodotto();
-                p.setNome(rs.getString("pro.nome"));
-                p.setPrezzo(rs.getDouble("pro.prezzo"));
-                p.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
-                p.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
-                p.setInOfferta(rs.getBoolean("pro.inOfferta"));
-                p.setIdProdotto(rs.getLong("pro.idProdotto"));
+                p = proExtractor.extract(rs);
                 return p;
             }
             return null;
@@ -37,15 +33,9 @@ public class ProdottoDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement s = con.prepareStatement("SELECT * FROM prodotto as pro");
             ResultSet rs = s.executeQuery();
+            ProdottoExtractor proExtractor = new ProdottoExtractor() ;
             while(rs.next()){
-                Prodotto p = new Prodotto();
-                p.setNome(rs.getString("pro.nome"));
-                p.setPrezzo(rs.getDouble("pro.prezzo"));
-                p.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
-                p.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
-                p.setInOfferta(rs.getBoolean("pro.inOfferta"));
-                p.setIdProdotto(rs.getLong("pro.idProdotto"));
-                prodotti.add(p);
+                prodotti.add(proExtractor.extract(rs));
             }
             return prodotti;
         } catch(SQLException e){
@@ -98,14 +88,10 @@ public class ProdottoDAO {
             String query = "SELECT * FROM prodotto as pro INNER JOIN categoria ON pro.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            ProdottoExtractor proExtractor = new ProdottoExtractor();
             while( rs.next()) {
                 Prodotto p = new Prodotto();
-                p.setNome(rs.getString("pro.nome"));
-                p.setPrezzo(rs.getDouble("pro.prezzo"));
-                p.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
-                p.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
-                p.setInOfferta(rs.getBoolean("pro.inOfferta"));
-                p.setIdProdotto(rs.getLong("pro.idProdotto"));
+                p = proExtractor.extract(rs);
                 prodotti.add(p);
             }
         } catch (SQLException throwable) {
