@@ -51,16 +51,14 @@ public class CategoriaDAO {
     }
 
     public Categoria doRetrieveById(long idCategoria){
-        Categoria c = new Categoria();
+        Categoria c = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria as cat WHERE idCategoria=?");
             ps.setLong(1,idCategoria);
             ResultSet rs = ps.executeQuery();
             CategoriaExtractor catExtractor=new CategoriaExtractor();
             if(rs.next()) {
-                c.setNome(rs.getString("cat.nome"));
-                c.setDescrizione(rs.getString("cat.descrizione"));
-                c.setIdCategoria(rs.getLong("cat.idCategoria"));
+                c=catExtractor.extract(rs);
             }
             return c;
         } catch (SQLException e) {

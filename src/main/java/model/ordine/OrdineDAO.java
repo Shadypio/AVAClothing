@@ -2,6 +2,7 @@ package model.ordine;
 
 import model.ConPool;
 import model.prodotto.Prodotto;
+import model.prodotto.ProdottoExtractor;
 import model.prodottoordine.ProdottoOrdine;
 import model.cliente.Cliente;
 
@@ -78,31 +79,22 @@ public class OrdineDAO {
             ps.setLong(1, idOrdine);
             ps.setLong(2, idCliente);
             ResultSet rs = ps.executeQuery();
+            OrdineExtractor ordExtractor=new OrdineExtractor();
             if(rs.next()) {
-                p.setIva(rs.getDouble("ord.iva"));
-                p.setDataInserimento(rs.getDate("ord.dataInserimento"));
-                p.setIdOrdine(rs.getInt("ord.idOrdine"));
+                p=ordExtractor.extract(rs);
                 ArrayList<ProdottoOrdine> prodotti=new ArrayList<>();
                 p.setProdotti(prodotti);
-                Prodotto a=new Prodotto();
-                a.setNome(rs.getString("pro.nome"));
-                a.setPrezzo(rs.getDouble("pro.prezzo"));
-                a.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
-                a.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
-                a.setInOfferta(rs.getBoolean("pro.inOfferta"));
-                a.setIdProdotto(rs.getLong("pro.idProdotto"));
+                Prodotto a;
+                ProdottoExtractor proExtractor=new ProdottoExtractor();
+                a=proExtractor.extract(rs);
                 ProdottoOrdine x=new ProdottoOrdine();
                 x.setProdotto(a);
                 x.setQuantita(rs.getInt("po.quantita"));
                 prodotti.add(x);
                 while(rs.next()) {
-                    Prodotto b = new Prodotto();
-                    b.setNome(rs.getString("pro.nome"));
-                    b.setPrezzo(rs.getDouble("pro.prezzo"));
-                    b.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
-                    b.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
-                    b.setInOfferta(rs.getBoolean("pro.inOfferta"));
-                    b.setIdProdotto(rs.getLong("pro.idProdotto"));
+                    Prodotto b;
+                    ProdottoExtractor proExtractor=new ProdottoExtractor();
+                    b=proExtractor.extract(rs);
                     ProdottoOrdine y = new ProdottoOrdine();
                     y.setProdotto(b);
                     y.setQuantita(rs.getInt("po.quantita"));

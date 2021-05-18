@@ -36,35 +36,16 @@ public class MagazzinoDAO {
 
     }
 
-    public ArrayList<Magazzino> doRetrieveAll(){
-        ArrayList<Magazzino> result=new ArrayList<Magazzino>();
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino as mag");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                Magazzino m = new Magazzino();
-                m.setNome(rs.getString("mag.nome"));
-                m.setIndirizzo(rs.getString("mag.indirizzo"));
-                m.setIdMagazzino(rs.getLong("mag.idMagazzino"));
-                result.add(m);
-            }
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
     public Magazzino doRetrieveById(long idMagazzino){
-        Magazzino m = new Magazzino();
+        Magazzino m = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino as mag WHERE idMagazzino=?");
             ps.setLong(1,idMagazzino);
             ResultSet rs = ps.executeQuery();
+            MagazzinoExtractor magExtractor=new MagazzinoExtractor();
             if(rs.next()) {
-                m.setNome(rs.getString("mag.nome"));
-                m.setIndirizzo(rs.getString("mag.indirizzo"));
-                m.setIdMagazzino(rs.getLong("mag.idMagazzino"));
+                m=magExtractor.extract(rs);
             }
             return m;
         } catch (SQLException e) {

@@ -11,7 +11,7 @@ import java.util.LinkedList;
 //AGGIUNGI STRINGA IMMAGINE
 public class ProdottoDAO {
     public Prodotto doRetrieveById(long id) {
-        Prodotto p = null;
+        Prodotto p;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM prodotto as pro WHERE idProdotto=?");
@@ -90,7 +90,7 @@ public class ProdottoDAO {
             ResultSet rs = ps.executeQuery();
             ProdottoExtractor proExtractor = new ProdottoExtractor();
             while( rs.next()) {
-                Prodotto p = new Prodotto();
+                Prodotto p;
                 p = proExtractor.extract(rs);
                 prodotti.add(p);
             }

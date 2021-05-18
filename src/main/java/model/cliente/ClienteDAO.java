@@ -2,6 +2,7 @@ package model.cliente;
 
 import model.ConPool;
 import model.ordine.Ordine;
+import model.ordine.OrdineExtractor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,18 +13,9 @@ public class ClienteDAO {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente as cli");
             ResultSet rs = ps.executeQuery();
+            ClienteExtractor cliExtractor=new ClienteExtractor();
             while(rs.next()) {
-                Cliente p = new Cliente();
-                p.setNome(rs.getString("cli.nome"));
-                p.setCognome(rs.getString("cli.cognome"));
-                p.setEmail(rs.getString("cli.email"));
-                p.setUsername(rs.getString("cli.username"));
-                p.setPassword(rs.getString("cli.password"));
-                p.setIndirizzo(rs.getString("cli.indirizzo"));
-                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
-                p.setTelefono(rs.getString("cli.telefono"));
-                p.setIdCliente(rs.getLong("cli.idCliente"));
-                result.add(p);
+                result.add(cliExtractor.extract(rs));
             }
             return result;
         } catch (SQLException e) {
@@ -38,20 +30,12 @@ public class ClienteDAO {
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                p.setNome(rs.getString("cli.nome"));
-                p.setCognome(rs.getString("cli.cognome"));
-                p.setEmail(rs.getString("cli.email"));
-                p.setUsername(rs.getString("cli.username"));
-                p.setPassword(rs.getString("cli.password"));
-                p.setIndirizzo(rs.getString("cli.indirizzo"));
-                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
-                p.setTelefono(rs.getString("cli.telefono"));
-                p.setIdCliente(rs.getLong("cli.idCliente"));
+                ClienteExtractor cliExtractor=new ClienteExtractor();
+                p=cliExtractor.extract(rs);
+                OrdineExtractor ordExtractor=new OrdineExtractor();
                 while (rs.next()) {
                     Ordine o = new Ordine();
-                    o.setIva(rs.getDouble("ord.iva"));
-                    o.setDataInserimento(rs.getDate("ord.dataInserimento"));
-                    o.setIdOrdine(rs.getLong("ord.idOrdine"));
+                    o=ordExtractor.extract(rs);
                     p.getOrdini().add(o);
                 }
             }
@@ -62,21 +46,14 @@ public class ClienteDAO {
     }
 
     public Cliente doRetrieveById(long id){
-        Cliente p = new Cliente();
+        Cliente p = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente as cli WHERE idCliente=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
+            ClienteExtractor cliExtractor=new ClienteExtractor();
             if(rs.next()) {
-                p.setNome(rs.getString("cli.nome"));
-                p.setCognome(rs.getString("cli.cognome"));
-                p.setEmail(rs.getString("cli.email"));
-                p.setUsername(rs.getString("cli.username"));
-                p.setPassword(rs.getString("cli.password"));
-                p.setIndirizzo(rs.getString("cli.indirizzo"));
-                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
-                p.setTelefono(rs.getString("cli.telefono"));
-                p.setIdCliente(rs.getLong("cli.idCliente"));
+                p=cliExtractor.extract(rs);
             }
 
         } catch (SQLException e) {

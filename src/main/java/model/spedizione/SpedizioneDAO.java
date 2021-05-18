@@ -14,15 +14,15 @@ import java.util.LinkedList;
 public class SpedizioneDAO {
 
     public Spedizione doRetrieveById(long id) {
-        Spedizione p = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM spedizione as spe WHERE idSpedizione=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
-            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
+            SpedizioneExtractor speExtractor=new SpedizioneExtractor();
             if (rs.next()) {
-                p = speExtractor.extract(rs);
+                Spedizione p;
+                p=speExtractor.extract(rs);
                 return p;
             }
             return null;
@@ -36,9 +36,11 @@ public class SpedizioneDAO {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement s = con.prepareStatement("SELECT * FROM spedizione as spe");
             ResultSet rs = s.executeQuery();
-            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
+            SpedizioneExtractor speExtractor=new SpedizioneExtractor();
             while(rs.next()){
-                spedizioni.add(speExtractor.extract(rs));
+                Spedizione p;
+                p=speExtractor.extract(rs);
+                spedizioni.add(p);
             }
             return spedizioni;
         } catch(SQLException e){
@@ -80,14 +82,18 @@ public class SpedizioneDAO {
     }
 
     public Spedizione doRetrieveSpedizioneWithOrdine(long id){
-        Spedizione p = null;
+        Spedizione p;
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM spedizione as spe INNER JOIN ordine as ord ON spe.ord_fk = ord.idOrdine WHERE ord.idOrdine = " + id;
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            SpedizioneExtractor speExtractor = new SpedizioneExtractor();
             if(rs.next()) {
-                p = speExtractor.extract(rs);
+                SpedizioneExtractor speExtractor=new SpedizioneExtractor();
+                p=speExtractor.extract(rs);
+                Ordine o;
+                OrdineExtractor ordExtractor=new OrdineExtractor();
+                o=ordExtractor.extract(rs);
+                p.setOrdine(o);
                 return p;
             }
         } catch (SQLException throwable) {
