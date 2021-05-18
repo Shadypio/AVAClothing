@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Ordine {
     public Ordine() {  }
@@ -19,7 +20,13 @@ public class Ordine {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    public ArrayList<ProdottoOrdine> getProdotti() {
+        return prodotti;
+    }
 
+    public void setProdotti(ArrayList<ProdottoOrdine> prodotti) {
+        this.prodotti = prodotti;
+    }
     public String toString() {
         return "Ordine{" +
                 "idOrdine=" + idOrdine +
@@ -39,4 +46,7 @@ public class Ordine {
     private Double iva;
     private Date dataInserimento;
     private Cliente cliente;
+    private ArrayList<ProdottoOrdine> prodotti;
+
+
 }

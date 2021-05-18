@@ -68,6 +68,51 @@ public class OrdineDAO {
         }
     }
 
+    public Ordine doRetriveByIdOrdine(long idOrdine, long idCliente){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
+                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
+                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine where ord.idOrdine=? and ord.cli_fk=?");
+            ps.setLong(1, idOrdine);
+            ps.setLong(2, idCliente);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                Ordine p=new Ordine();
+                p.setIva(rs.getDouble("ord.iva"));
+                p.setDataInserimento(rs.getDate("ord.dataInserimento"));
+                p.setIdOrdine(rs.getInt("ord.idOrdine"));
+                ArrayList<ProdottoOrdine> prodotti=new ArrayList<>();
+                p.setProdotti(prodotti);
+                Prodotto a=new Prodotto();
+                a.setNome(rs.getString("pro.nome"));
+                a.setPrezzo(rs.getDouble("pro.prezzo"));
+                a.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
+                a.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
+                a.setInOfferta(rs.getBoolean("pro.inOfferta"));
+                a.setIdProdotto(rs.getLong("pro.idProdotto"));
+                ProdottoOrdine x=new ProdottoOrdine();
+                x.setProdotto(a);
+                x.setQuantita(rs.getInt("po.quantita"));
+                prodotti.add(x);
+                while(rs.next()){
+                    Prodotto b=new Prodotto();
+                    b.setNome(rs.getString("pro.nome"));
+                    b.setPrezzo(rs.getDouble("pro.prezzo"));
+                    b.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
+                    b.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
+                    b.setInOfferta(rs.getBoolean("pro.inOfferta"));
+                    b.setIdProdotto(rs.getLong("pro.idProdotto"));
+                    ProdottoOrdine y=new ProdottoOrdine();
+                    y.setProdotto(b);
+                    y.setQuantita(rs.getInt("po.quantita"));
+                    prodotti.add(y);
+                }
+                return p;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

@@ -65,24 +65,7 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<Prodotto> doRetriveByIdOrdine(long idOrdine){ // ?????
-        ArrayList<Prodotto> result=new ArrayList<Prodotto>();
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
-                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
-                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine where po.ord_fk=?");
-            ps.setLong(1, idOrdine);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
 
-
-                //??
-            }
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public ArrayList<Ordine> doRetriveByIdProdotto(long idProdotto){ // ?????
         ArrayList<Ordine> result=new ArrayList<Ordine>();
