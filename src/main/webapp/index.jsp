@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title></title>
 </head>
 <body>
 <h1>AVAClothing - Prova per index
