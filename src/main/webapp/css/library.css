@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Raleway';
-    font-weight: auto;
+    font-weight: 300;
     font-style: normal;
     src:url("../fonts/Raleway-ExtraLight.ttf");
 }
 
 @font-face {
     font-family: 'Raleway';
-    font-weight: auto;
+    font-weight: 300;
     font-style: italic;
     src:url("../fonts/Raleway-ExtraLightItalic.ttf");
 }
