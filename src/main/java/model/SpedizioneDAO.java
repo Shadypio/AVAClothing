@@ -4,8 +4,6 @@ import java.sql.*;
 import java.util.LinkedList;
 
 /**
- *
- * GESTIRE LE FOREIGN KEY PER OGNI METODO
  */
 
 public class SpedizioneDAO {
@@ -13,15 +11,15 @@ public class SpedizioneDAO {
     public Spedizione doRetrieveById(long id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT * FROM spedizione WHERE idSpedizione=?");
+                    con.prepareStatement("SELECT * FROM spedizione as spe WHERE idSpedizione=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Spedizione p = new Spedizione();
-                p.setData(rs.getDate(1));
-                p.setStatus(rs.getString(2));
-                p.setSpese(rs.getDouble(3));
-                p.setIdSpedizione(rs.getLong(4));
+                p.setData(rs.getDate("spe.data"));
+                p.setStatus(rs.getString("spe.status"));
+                p.setSpese(rs.getDouble("spe.spese"));
+                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
                 return p;
             }
             return null;
@@ -33,14 +31,14 @@ public class SpedizioneDAO {
     public LinkedList<Spedizione> doRetrieveAll(){
         LinkedList<Spedizione> spedizioni = new LinkedList<>();
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement s = con.prepareStatement("SELECT * FROM spedizione");
+            PreparedStatement s = con.prepareStatement("SELECT * FROM spedizione as spe");
             ResultSet rs = s.executeQuery();
             while(rs.next()){
                 Spedizione p = new Spedizione();
-                p.setData(rs.getDate(1));
-                p.setStatus(rs.getString(2));
-                p.setSpese(rs.getDouble(3));
-                p.setIdSpedizione(rs.getLong(4));
+                p.setData(rs.getDate("spe.data"));
+                p.setStatus(rs.getString("spe.status"));
+                p.setSpese(rs.getDouble("spe.spese"));
+                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
                 spedizioni.add(p);
             }
             return spedizioni;
@@ -85,22 +83,21 @@ public class SpedizioneDAO {
     public Spedizione doRetrieveSpedizioneWithOrdine(long id){
         Spedizione p = new Spedizione();
         try (Connection con = ConPool.getConnection()) {
-            String query = "SELECT * FROM spedizione INNER JOIN ordine ON spedizione.ord_fk = ordine.idOrdine WHERE ordine.idOrdine = " + id;
+            String query = "SELECT * FROM spedizione as spe INNER JOIN ordine as ord ON spe.ord_fk = ord.idOrdine WHERE ord.idOrdine = " + id;
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                p.setData(rs.getDate(1));
-                p.setStatus(rs.getString(2));
-                p.setSpese(rs.getDouble(3));
-                p.setIdSpedizione(rs.getLong(4));
+                p.setData(rs.getDate("spe.data"));
+                p.setStatus(rs.getString("spe.status"));
+                p.setSpese(rs.getDouble("spe.spese"));
+                p.setIdSpedizione(rs.getLong("spe.idSpedizione"));
                 Ordine o = new Ordine();
-                o.setIva(rs.getDouble(5));
-                o.setDataInserimento(rs.getDate(6));
-                o.setIdOrdine(rs.getLong(7));
+                o.setIva(rs.getDouble("ord.iva"));
+                o.setDataInserimento(rs.getDate("ord.dataInserimento"));
+                o.setIdOrdine(rs.getInt("ord.idOrdine"));
                 p.setOrdine(o);
                 return p;
             }
-
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

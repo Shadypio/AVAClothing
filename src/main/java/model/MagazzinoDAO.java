@@ -36,13 +36,13 @@ public class MagazzinoDAO {
     public ArrayList<Magazzino> doRetrieveAll(){
         ArrayList<Magazzino> result=new ArrayList<Magazzino>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino as mag");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Magazzino m = new Magazzino();
-                m.setNome(rs.getString(1));
-                m.setIndirizzo(rs.getString(2));
-                m.setIdMagazzino(rs.getLong(3));
+                m.setNome(rs.getString("mag.nome"));
+                m.setIndirizzo(rs.getString("mag.indirizzo"));
+                m.setIdMagazzino(rs.getLong("mag.idMagazzino"));
                 result.add(m);
             }
             return result;
@@ -55,13 +55,13 @@ public class MagazzinoDAO {
     public Magazzino doRetrieveById(long idMagazzino){
         Magazzino m = new Magazzino();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino WHERE idMagazzino=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM magazzino as mag WHERE idMagazzino=?");
             ps.setLong(1,idMagazzino);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                m.setNome(rs.getString(1));
-                m.setIndirizzo(rs.getString(2));
-                m.setIdMagazzino(rs.getInt(3));
+                m.setNome(rs.getString("mag.nome"));
+                m.setIndirizzo(rs.getString("mag.indirizzo"));
+                m.setIdMagazzino(rs.getLong("mag.idMagazzino"));
             }
             return m;
         } catch (SQLException e) {

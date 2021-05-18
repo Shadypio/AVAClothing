@@ -7,19 +7,19 @@ public class ClienteDAO {
     public ArrayList<Cliente> doRetrieveAll(){
         ArrayList<Cliente> result=new ArrayList<Cliente>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente as cli");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Cliente p = new Cliente();
-                p.setNome(rs.getString(1));  // perche warning?????
-                p.setCognome(rs.getString(2));
-                p.setEmail(rs.getString(3));
-                p.setUsername(rs.getString(4));
-                p.setPassword(rs.getString(5));
-                p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7));
-                p.setTelefono(rs.getString(8));
-                p.setIdCliente(rs.getLong(9));
+                p.setNome(rs.getString("cli.nome"));
+                p.setCognome(rs.getString("cli.cognome"));
+                p.setEmail(rs.getString("cli.email"));
+                p.setUsername(rs.getString("cli.username"));
+                p.setPassword(rs.getString("cli.password"));
+                p.setIndirizzo(rs.getString("cli.indirizzo"));
+                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
+                p.setTelefono(rs.getString("cli.telefono"));
+                p.setIdCliente(rs.getLong("cli.idCliente"));
                 result.add(p);
             }
             return result;
@@ -31,24 +31,24 @@ public class ClienteDAO {
     public Cliente doRetrieveClienteWithOrdini(long id){
         Cliente p = new Cliente();
         try (Connection con = ConPool.getConnection()) {
-            String query = "SELECT * FROM cliente INNER JOIN ordine ON cliente.idCliente = ordine.cli_fk WHERE cliente.idCliente = " + id;
+            String query = "SELECT * FROM cliente as cli INNER JOIN ordine as ord ON cli.idCliente = ord.cli_fk WHERE cli.idCliente = " + id;
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                p.setNome(rs.getString(1));
-                p.setCognome(rs.getString(2));
-                p.setEmail(rs.getString(3));
-                p.setUsername(rs.getString(4));
-                p.setPassword(rs.getString(5));
-                p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7));
-                p.setTelefono(rs.getString(8));
-                p.setIdCliente(rs.getLong(9));
+                p.setNome(rs.getString("cli.nome"));
+                p.setCognome(rs.getString("cli.cognome"));
+                p.setEmail(rs.getString("cli.email"));
+                p.setUsername(rs.getString("cli.username"));
+                p.setPassword(rs.getString("cli.password"));
+                p.setIndirizzo(rs.getString("cli.indirizzo"));
+                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
+                p.setTelefono(rs.getString("cli.telefono"));
+                p.setIdCliente(rs.getLong("cli.idCliente"));
                 while (rs.next()) {
                     Ordine o = new Ordine();
-                    o.setIva(rs.getDouble(10));
-                    o.setDataInserimento(rs.getDate(11));
-                    o.setIdOrdine(rs.getLong(12));
+                    o.setIva(rs.getDouble("ord.iva"));
+                    o.setDataInserimento(rs.getDate("ord.dataInserimento"));
+                    o.setIdOrdine(rs.getLong("ord.idOrdine"));
                     p.getOrdini().add(o);
                 }
             }
@@ -61,19 +61,19 @@ public class ClienteDAO {
     public Cliente doRetrieveById(long id){
         Cliente p = new Cliente();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente WHERE idCliente=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente as cli WHERE idCliente=?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                p.setNome(rs.getString(1));
-                p.setCognome(rs.getString(2));
-                p.setEmail(rs.getString(3));
-                p.setUsername(rs.getString(4));
-                p.setPassword(rs.getString(5));
-                p.setIndirizzo(rs.getString(6));
-                p.setRegistrato(rs.getBoolean(7));
-                p.setTelefono(rs.getString(8));
-                p.setIdCliente(rs.getLong(9));
+                p.setNome(rs.getString("cli.nome"));
+                p.setCognome(rs.getString("cli.cognome"));
+                p.setEmail(rs.getString("cli.email"));
+                p.setUsername(rs.getString("cli.username"));
+                p.setPassword(rs.getString("cli.password"));
+                p.setIndirizzo(rs.getString("cli.indirizzo"));
+                p.setRegistrato(rs.getBoolean("cli.isRegistrato"));
+                p.setTelefono(rs.getString("cli.telefono"));
+                p.setIdCliente(rs.getLong("cli.idCliente"));
             }
 
         } catch (SQLException e) {

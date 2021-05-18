@@ -5,10 +5,7 @@ import java.util.Objects;
 
 public class Prodotto {
 
-    public Prodotto(){
-
-    }
-
+    public Prodotto(){ }
     public Prodotto(long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata) {
         this.idProdotto = idProdotto;
         this.nome = nome;
@@ -21,58 +18,25 @@ public class Prodotto {
     public long getIdProdotto() {
         return idProdotto;
     }
-
     public void setIdProdotto(long idProdotto) {
         this.idProdotto = idProdotto;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
-    }
-
-    public boolean isInOfferta() {
-        return isInOfferta;
-    }
-
-    public void setInOfferta(boolean inOfferta) {
-        isInOfferta = inOfferta;
-    }
-
-    public String getDescrizioneBreve() {
-        return descrizioneBreve;
-    }
-
-    public void setDescrizioneBreve(String descrizioneBreve) {
-        this.descrizioneBreve = descrizioneBreve;
-    }
-
-    public String getDescrizioneDettagliata() {
-        return descrizioneDettagliata;
-    }
-
-    public void setDescrizioneDettagliata(String descrizioneDettagliata) {
-        this.descrizioneDettagliata = descrizioneDettagliata;
-    }
-
-    public int getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public double getPrezzo() { return prezzo; }
+    public void setPrezzo(double prezzo) { this.prezzo = prezzo; }
+    public boolean isInOfferta() { return isInOfferta; }
+    public void setInOfferta(boolean inOfferta) { isInOfferta = inOfferta; }
+    public String getDescrizioneBreve() { return descrizioneBreve; }
+    public void setDescrizioneBreve(String descrizioneBreve) { this.descrizioneBreve = descrizioneBreve; }
+    public String getDescrizioneDettagliata() { return descrizioneDettagliata; }
+    public void setDescrizioneDettagliata(String descrizioneDettagliata) { this.descrizioneDettagliata = descrizioneDettagliata; }
+    public int getQuantita() { return quantita; }
+    public void setQuantita(int quantita) { this.quantita = quantita; }
+    public Magazzino getMagazzino() { return magazzino; }
+    public void setMagazzino(Magazzino magazzino) { this.magazzino = magazzino; }
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
     @Override
     public String toString() {
@@ -94,22 +58,6 @@ public class Prodotto {
         if (o == null || getClass() != o.getClass()) return false;
         Prodotto prodotto = (Prodotto) o;
         return idProdotto == prodotto.idProdotto;
-    }
-
-    public Magazzino getMagazzino() {
-        return magazzino;
-    }
-
-    public void setMagazzino(Magazzino magazzino) {
-        this.magazzino = magazzino;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     private long idProdotto;

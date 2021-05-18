@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProdottoOrdineDAO {
-
     public void addProdottoOrdine(Ordine o, Prodotto p,int q){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -31,46 +30,33 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetrieveAll(){// SBAGLIATO
+    public ArrayList<ProdottoOrdine> doRetrieveAll(){
         ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
+                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
+                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 ProdottoOrdine po = new ProdottoOrdine();
+
                 Ordine o=new Ordine();
+                o.setIva(rs.getDouble("ord.iva"));
+                o.setDataInserimento(rs.getDate("ord.dataInserimento"));
+                o.setIdOrdine(rs.getInt("ord.idOrdine"));
+
                 Prodotto p=new Prodotto();
-                OrdineDAO a=new OrdineDAO();
-                ProdottoDAO b=new ProdottoDAO();
+                p.setNome(rs.getString("pro.nome"));
+                p.setPrezzo(rs.getDouble("pro.prezzo"));
+                p.setDescrizioneBreve((rs.getString("pro.descrizioneBreve")));
+                p.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
+                p.setInOfferta(rs.getBoolean("pro.inOfferta"));
+                p.setIdProdotto(rs.getLong("pro.idProdotto"));
 
-                o.setIdOrdine(rs.getLong(1));
-                p.setIdProdotto(rs.getLong(2));
-                po.setQuantita(rs.getInt(3));
-
-                po.setOrdine(a.doRetrieveById(o.getIdOrdine()));
-                po.setProdotto(b.doRetrieveById(p.getIdProdotto()));
-                result.add(po);
-            }
-            return result;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public ArrayList<ProdottoOrdine> doRetriveByIdOrdine(long id){ // SBAGLIATO
-        ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
-        OrdineDAO a=new OrdineDAO();
-        Ordine o=a.doRetrieveById(id);
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine WHERE ord_fk="+id);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                ProdottoOrdine po = new ProdottoOrdine();
+                int q=rs.getInt("po.quantita");
                 po.setOrdine(o);
-                Prodotto p=new Prodotto();
-                ProdottoDAO b=new ProdottoDAO();
-                po.setProdotto(b.doRetrieveById(p.getIdProdotto()));
-                po.setQuantita(rs.getInt(3));
+                po.setProdotto(p);
+                po.setQuantita(q);
                 result.add(po);
             }
             return result;
@@ -79,22 +65,37 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetriveByIdProdotto(long id){ // SBAGLIATO
-        ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
-        ProdottoDAO b=new ProdottoDAO();
-        Prodotto p=b.doRetrieveById(id);
+    public ArrayList<Prodotto> doRetriveByIdOrdine(long idOrdine){ // ?????
+        ArrayList<Prodotto> result=new ArrayList<Prodotto>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine WHERE pro_fk="+id);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
+                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
+                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine where po.ord_fk=?");
+            ps.setLong(1, idOrdine);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                ProdottoOrdine po = new ProdottoOrdine();
-                po.setProdotto(p);
-                OrdineDAO a=new OrdineDAO();
-                Ordine o=a.doRetrieveById(id);
 
-                po.setOrdine(a.doRetrieveById(o.getIdOrdine()));
-                po.setQuantita(rs.getInt(3));
-                result.add(po);
+
+                //??
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Ordine> doRetriveByIdProdotto(long idProdotto){ // ?????
+        ArrayList<Ordine> result=new ArrayList<Ordine>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
+                    "INNER JOIN prodotto as pro ON po.pro_fk = pro.idProdotto " +
+                    "INNER JOIN ordine as ord ON po.ord_fk = ord.idOrdine where po.ord_fk=?");
+            ps.setLong(1, idProdotto);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+
+
+                //??
             }
             return result;
         } catch (SQLException e) {

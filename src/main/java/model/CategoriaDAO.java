@@ -34,13 +34,13 @@ public class CategoriaDAO {
     public ArrayList<Categoria> doRetrieveAll(){
         ArrayList<Categoria> result=new ArrayList<Categoria>();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria as cat");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Categoria c = new Categoria();
-                c.setNome(rs.getString(1));
-                c.setDescrizione(rs.getString(2));
-                c.setIdCategoria(rs.getLong(3));
+                c.setNome(rs.getString("cat.nome"));
+                c.setDescrizione(rs.getString("cat.descrizione"));
+                c.setIdCategoria(rs.getLong("cat.idCategoria"));
                 result.add(c);
             }
             return result;
@@ -53,13 +53,13 @@ public class CategoriaDAO {
     public Categoria doRetrieveById(long idCategoria){
         Categoria c = new Categoria();
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria WHERE idCategoria=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria as cat WHERE idCategoria=?");
             ps.setLong(1,idCategoria);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                c.setNome(rs.getString(1));
-                c.setDescrizione(rs.getString(2));
-                c.setIdCategoria(rs.getLong(3));
+                c.setNome(rs.getString("cat.nome"));
+                c.setDescrizione(rs.getString("cat.descrizione"));
+                c.setIdCategoria(rs.getLong("cat.idCategoria"));
             }
             return c;
         } catch (SQLException e) {
