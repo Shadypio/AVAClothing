@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <jsp:include page="WEB-INF/views/partials/head.jsp">
+        <jsp:param name="title" value="AVAClothing"/>
+    </jsp:include>
 </head>
 <body>
-<h1>AVAClothing - Prova per index
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<% response.sendRedirect("./cliente/secret");%>
 </body>
 </html>
