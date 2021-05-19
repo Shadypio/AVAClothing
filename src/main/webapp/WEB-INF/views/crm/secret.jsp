@@ -7,7 +7,7 @@
     </jsp:include>
     <style>
         .app{
-            background-color: linear-gradient(var(--cream), var(--darkcream));
+            background: linear-gradient(var(--cream), var(--darkcream));
         }
 
         .login{
@@ -15,24 +15,32 @@
             background-color: var(--cream);
             border-radius: 10px;
         }
+
+        .login > * {
+            margin: 10px;
+        }
+
+        body {
+            font-family: Raleway;
+        }
+
     </style>
 </head>
 <body>
-
-<form class="app" action="/secret" method="post">
-    <fieldset class="grid-y cell w50 login">
-         <h2> Login Pannello Admin</h2>
-         <span> Email </span>
-         <label for="email">
-             <input type="email" name="email" id="email" placeholder="Email">
-         </label>
-         <span> Password </span>
-         <label for="password">
-             <input type="password" name="password" id="password" placeholder="Password">
-         </label>
-         <button type="submit">Accedi</button>
-    </fieldset>
-</form>
+    <form class="app grid-x justify-center align-center" action="/secret" method="get">
+        <fieldset class="grid-y cell w50 login">
+            <h2> Login Pannello Admin</h2>
+            <span> Email </span>
+            <label for="email" class="field">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </label>
+            <span> Password </span>
+            <label for="password" class="field">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </label>
+            <button class="btn primary" type="submit">Accedi</button>
+        </fieldset>
+    </form>
 
 </body>
 </html>
