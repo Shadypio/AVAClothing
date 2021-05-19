@@ -25,6 +25,7 @@
         }
 
     </style>
+
 </head>
 <body>
     <form class="app grid-x justify-center align-center" action="/secret" method="get">
