@@ -12,11 +12,12 @@
 <link rel="apple-touch-icon" href="img/logo.jpg">
 <link rel="apple-touch-startup-image" href="img/logo.jpg">
 <meta name="theme-color" content="#000000">
-<link href="css/library.css" rel="stylesheet">
+<link href="<c:url value="/css/reset.css"/>" rel="stylesheet">
+<link href="<c:url value="/css/library.css"/>" rel="stylesheet">
 <c:if test="${not empty param.style}">
     <link rel="stylesheet" href="css/${param.style}">
 </c:if>
-<script src="js/library.js" defer> </script>
+<script src="<c:url value="/js/library.js"/>" defer> </script>
 <c:if test="${not empty param.script}">
     <script src="./js/${param.script}" defer></script>
 </c:if>
