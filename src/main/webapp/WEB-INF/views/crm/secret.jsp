@@ -6,14 +6,7 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Admin"/>
     </jsp:include>
-    <style>
-        h2 {
-            font-family: 'Raleway';
-            font-weight: normal;
-            font-style: normal;
-            color: green;
-        }
-    </style>
+
 </head>
 <body>
 
