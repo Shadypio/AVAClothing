@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -24,26 +25,28 @@
             font-family: Raleway;
         }
 
+
+
     </style>
 
     <p>ciao</p>
 
 </head>
 <body>
-    <form class="app grid-x justify-center align-center" action="/secret" method="get">
-        <fieldset class="grid-y cell w50 login">
-            <h2> Login Pannello Admin</h2>
-            <span> Email </span>
-            <label for="email" class="field">
-                <input type="email" name="email" id="email" placeholder="Email">
-            </label>
-            <span> Password </span>
-            <label for="password" class="field">
-                <input type="password" name="password" id="password" placeholder="Password">
-            </label>
-            <button class="btn primary" type="submit">Accedi</button>
-        </fieldset>
-    </form>
+<form class="app grid-x justify-center align-center" action="/secret" method="get">
+    <fieldset class="grid-y cell w50 login">
+        <h2> Login Pannello Admin</h2>
+        <span> Email </span>
+        <label for="email" class="field">
+            <input type="email" name="email" id="email" placeholder="Email">
+        </label>
+        <span> Password </span>
+        <label for="password" class="field">
+            <input type="password" name="password" id="password" placeholder="Password">
+        </label>
+        <button class="btn primary" type="submit">Accedi</button>
+    </fieldset>
+</form>
 
 </body>
 </html>
