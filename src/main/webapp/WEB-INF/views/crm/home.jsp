@@ -5,11 +5,11 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="title" value="AVAClothing-Home"/>
-        <jsp:param name="style" value="crmhome.css"/>
-        <jsp:param name="script" value="crmhome.js"/>
+        <jsp:param name="styles" value="crm,dashboard"/>
+        <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
 </head>
 <body>
-
+<h1>ciao sono home</h1>
 </body>
 </html>

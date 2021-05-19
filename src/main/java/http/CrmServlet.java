@@ -9,28 +9,14 @@ import java.io.IOException;
 public class CrmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //String path = getPath(request);
-        String path = "";
+        System.out.println("sono qui");
+        System.out.println(request.getContextPath());
+        String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
             case "/dashboard":
-                request.getRequestDispatcher("/WEB-INF/views/crm/accounts.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/views/crm/home.jsp").forward(request,response);
                 break;
-            case "/signin": //login cliente (pagina)
-                request.getRequestDispatcher("/WEB-INF/views/site/signin.jsp").forward(request,response);
-                break;
-            case "/create": //pagina per creare account cliente
-                request.getRequestDispatcher("/WEB-INF/views/crm/account.jsp").forward(request,response);
-                break;
-            case "/show": // pagina per vedere singoli dettagli cliente
-                request.getRequestDispatcher("/WEB-INF/views/crm/account.jsp").forward(request,response);
-                break;
-            case "/secret": // login del admin (pagina)
-                request.getRequestDispatcher("/WEB-INF/views/crm/secret.jsp").forward(request,response);
-                break;
-            case "/signup": // pagina di registrazione form (pagina)
-                request.getRequestDispatcher("/WEB-INF/views/site/signup.jsp").forward(request,response);
-                break;
-            default: // tutto cio che non è mappato è tutto 404
+            default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"Risorsa non trovata");
         }
     }
