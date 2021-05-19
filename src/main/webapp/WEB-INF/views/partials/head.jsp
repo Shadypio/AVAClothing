@@ -14,9 +14,9 @@
 <meta name="theme-color" content="#000000">
 <link href="css/library.css" rel="stylesheet">
 <c:if test="${not empty param.style}">
-    <link rel="stylesheet" href="css/${param.style}>
+    <link rel="stylesheet" href="css/${param.style}">
 </c:if>
-<script src="library.js></script>
+<script src="js/library.js" defer> </script>
 <c:if test="${not empty param.script}">
-    <script src="js/${param.script}" defer></script>
+    <script src="./js/${param.script}" defer></script>
 </c:if>
