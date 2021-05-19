@@ -29,7 +29,7 @@
 
 </head>
 <body>
-<form class="app grid-x justify-center align-center" action="/crm/" method="get">
+<form class="app grid-x justify-center align-center" action="${pageContext.request.contextPath}/crm/dashboard" method="post">
     <fieldset class="grid-y cell w50 login">
         <h2> Login Pannello Admin</h2>
         <span> Email </span>
