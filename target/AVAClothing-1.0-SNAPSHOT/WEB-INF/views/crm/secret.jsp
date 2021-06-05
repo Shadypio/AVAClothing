@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+ <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 <head>
@@ -66,7 +66,7 @@
 </head>
 <body>
 
-<form class="app grid-x justify-center align-center" action="/secret" method="get">
+<form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="get">
     <div class="imgcontainer">
     <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
 

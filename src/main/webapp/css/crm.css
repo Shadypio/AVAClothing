@@ -1,0 +1,35 @@
+.app{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.sidebar a {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+.sidebar {
+    list-style-type: none;
+    padding: .5rem;
+    background-color: var(--darkcream);
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.info{
+    text-align: center;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.content{
+    background-color: var(--cream);
+    flex:1;
+}
+
+.body{
+    flex-grow: 1;
+}
+

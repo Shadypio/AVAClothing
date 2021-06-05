@@ -12,7 +12,7 @@ public class CrmServlet extends HttpServlet {
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
             case "/dashboard":
-                request.getRequestDispatcher("/WEB-INF/views/crm/home.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/views/crm/dashboard.jsp").forward(request,response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"Risorsa non trovata");
