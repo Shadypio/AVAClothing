@@ -69,7 +69,7 @@
 <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="get">
     <div class="imgcontainer">
     <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
-
+    <p>CIAO A TUTTI SONO UN COMMENTO DI PROVA</p>
     </div>
     <fieldset class="grid-y cell w50 login">
         <span> Email </span>
