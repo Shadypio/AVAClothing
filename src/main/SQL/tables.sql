@@ -1,3 +1,6 @@
+drop database avabase;
+create database avabase;
+
 use avabase;
 
 create table categoria
