@@ -68,9 +68,6 @@
 
 <form class="app grid-x justify-center align-center" action="/secret" method="get">
     <div class="imgcontainer">
-
-        <img src="<%=request.getContextPath()%>/img/logo.jpg" class="avatar"/>
-
     <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
 
     </div>

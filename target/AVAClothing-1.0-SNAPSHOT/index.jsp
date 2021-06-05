@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <jsp:include page="WEB-INF/views/partials/head.jsp">
+        <jsp:param name="title" value="AVAClothing"/>
+    </jsp:include>
 </head>
 <body>
-<h1>AVAClothing - Prova per index
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+cinque giugno 2021
+<% response.sendRedirect("./cliente/secret");%>
 </body>
 </html>
