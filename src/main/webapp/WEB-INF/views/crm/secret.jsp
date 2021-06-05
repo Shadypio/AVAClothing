@@ -8,13 +8,12 @@
     </jsp:include>
     <style>
         .app{
-            background: linear-gradient(var(--cream), var(--darkcream));
+            background: #f7f7f7;
         }
 
         .login{
             padding: 1rem;
-            background-color: var(--cream);
-            border-radius: 10px;
+            background-color: white;
         }
 
         .login > * {
@@ -25,13 +24,38 @@
             font-family: Raleway;
         }
 
-    </style>
+        input{
+            background-color: var(--cream) ;
+            padding: 10px 20px;
+        }
 
+        span{
+            position: relative;
+            top: 16px;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 24px 0;
+        }
+        img.avatar {
+            width: 50%;
+        }
+
+        fieldset{
+            position:relative;
+            bottom:40px;
+        }
+
+    </style>
 </head>
 <body>
-<form class="app grid-x justify-center align-center" action="/crm/" method="get">
+
+<form class="app grid-x justify-center align-center" action="/secret" method="get">
+    <div class="imgcontainer">
+    <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
+    </div>
     <fieldset class="grid-y cell w50 login">
-        <h2> Login Pannello Admin</h2>
         <span> Email </span>
         <label for="email" class="field">
             <input type="email" name="email" id="email" placeholder="Email">
@@ -40,7 +64,7 @@
         <label for="password" class="field">
             <input type="password" name="password" id="password" placeholder="Password">
         </label>
-        <button class="btn primary" type="submit">Accedi</button>
+            <button class="btn primary" type="submit">Accedi</button>
     </fieldset>
 </form>
 

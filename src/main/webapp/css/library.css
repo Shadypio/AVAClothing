@@ -110,7 +110,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 .btn {
-    border: none;
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: var(--cream);
     cursor: pointer;
 }
 
