@@ -9,8 +9,6 @@ import java.io.IOException;
 public class CrmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("sono qui");
-        System.out.println(request.getContextPath());
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
             case "/dashboard":
@@ -20,4 +18,11 @@ public class CrmServlet extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"Risorsa non trovata");
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+
+
 }
