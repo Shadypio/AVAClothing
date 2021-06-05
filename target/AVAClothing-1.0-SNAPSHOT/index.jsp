@@ -7,7 +7,6 @@
     </jsp:include>
 </head>
 <body>
-cinque giugno 2021
 <% response.sendRedirect("./cliente/secret");%>
 </body>
 </html>
