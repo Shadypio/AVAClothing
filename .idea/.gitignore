@@ -6,4 +6,4 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-../src\main\java\model\ConPool
+../src/main/java/model/ConPool.java
