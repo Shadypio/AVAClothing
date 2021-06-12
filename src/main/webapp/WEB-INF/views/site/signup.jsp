@@ -69,7 +69,7 @@
         </style>
 </head>
 <body>
-<h1>Login Utente</h1>
+<h1>Registrazione Utente</h1>
                                                                     <%--CAMBIARE ACTION--%>
 <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard"  method="get">
     <div class="imgcontainer">
