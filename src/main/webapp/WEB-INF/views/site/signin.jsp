@@ -1,9 +1,15 @@
- <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="it" dir="ltr">
+<%--
+  Created by IntelliJ IDEA.
+  User: aless
+  Date: 12/06/2021
+  Time: 11:28
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="title" value="Login Admin"/>
+        <jsp:param name="title" value="Login Utente"/>
     </jsp:include>
     <style>
         .app{
@@ -63,24 +69,25 @@
     </style>
 </head>
 <body>
+    <h1>Login Utente</h1>
+                                                                        <%--CAMBIARE ACTION--%>
+    <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard"  method="get">
+        <div class="imgcontainer">
+            <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
 
-<form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="get">
-    <div class="imgcontainer">
-    <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
-
-    </div>
-    <fieldset class="grid-y cell w50 login">
-        <span> Email </span>
-        <label for="email" class="field">
-            <input type="email" name="email" id="email" placeholder="Email">
-        </label>
-        <span> Password </span>
-        <label for="password" class="field">
-            <input type="password" name="password" id="password" placeholder="Password">
-        </label>
+        </div>
+        <fieldset class="grid-y cell w50 login">
+            <span> Email </span>
+            <label for="email" class="field">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </label>
+            <span> Password </span>
+            <label for="password" class="field">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </label>
             <button class="btn primary" type="submit">Accedi</button>
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
 
 </body>
 </html>

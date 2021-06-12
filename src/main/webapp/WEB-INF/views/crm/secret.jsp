@@ -47,21 +47,19 @@
             bottom:40px;
         }
 
-
         .imgcontainer {
             text-align: center;
             margin: 24px 0 24px 0;
         }
+
         img.avatar {
             width: 50%;
         }
 
-        fieldset{
-            position:relative;
-            bottom:40px;
+        fieldset {
+            position: relative;
+            bottom: 40px;
         }
-
-
     </style>
 </head>
 <body>

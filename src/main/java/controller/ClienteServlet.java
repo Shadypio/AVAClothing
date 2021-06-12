@@ -21,7 +21,7 @@ public class ClienteServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/crm/account.jsp").forward(request,response);
                 break;
             case "/show": // pagina per vedere singoli dettagli cliente
-                request.getRequestDispatcher("/WEB-INF/views/crm/account.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request,response);
                 break;
             case "/secret": // login del admin (pagina)
                 request.getRequestDispatcher("/WEB-INF/views/crm/secret.jsp").forward(request,response);
