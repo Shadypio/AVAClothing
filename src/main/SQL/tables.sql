@@ -6,7 +6,7 @@ use avabase;
 create table categoria
 (
     Nome        varchar(30)  not null,
-    Descrizione varchar(200) null,
+    Descrizione varchar(500) null,
     idCategoria int          not null
         primary key
 );
@@ -48,7 +48,7 @@ create table ordine
 create table prodotto
 (
     Nome                   varchar(30)  not null,
-    Prezzo                 double(2, 0) not null,
+    Prezzo                 double(2, 0) not null, /* Forse si deve cambiare in decimal, problemi di precisione */
     DescrizioneBreve       varchar(100) not null,
     DescrizioneDettagliata varchar(200) not null,
     inOfferta              tinyint(1)   not null,
