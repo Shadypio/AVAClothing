@@ -22,8 +22,6 @@
             <a href="#prodotti">Gestione Prodotti</a>
             <a href="#logout">Logout</a>
         </nav>
-
-
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>

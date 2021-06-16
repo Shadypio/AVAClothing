@@ -13,13 +13,12 @@
     <a href="./cliente/secret">Login Admin</a>
     <a href="./cliente/signup">Registrazione Nuovo utente</a>
     <a href="./cliente/signin">Login utente</a>
-    <a href="./cliente/adsda">ueue</a>
     <%--CARRELLO--%>
 </div>
 
 <div>
-    <a href="./prodotto/uomo">UOMO</a>
-    <a href="./prodotto/donna">DONNA</a>
+    <a href="${pageContext.request.contextPath}/uomo.jsp">UOMO</a>
+    <a href="${pageContext.request.contextPath}/donna.jsp">DONNA</a>
 </div>
 
 <img src="immagini prodotto copertina">
