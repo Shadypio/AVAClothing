@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -36,7 +35,7 @@
         </div>
 
         <footer class="info">
-         <p> Copyright 2021, AVAClothing - Tutti i diritti riservati </p>
+            <p> Copyright 2021, AVAClothing - Tutti i diritti riservati </p>
         </footer>
     </section>
 </main>
