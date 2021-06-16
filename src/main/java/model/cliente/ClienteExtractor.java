@@ -15,7 +15,7 @@ public class ClienteExtractor implements ResultSetExtractor<Cliente> {
         c.setUsername(rs.getString("cli.username"));
         c.setPassword(rs.getString("cli.password"));
         c.setIndirizzo(rs.getString("cli.indirizzo"));
-        c.setRegistrato(rs.getBoolean("cli.isRegistrato"));
+        c.setAdmin(rs.getBoolean("cli.isAdmin"));
         c.setTelefono(rs.getString("cli.telefono"));
         c.setIdCliente(rs.getLong("cli.idCliente"));
         return c;

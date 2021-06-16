@@ -2,6 +2,10 @@ package model.cliente;
 
 import model.ordine.Ordine;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Cliente {
@@ -15,13 +19,22 @@ public class Cliente {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+            digest.update(password.getBytes(StandardCharsets.UTF_8));
+            this.password = String.format("%040x", new BigInteger(1, digest.digest()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public String getIndirizzo() { return indirizzo; }
     public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
     public long getIdCliente() { return idCliente; }
     public void setIdCliente(long idCliente) { this.idCliente = idCliente; }
-    public boolean isRegistrato() { return isRegistrato; }
-    public void setRegistrato(boolean registrato) { isRegistrato = registrato; }
+    public boolean isAdmin() { return isAdmin; }
+    public void setAdmin(boolean admin) { isAdmin = admin; }
     public ArrayList<Ordine> getOrdini() { return ordini; }
     public void setOrdini(ArrayList<Ordine> order) { this.ordini = ordini; }
     public String getTelefono() {
@@ -50,7 +63,7 @@ public class Cliente {
                 ", indirizzo='" + indirizzo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", idCliente=" + idCliente +
-                ", isRegistrato=" + isRegistrato +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 
@@ -62,6 +75,6 @@ public class Cliente {
     private String indirizzo;
     private String telefono;
     private long idCliente;
-    private boolean isRegistrato;
+    private boolean isAdmin;
     ArrayList<Ordine> ordini;
 }

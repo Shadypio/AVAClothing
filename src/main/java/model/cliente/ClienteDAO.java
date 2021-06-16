@@ -23,6 +23,22 @@ public class ClienteDAO {
         }
     }
 
+    public Cliente doRetrieveClienteByEmailPassword(String email,String pass){
+        Cliente p = null;
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM cliente as cli WHERE cli.email=? AND cli.password=SHA1(?)");
+            ps.setString(1,email);
+            ps.setString(2,pass);
+            ResultSet rs = ps.executeQuery();
+            ClienteExtractor cliExtractor=new ClienteExtractor();
+            if(rs.next())
+                p=cliExtractor.extract(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return p;
+    }
+
     public Cliente doRetrieveClienteWithOrdini(long id){
         Cliente p = new Cliente();
         try (Connection con = ConPool.getConnection()) {
@@ -65,14 +81,14 @@ public class ClienteDAO {
     public void addCliente(Cliente p){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cliente (nome, cognome, email, username, password, indirizzo, isRegistrato, telefono, idCliente) VALUES(?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente) VALUES(?,?,?,?,?,?,?,?,?)");
             ps.setString(1, p.getNome());
             ps.setString(2, p.getCognome());
             ps.setString(3, p.getEmail());
             ps.setString(4,p.getUsername());
             ps.setString(5,p.getPassword());
             ps.setString(6,p.getIndirizzo());
-            ps.setBoolean(7, p.isRegistrato());
+            ps.setBoolean(7, p.isAdmin());
             ps.setString(8, p.getTelefono());
             ps.setLong(9,p.getIdCliente());
             if (ps.executeUpdate() != 1) {
@@ -87,8 +103,8 @@ public class ClienteDAO {
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
             String query = "update Cliente set nome='" + c.getNome() + "', " + "cognome='"+c.getCognome() + "', email='"+c.getEmail() +"'," +
-                    "username='"+c.getUsername()+"',password='"+c.getPassword()+"', indirizzo='"+c.getIndirizzo()+"', isRegistrato="+
-                    c.isRegistrato()+", telefono='"+c.getTelefono()+"',where idCliente=" + c.getIdCliente() + ";";
+                    "username='"+c.getUsername()+"',password='"+c.getPassword()+"', indirizzo='"+c.getIndirizzo()+"', isAdmin="+
+                    c.isAdmin()+", telefono='"+c.getTelefono()+"',where idCliente=" + c.getIdCliente() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {

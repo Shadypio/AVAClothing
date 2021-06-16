@@ -19,7 +19,7 @@ create table cliente
     username     varchar(30) not null,
     password     varchar(40) not null,
     indirizzo    varchar(40) not null,
-    isRegistrato tinyint(1)  null,
+    isAdmin      tinyint(1)  null,
     telefono     mediumtext  not null,
     idCliente    int         not null
         primary key

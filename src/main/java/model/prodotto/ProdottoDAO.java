@@ -28,8 +28,8 @@ public class ProdottoDAO {
         }
     }
 
-    public LinkedList<Prodotto> doRetrieveAll(){
-        LinkedList<Prodotto> prodotti = new LinkedList<>();
+    public ArrayList<Prodotto> doRetrieveAll(){
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
         try(Connection con = ConPool.getConnection()){
             PreparedStatement s = con.prepareStatement("SELECT * FROM prodotto as pro");
             ResultSet rs = s.executeQuery();

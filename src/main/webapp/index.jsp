@@ -7,7 +7,7 @@
     </jsp:include>
 </head>
 <body>
-<%--response.sendRedirect("./cliente/secret");--%>
+
 <img src="<%=request.getContextPath()%>/img/logo.png">
 <div>
     <a href="./cliente/secret">Login Admin</a>

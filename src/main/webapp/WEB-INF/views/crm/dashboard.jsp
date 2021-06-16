@@ -28,12 +28,25 @@
         <div class="menu">
             <!-- HAMBURGER -->
         </div>
-        <div class="body">
-            ciao
+        <div class="dash">
+            <h4>Gestione Ordini</h4>
+            <p>N° Ordini: <%=request.getAttribute("numeroOrdini")%></p>
+        </div>
+        <div class="dash">
+            <h4>Gestione Clienti</h4>
+            <p>N° Cliente: <%=request.getAttribute("numeroClienti")%></p>
+        </div>
+        <div class="dash">
+            <h4>Gestione Categorie</h4>
+            <p>N° Categorie: <%=request.getAttribute("numeroCategorie")%></p>
+        </div>
+        <div class="dash">
+            <h4>Gestione Prodotti</h4>
+            <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%></p>
         </div>
 
         <footer class="info">
-            <p> Copyright 2021, AVAClothing - Tutti i diritti riservati </p>
+            Copyright 2021, AVAClothing - Tutti i diritti riservati
         </footer>
     </section>
 </main>

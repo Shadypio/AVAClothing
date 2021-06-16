@@ -15,9 +15,10 @@ insert into avabase.categoria (Nome, Descrizione, idCategoria) values ('Felpe Do
 insert into avabase.categoria (Nome, Descrizione, idCategoria) values ('Camicie Donna', 'Scopri le camicie e le bluse della nuova collezione Donna. Abbina una tunica lunga a un biker di pelle o indossa una camicia di jeans con un pantalone a palazzo in tinta unita.', 12);
 
 /* Clienti */
-insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isRegistrato, telefono, idCliente) values ('Mario', 'Rossi', 'mariorossi00@example.com', 'Mario00Rossi', SHA1('passwordMario'), 'Via Ponzio Pilato, 12, Milano', true, '3514235768', 1);
-insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isRegistrato, telefono, idCliente) values ('Luca', 'Gialli', 'lucagialli98@example.com', 'Gialli_Luca98', SHA1('passwordLuca'), 'Via Giulio Cesare, 21, Roma', true, '3337756898', 2);
-insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isRegistrato, telefono, idCliente) values ('Matteo', 'Neri', 'matteoneri89@example.com', 'MatteoNeri', SHA1('passwordMatteo'), 'Via Napoli, 58, Napoli', true, '3774621432', 3);
+insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente)values ('Mario', 'Rossi', 'mariorossi00@example.com', 'Mario00Rossi', SHA1('passwordMario'), 'Via Ponzio Pilato, 12, Milano', false, '3514235768', 1);
+insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente)values ('Luca', 'Gialli', 'lucagialli98@example.com', 'Gialli_Luca98', SHA1('passwordLuca'), 'Via Giulio Cesare, 21, Roma', false, '3337756898', 2);
+insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente)values ('Matteo', 'Neri', 'matteoneri89@example.com', 'MatteoNeri', SHA1('passwordMatteo'), 'Via Napoli, 58, Napoli', false, '3774621432', 3);
+insert into avabase.cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente) values ('Gennaro', 'Costagliola', 'gencos@unisa.it', 'admin', SHA1('admin'), 'Via Unisa, 10, Salerno', true, '3774621542', 4);
 
 /* Magazzini */
 insert into avabase.magazzino (Nome, Indirizzo, idMagazzino) values ('IlVestitoPerTe', 'Via Roma, 35, Napoli', 1);
