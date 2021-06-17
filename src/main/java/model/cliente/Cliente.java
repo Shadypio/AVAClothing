@@ -10,6 +10,20 @@ import java.util.ArrayList;
 
 public class Cliente {
     public Cliente(){ super(); }
+
+    public Cliente(String cognome, String nome, String email, String username, String password, String indirizzo, String telefono, long idCliente, boolean isAdmin) {
+        this.cognome = cognome;
+        this.nome = nome;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.indirizzo = indirizzo;
+        this.telefono = telefono;
+        this.idCliente = idCliente;
+        this.isAdmin = isAdmin;
+        this.ordini=new ArrayList<>();
+    }
+
     public String getCognome() { return cognome; }
     public void setCognome(String cognome) { this.cognome = cognome; }
     public String getNome() { return nome; }

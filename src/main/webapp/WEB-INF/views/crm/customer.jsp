@@ -49,7 +49,7 @@
         </c:forEach>
         </table>
         <button onclick="">Aggiungi Cliente</button> <!--ON CLICK DA FARE-->
-        <button onclick="">Modifica Cliente</button>
+
 
     </section>
 </main>

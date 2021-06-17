@@ -1,6 +1,7 @@
 package model.prodotto;
 
 import model.ResultSetExtractor;
+import model.categoria.Categoria;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,11 @@ public class ProdottoExtractor implements ResultSetExtractor<Prodotto> {
         p.setDescrizioneDettagliata((rs.getString("pro.descrizioneDettagliata")));
         p.setInOfferta(rs.getBoolean("pro.inOfferta"));
         p.setIdProdotto(rs.getLong("pro.idProdotto"));
+        p.setQuantita(rs.getInt("pro.quantita"));
+        int idcat=rs.getInt("pro.cat_fk");
+        Categoria c=new Categoria();
+        c.setIdCategoria(idcat);
+        p.setCategoria(c);
         return p;
     }
 }

@@ -102,9 +102,9 @@ public class ClienteDAO {
     public void doChanges(Cliente c){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-            String query = "update Cliente set nome='" + c.getNome() + "', " + "cognome='"+c.getCognome() + "', email='"+c.getEmail() +"'," +
-                    "username='"+c.getUsername()+"',password='"+c.getPassword()+"', indirizzo='"+c.getIndirizzo()+"', isAdmin="+
-                    c.isAdmin()+", telefono='"+c.getTelefono()+"',where idCliente=" + c.getIdCliente() + ";";
+            String query = "UPDATE Cliente cl SET cl.nome='" + c.getNome() + "', " + "cl.cognome='"+c.getCognome() + "', cl.email='"+c.getEmail() +"'," +
+                    "cl.username='"+c.getUsername()+"',cl.password='"+c.getPassword()+"', cl.indirizzo='"+c.getIndirizzo()+"', cl.isAdmin="+
+                    c.isAdmin()+", cl.telefono='"+c.getTelefono()+"' WHERE cl.idCliente=" + c.getIdCliente() + ";";
             st.executeUpdate(query);
         }
         catch (SQLException e) {

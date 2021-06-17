@@ -39,7 +39,7 @@
                     <td>${order.idOrdine}</td>
                     <td>${order.dataInserimento}</td>
                     <td>${order.iva}</td>
-                    <td>${order.cliente.idCliente}</td>
+                    <td>${(order.cliente).idCliente}</td>
                 </tr>
             </c:forEach>
         </table>

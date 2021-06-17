@@ -33,18 +33,22 @@
         <div class="dash">
             <h4>Gestione Ordini</h4>
             <p>N° Ordini: <%=request.getAttribute("numeroOrdini")%></p>
+            <a href="<%=request.getContextPath()%>/crm/order">Gestisci &#8594;</a>
         </div>
         <div class="dash">
             <h4>Gestione Clienti</h4>
             <p>N° Cliente: <%=request.getAttribute("numeroClienti")%></p>
+            <a href="<%=request.getContextPath()%>/crm/customer">Gestisci &#8594;</a>
         </div>
         <div class="dash">
             <h4>Gestione Categorie</h4>
             <p>N° Categorie: <%=request.getAttribute("numeroCategorie")%></p>
+            <a href="<%=request.getContextPath()%>/crm/category">Gestisci &#8594;</a>
         </div>
         <div class="dash">
             <h4>Gestione Prodotti</h4>
             <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%></p>
+            <a href="<%=request.getContextPath()%>/crm/product">Gestisci &#8594;</a>
         </div>
 
 

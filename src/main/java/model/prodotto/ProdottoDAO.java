@@ -51,9 +51,10 @@ public class ProdottoDAO {
             boolean inOfferta = prodotto.isInOfferta();
             String descrizioneBreve = prodotto.getDescrizioneBreve();
             String descrizioneDettagliata = prodotto.getDescrizioneDettagliata();
+            int quantita=prodotto.getQuantita();
             String query = "UPDATE prodotto p SET p.nome = '" + nome + "', p.prezzo = " + prezzo +
                     ", p.inofferta = " + inOfferta + ", p.descrizioneBreve = '" + descrizioneBreve + "'," +
-                    "p.descrizioneDettagliata = '" + descrizioneDettagliata + "', WHERE p.IdProdotto = " + idProdotto + ";";
+                    "p.descrizioneDettagliata = '" + descrizioneDettagliata + "', p.quantita= " + quantita +", WHERE p.IdProdotto = " + idProdotto + ";";
             PreparedStatement s = con.prepareStatement(query);
             s.execute();
             return true;
@@ -65,7 +66,7 @@ public class ProdottoDAO {
     public void addProdotto(Prodotto prodotto, Categoria categoria, Magazzino magazzino) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,mag_fk,cat_fk) VALUES(?,?,?,?,?,?,?,?)");
+                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,mag_fk,cat_fk,quantita) VALUES(?,?,?,?,?,?,?,?,?)");
             ps.setString(1, prodotto.getNome());
             ps.setDouble(2, prodotto.getPrezzo());
             ps.setString(3, prodotto.getDescrizioneBreve());
@@ -74,6 +75,7 @@ public class ProdottoDAO {
             ps.setLong(6, prodotto.getIdProdotto());
             ps.setLong(7,magazzino.getIdMagazzino());
             ps.setLong(8,categoria.getIdCategoria());
+            ps.setLong(9,prodotto.getQuantita());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

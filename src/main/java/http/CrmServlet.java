@@ -8,7 +8,6 @@ import model.ordine.Ordine;
 import model.ordine.OrdineDAO;
 import model.prodotto.Prodotto;
 import model.prodotto.ProdottoDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -27,8 +26,31 @@ public class CrmServlet extends HttpServlet {
         HttpSession session=request.getSession();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
-            case "/profile":
+            case "/updatepro":
+                break;
+            case "/updateord":
+                break;
+            case "/updatecat":
+                break;
+            case "/updatecust":
+                String nome=request.getParameter("nome");
+                String cognome=request.getParameter("cognome");
+                String user=request.getParameter("username");
+                String password=request.getParameter("password");
+                String mail=request.getParameter("email");
+                String indirizzo=request.getParameter("indirizzo");
+                String tel=request.getParameter("telefono");
+                String id=request.getParameter("idAdmin");
+                System.out.println(id+nome+cognome+tel);
+                int nuovo=Integer.parseInt(id);
+                System.out.println(nuovo);
+                Cliente a=new Cliente(nome,cognome,mail,user,password,indirizzo,tel,nuovo,true);
                 ClienteDAO cliDAO=new ClienteDAO();
+                cliDAO.doChanges(a);
+                request.getRequestDispatcher("/WEB-INF/views/crm/profile.jsp").forward(request, response);
+                break;
+            case "/profile":
+                cliDAO=new ClienteDAO();
                 Cliente c=cliDAO.doRetrieveById((long) session.getAttribute("id"));
                 request.setAttribute("profilo",c);
                 request.getRequestDispatcher("/WEB-INF/views/crm/profile.jsp").forward(request, response);
@@ -54,6 +76,7 @@ public class CrmServlet extends HttpServlet {
             case "/product":
                 ProdottoDAO proDAO=new ProdottoDAO();
                 ArrayList<Prodotto> pro=proDAO.doRetrieveAll();
+
                 request.setAttribute("listaPro",pro);
                 request.getRequestDispatcher("/WEB-INF/views/crm/products.jsp").forward(request, response);
                 break;

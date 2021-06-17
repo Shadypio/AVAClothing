@@ -41,6 +41,7 @@
                 </tr>
             </c:forEach>
         </table>
+        <button onclick="">Aggiungi Categoria</button>
         <button onclick="">Modifica Categoria</button>  <!--ON CLICK DA FARE-->
     </section>
 </main>

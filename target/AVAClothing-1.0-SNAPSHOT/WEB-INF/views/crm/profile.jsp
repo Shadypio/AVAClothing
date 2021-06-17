@@ -9,6 +9,7 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -28,25 +29,34 @@
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <div>
+
+        <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
+
             <%Cliente c= (Cliente) request.getAttribute("profilo");%>
-            <p>Nome: <%=c.getNome()%></p>
-            <p>Cognome: <%=c.getCognome()%></p>
-            <p>Email: <%=c.getEmail()%></p>
-            <p>Username: <%=c.getUsername()%></p>
-            <p>Indirizzo: <%=c.getIndirizzo()%></p>
-            <p>Telefono: <%=c.getTelefono()%></p>
-            <button onclick="">Modifica</button> <!--ON CLICK DA FARE-->
-        </div>
-
-
-
-
-        <footer class="info">
-            Copyright 2021, AVAClothing - Tutti i diritti riservati
-        </footer>
+            <span>ID: </span>
+            <input type="text" name="idAdmin" value="<%=c.getIdCliente()%>">
+            <span>Nome: </span>
+            <input type="text" value="<%=c.getNome()%>" readonly name="nome"><br>
+            <span>Cognome: </span>
+            <input type="text" value="<%=c.getCognome()%>" readonly name="cognome"><br>
+            <span>Email: </span>
+            <input type="text" value="<%=c.getEmail()%>" readonly name="email"><br>
+            <span>Username: </span>
+            <input type="text" value="<%=c.getUsername()%>" readonly name="username"><br>
+            <span>Password: </span>
+            <input type="password" value="<%=c.getPassword()%>" readonly name="password"><br>
+            <span>Indirizzo: </span>
+            <input type="text" value="<%=c.getIndirizzo()%>" readonly name="indirizzo"><br>
+            <span>Telefono: </span>
+            <input type="text" value="<%=c.getTelefono()%>" readonly name="telefono"><br>
+            <button type="submit" onclick="salva()">Salva</button>
+            <button type="button" id="mod">Modifica</button>
+        </form>
     </section>
 </main>
+<footer class="info">
+    Copyright 2021, AVAClothing - Tutti i diritti riservati
+</footer>
 
 <script>
     function openNav() {
@@ -57,6 +67,19 @@
     function closeNav() {
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
+    }
+
+    $(document).ready(function(){
+       $("#mod").click(function(){
+           $("input").removeAttr("readonly");
+        })
+    });
+
+    function salva(){
+        var elemento = document.getElementsByTagName("input");
+        var i;
+        for(i=0; i<elemento.length; i++)
+            elemento[i].setAttribute("readonly", true);
     }
 </script>
 

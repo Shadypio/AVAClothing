@@ -31,6 +31,7 @@
                 <th>ID Prodotto</th>
                 <th>Nome</th>
                 <th>Prezzo</th>
+                <th>Quantita</th>
                 <th>Descrizione Breve</th>
                 <th>in Offerta</th>
                 <th>ID Categoria</th>
@@ -41,6 +42,7 @@
                     <td>${prodotto.idProdotto}</td>
                     <td>${prodotto.nome}</td>
                     <td>${prodotto.prezzo}</td>
+                    <td>${prodotto.quantita}</td>
                     <td>${prodotto.descrizioneBreve}</td>
                     <td>${prodotto.inOfferta}</td>
                     <td>${(prodotto.categoria).idCategoria}</td>
