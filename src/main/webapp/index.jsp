@@ -7,24 +7,19 @@
     </jsp:include>
 </head>
 <body>
-
-<img src="<%=request.getContextPath()%>/img/logo.png">
+<img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
 <div>
     <a href="./cliente/secret">Login Admin</a>
     <a href="./cliente/signup">Registrazione Nuovo utente</a>
     <a href="./cliente/signin">Login utente</a>
     <%--CARRELLO--%>
 </div>
-
 <div>
     <a href="${pageContext.request.contextPath}/uomo.jsp">UOMO</a>
     <a href="${pageContext.request.contextPath}/donna.jsp">DONNA</a>
 </div>
-
 <img src="immagini prodotto copertina">
 <img src="immagini prodotto copertina">
 <img src="immagini prodotto copertina">
-
-
 </body>
 </html>

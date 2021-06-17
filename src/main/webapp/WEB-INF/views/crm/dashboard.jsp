@@ -9,18 +9,20 @@
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
 </head>
-<%--Prova--%>
+
 <body>
 <main class="app">
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
             <img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
             <a class="closebtn" onclick="closeNav()">x</a>
-            <a href="#home">Profilo</a>
-            <a href="#clienti">Gestione Clienti</a>
-            <a href="#ordini">Gestione Ordini</a>
-            <a href="#prodotti">Gestione Prodotti</a>
-            <a href="#logout">Logout</a>
+            <a href="<%=request.getContextPath()%>/crm/dashboard">Dashboard</a>
+            <a href="<%=request.getContextPath()%>/crm/profile">Profilo</a>
+            <a href="<%=request.getContextPath()%>/crm/customer">Gestione Clienti</a>
+            <a href="<%=request.getContextPath()%>/crm/order">Gestione Ordini</a>
+            <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
+            <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
+            <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
         </nav>
     </aside>
     <section class="content grid-y" id="main">
@@ -45,12 +47,12 @@
             <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%></p>
         </div>
 
-        <footer class="info">
-            Copyright 2021, AVAClothing - Tutti i diritti riservati
-        </footer>
+
     </section>
 </main>
-
+<footer class="info">
+    Copyright 2021, AVAClothing - Tutti i diritti riservati
+</footer>
 <script>
     function openNav() {
         document.getElementById("sideBar").style.width = "250px";

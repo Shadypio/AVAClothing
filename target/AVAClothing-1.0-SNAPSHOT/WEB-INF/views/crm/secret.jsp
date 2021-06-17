@@ -9,31 +9,25 @@
         .app{
             background: #f7f7f7;
         }
-
         .login{
             padding: 1rem;
             background-color: white;
         }
-
         .login > * {
             margin: 10px;
         }
-
         body {
             font-family: Raleway;
         }
-
         input{
             background-color: var(--cream) ;
             padding: 10px 20px;
             border: 1px solid grey;
         }
-
         span{
             position: relative;
             top: 16px;
         }
-
         .imgcontainer {
             text-align: center;
             margin: 24px 0 24px 0;
@@ -41,21 +35,17 @@
         img.avatar {
             width: 50%;
         }
-
         fieldset{
             position:relative;
             bottom:40px;
         }
-
         .imgcontainer {
             text-align: center;
             margin: 24px 0 24px 0;
         }
-
         img.avatar {
             width: 50%;
         }
-
         fieldset {
             position: relative;
             bottom: 40px;
@@ -64,10 +54,9 @@
 </head>
 <body>
 
-<form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="get">
+<form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="post">
     <div class="imgcontainer">
     <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
-
     </div>
     <fieldset class="grid-y cell w50 login">
         <span> Email </span>
