@@ -32,9 +32,9 @@
 
         <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
 
-            <%Cliente c= (Cliente) request.getAttribute("profilo");%>
+            <%Cliente c= (Cliente) session.getAttribute("profilo");%>
             <span>ID: </span>
-            <input type="text" name="idAdmin" value="<%=c.getIdCliente()%>">
+            <input type="hidden" name="idAdmin" value="<%=c.getIdCliente()%>">
             <span>Nome: </span>
             <input type="text" value="<%=c.getNome()%>" readonly name="nome"><br>
             <span>Cognome: </span>
