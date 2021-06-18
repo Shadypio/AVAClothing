@@ -5,6 +5,7 @@ import model.categoria.Categoria;
 import model.magazzino.Magazzino;
 import model.prodotto.Prodotto;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,7 +24,7 @@ public class ProdottoDAO {
                 return p;
             }
             return null;
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -38,7 +39,7 @@ public class ProdottoDAO {
                 prodotti.add(proExtractor.extract(rs));
             }
             return prodotti;
-        } catch(SQLException e){
+        } catch(SQLException | IOException e){
             throw new RuntimeException(e);
         }
     }
@@ -96,7 +97,7 @@ public class ProdottoDAO {
                 p = proExtractor.extract(rs);
                 prodotti.add(p);
             }
-        } catch (SQLException throwable) {
+        } catch (SQLException | IOException throwable) {
             throwable.printStackTrace();
         }
         return prodotti;

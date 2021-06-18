@@ -26,9 +26,9 @@ insert into avabase.magazzino (Nome, Indirizzo, idMagazzino) values ('ClothesAnd
 insert into avabase.magazzino (Nome, Indirizzo, idMagazzino) values ('LaBoutique', 'Via Napoleone, 14, Napoli', 3);
 
 /* T-Shirts uomo */
-insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('T-Shirt bianca', 12.52, 'T-Shirt di colore bianco, taglia small, fresca, estiva', 'T-shirt in jersey bianca di cotone. Maniche con risvolto cucito. Parte posteriore leggermente più lunga e arrotondata.', 0, 1, 1, 1, 5);
-insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('T-Shirt rosa', 10.53, 'T-Shirt di colore rosa, taglia medium', 'T-shirt in morbido jersey di cotone con stampa. Scollo rotondo con bordo sottile.', 0, 2, 2, 1, 10);
-insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('T-Shirt nera', 8, 'T-Shirt di colore nero, taglia large', 'T-shirt in morbido jersey di cotone con stampa. Scollo rotondo con bordo sottile.', 0, 3, 3, 1, 8);
+insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita, image) values ('T-Shirt bianca', 12.52, 'T-Shirt di colore bianco, taglia small, fresca, estiva', 'T-shirt in jersey bianca di cotone. Maniche con risvolto cucito. Parte posteriore leggermente più lunga e arrotondata.', 0, 1, 1, 1, 5, LOAD_FILE('C:\Users\Enzuc\Desktop\AVAClothing\src\main\webapp\img\products\1.jpg'));
+insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita, image) values ('T-Shirt rosa', 10.53, 'T-Shirt di colore rosa, taglia medium', 'T-shirt in morbido jersey di cotone con stampa. Scollo rotondo con bordo sottile.', 0, 2, 2, 1, 10, LOAD_FILE('C:/Users/Enzuc/Desktop/AVAClothing/src/main/webapp/img/products/1.jpg'));
+insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita, image) values ('T-Shirt nera', 8, 'T-Shirt di colore nero, taglia large', 'T-shirt in morbido jersey di cotone con stampa. Scollo rotondo con bordo sottile.', 0, 3, 3, 1, 8, LOAD_FILE('3.jpg'));
 
 /* Pantaloni uomo */
 insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('Pantaloni blu scuro', 17.99, 'Pantaloni di colore blu scuro, lunghi, skinny', 'Chinos in twill di cotone super elasticizzato. Tasche laterali, tasche posteriori a filetto con bottone e taschina portamonete. Patta con cerniera.', 0, 4, 1, 2, 14);
@@ -95,10 +95,9 @@ insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagl
 insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('Camicia morbida a righe', 14.99, 'Camicia morbida a righe azzurra','Camicia a righe morbida a maniche lunghe con tasca anteriore e chiusura con bottoni.', 0, 45, 2, 12, 8);
 insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('Camicia popeline', 25.99, 'Camicia popeline taschino bianco','Camicia in popeline a maniche lunghe con taschino anteriore, colletto classico e chiusura con bottoni. Realizzata in 100% cotone.', 0, 46, 1, 12, 14);
 
-/*Ordini*/
-
+/*Ordini
 insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210618,100,2);
 insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210401,101,1);
 insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210112,102,3);
-insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210517,103,2);
+insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210517,103,2);*/
 

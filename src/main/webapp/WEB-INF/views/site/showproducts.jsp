@@ -23,7 +23,8 @@
     <a href="<%=request.getContextPath()%>/prodotto/camicie">Camicie</a>
 </section>
 <c:forEach items="${prodotti}" var="prodotto" >
-    <p>${prodotto.nome} ${prodotto.prezzo} ${prodotto.descrizioneBreve} ${prodotto.descrizioneDettagliata}
+    <p> <img src="data:image/jpg;base64,${prodotto.base64Image}" width="150" height="200">
+            ${prodotto.nome} ${prodotto.prezzo} ${prodotto.descrizioneBreve} ${prodotto.descrizioneDettagliata}
     ${prodotto.inOfferta} ${prodotto.idProdotto}</p>
 </c:forEach>
 </body>

@@ -20,7 +20,7 @@ create table cliente
     password     varchar(40) not null,
     indirizzo    varchar(40) not null,
     isAdmin      tinyint(1)  null,
-    telefono     mediumtext  not null,
+    telefono     varchar(15)  not null,
     idCliente    int         not null
         primary key
 );
@@ -57,6 +57,7 @@ create table prodotto
     mag_fk                 int          null,
     cat_fk                 int          null,
     quantita               int          null,
+    image                  longblob         null,
     constraint prodotto_categoria_idCategoria_fk
         foreign key (cat_fk) references categoria (idCategoria)
             on update cascade on delete cascade,

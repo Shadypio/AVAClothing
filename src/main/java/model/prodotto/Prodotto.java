@@ -38,6 +38,14 @@ public class Prodotto {
     public Categoria getCategoria() { return categoria; }
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
+
     @Override
     public String toString() {
         return "Prodotto{" +
@@ -69,5 +77,6 @@ public class Prodotto {
     private Magazzino magazzino;
     private Categoria categoria;
     private int quantita;
+    private String base64Image;
 
 }

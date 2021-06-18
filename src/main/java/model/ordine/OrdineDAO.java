@@ -6,6 +6,7 @@ import model.prodotto.ProdottoExtractor;
 import model.prodottoordine.ProdottoOrdine;
 import model.cliente.Cliente;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -101,7 +102,7 @@ public class OrdineDAO {
                 }
             }
             return p;
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
