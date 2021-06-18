@@ -27,7 +27,7 @@
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table>
+        <table class="allCustomer">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -50,7 +50,10 @@
         </c:forEach>
         </table>
         <button id="add" >Aggiungi Cliente</button> <!--ON CLICK DA FARE-->
-        <form action="" method="post" id="newCustomer" >
+        <form action="${pageContext.request.contextPath}/crm/addcust" method="post" >
+            <div class="newCustomer">
+
+            </div>
         </form>
 
     </section>
@@ -58,7 +61,6 @@
 <footer class="info">
     Copyright 2021, AVAClothing - Tutti i diritti riservati
 </footer>
-
 <script>
     function openNav() {
         document.getElementById("sideBar").style.width = "250px";
@@ -71,12 +73,33 @@
     }
 
     $(document).ready(function(){
-        $("#add").click(function(){
-            $(#newCustomer).innerHTML=
-
-        })
+        $("#add").click(function (){
+            $(".allCustomer").toggle();
+            $(".newCustomer").html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+                "<span> Cognome: </span> <input type='text' name='cognome' id='cognome' placeholder='Cognome'> <br>" +
+                "<span> Username: </span> <input type='text' name='username' id='username' placeholder='Username'> <br>" +
+                "<span> Email: </span> <input type='text' name='email' id='email' placeholder='Email'> <br>" +
+                "<span> Password: </span> <input type='password' name='password' id='password' placeholder='Password'> <br>" +
+                "<span> Indirizzo: </span> <input type='text' name='indirizzo' id='indirizzo' placeholder='Indirizzo'> <br>" +
+                "<span> Telefono: </span> <input type='text' name='tel' id='tel' placeholder='Telefono'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button> </fieldset>")
+        });
+        /*$("#annulla").click(function (){
+                $(".allCustomer").show();
+                $(".newCustomer").hide();
+        });*/
     });
-</script>
 
+</script>
 </body>
 </html>
+
+
+<!--"<fieldset class="grid-y cell w50 login"> <span> Nome </span> <label for="nome" class="field"> <input type="text" name="nome" id="nome" placeholder="Nome">  </label>
+<span> Cognome </span> <label for="cognome" class="field"> <input type="text" name="cognome" id="cognome" placeholder="Cognome"> </label>
+<span> Username </span> <label for="username" class="field"> <input type="text" name="username" id="username" placeholder="Username"></label>
+<span> Email </span> <label for="email" class="field"> <input type="email" name="email" id="email" placeholder="Email"> </label>
+<span> Password </span> <label for="password" class="field"> <input type="password" name="password" id="password" placeholder="Password"></label>
+<span> Indirizzo </span> <label for="indirizzo" class="field"> <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo"></label>
+<span> Telefono </span> <label for="telefono" class="field"> <input type="text" name="telefono" id="telefono" placeholder="Telefono"></label>
+<button class="btn primary" type="submit">Salva</button> </fieldset>";-->

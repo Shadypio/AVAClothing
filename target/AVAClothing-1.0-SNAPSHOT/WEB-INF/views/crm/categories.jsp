@@ -8,6 +8,7 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -22,12 +23,11 @@
             <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
             <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
             <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
-
         </nav>
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table>
+        <table class="allCategories">
             <tr>
                 <th>ID Categoria</th>
                 <th>Nome</th>
@@ -41,8 +41,10 @@
                 </tr>
             </c:forEach>
         </table>
-        <button onclick="">Aggiungi Categoria</button>
-        <button onclick="">Modifica Categoria</button>  <!--ON CLICK DA FARE-->
+        <button class="butAdd">Aggiungi Categoria</button>
+        <button class="butMod">Modifica Categoria</button>
+        <p id="demo"></p>
+
     </section>
 </main>
 <footer class="info">
@@ -59,6 +61,14 @@
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
+
+    $(document).ready(function(){
+        $(".butMod").click(function (){
+            $(".allCategories").hide();
+            $("#demo").html("<p>MOCC A MAMMMT</p>" +
+                "<p> e MOCC A SORT</p>");
+        });
+    });
 </script>
 
 </body>
