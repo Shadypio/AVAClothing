@@ -29,7 +29,7 @@
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-
+    <fieldset class="grid-y cell w50 login">
         <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
             <%Cliente c= (Cliente) session.getAttribute("profilo");%>
             <span>ID: </span>
@@ -48,9 +48,10 @@
             <input type="text" value="<%=c.getIndirizzo()%>" readonly name="indirizzo"><br>
             <span>Telefono: </span>
             <input type="text" value="<%=c.getTelefono()%>" readonly name="telefono"><br>
-            <button type="submit" onclick="salva()">Salva</button>
-            <button type="button" id="mod">Modifica</button>
+            <button type="submit" onclick="salva()" class="btn primary">Salva</button>
+            <button type="button" id="mod" class="btn primary">Modifica</button>
         </form>
+    </fieldset>
     </section>
 </main>
 <footer class="info">

@@ -30,6 +30,25 @@ public class CrmServlet extends HttpServlet {
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path) {
             case "/addcust":
+                ClienteDAO cliDAO=new ClienteDAO();
+                String nome = request.getParameter("nome");
+                String cognome = request.getParameter("cognome");
+                String user = request.getParameter("username");
+                String mail = request.getParameter("email");
+                String indirizzo = request.getParameter("indirizzo");
+                String tel = request.getParameter("tel");
+                String newPass = request.getParameter("password");
+                ArrayList<Cliente> cli=cliDAO.doRetrieveAll();
+                int creaId =cli.size()+1;
+                String admin=request.getParameter("admin");
+                Boolean b=false;
+                if (admin.equals("true"))
+                    b=true;
+                Cliente nuovo=new Cliente(cognome,nome,mail,user,newPass,indirizzo,tel,creaId,b);
+                cliDAO.addCliente(nuovo);
+                cli=cliDAO.doRetrieveAll();
+                session.setAttribute("listaCli",cli);
+                request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
                 break;
             case "/updatepro":
                 break;
@@ -38,16 +57,16 @@ public class CrmServlet extends HttpServlet {
             case "/updatecat":
                 break;
             case "/updatecust":
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String user = request.getParameter("username");
-                String mail = request.getParameter("email");
-                String indirizzo = request.getParameter("indirizzo");
-                String tel = request.getParameter("telefono");
+                nome = request.getParameter("nome");
+                cognome = request.getParameter("cognome");
+                user = request.getParameter("username");
+                mail = request.getParameter("email");
+                indirizzo = request.getParameter("indirizzo");
+                tel = request.getParameter("telefono");
                 String id = request.getParameter("idAdmin");
                 int idIntero = Integer.parseInt(id);
-                String newPass = request.getParameter("password");
-                ClienteDAO cliDAO = new ClienteDAO();
+                newPass = request.getParameter("password");
+                cliDAO = new ClienteDAO();
                 Cliente oldProfilo= cliDAO.doRetrieveById(idIntero);
                 Cliente newProfilo =new Cliente(cognome,nome,mail,user,newPass,indirizzo,tel,idIntero,true);
                 if (oldProfilo.getPassword().equals(newPass))
@@ -65,7 +84,7 @@ public class CrmServlet extends HttpServlet {
                 break;
             case "/customer":
                 cliDAO= new ClienteDAO();
-                ArrayList<Cliente> cli=cliDAO.doRetrieveAll();
+                cli=cliDAO.doRetrieveAll();
                 session.setAttribute("listaCli",cli);
                 request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
                 break;

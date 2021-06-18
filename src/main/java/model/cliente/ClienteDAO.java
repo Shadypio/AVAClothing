@@ -81,7 +81,7 @@ public class ClienteDAO {
     public void addCliente(Cliente p){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente) VALUES(?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO cliente (nome, cognome, email, username, password, indirizzo, isAdmin, telefono, idCliente) VALUES(?,?,?,?,SHA1(?),?,?,?,?)");
             ps.setString(1, p.getNome());
             ps.setString(2, p.getCognome());
             ps.setString(3, p.getEmail());

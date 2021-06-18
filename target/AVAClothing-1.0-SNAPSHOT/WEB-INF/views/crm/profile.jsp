@@ -29,7 +29,7 @@
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-
+    <fieldset class="grid-y cell w50 login">
         <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
             <%Cliente c= (Cliente) session.getAttribute("profilo");%>
             <span>ID: </span>
@@ -51,6 +51,7 @@
             <button type="submit" onclick="salva()">Salva</button>
             <button type="button" id="mod">Modifica</button>
         </form>
+    </fieldset>
     </section>
 </main>
 <footer class="info">

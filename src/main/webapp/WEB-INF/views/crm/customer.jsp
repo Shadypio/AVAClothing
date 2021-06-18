@@ -74,20 +74,24 @@
 
     $(document).ready(function(){
         $("#add").click(function (){
-            $(".allCustomer").toggle();
-            $(".newCustomer").html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+            $(".allCustomer").hide();
+            $(".newCustomer").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Cognome: </span> <input type='text' name='cognome' id='cognome' placeholder='Cognome'> <br>" +
                 "<span> Username: </span> <input type='text' name='username' id='username' placeholder='Username'> <br>" +
                 "<span> Email: </span> <input type='text' name='email' id='email' placeholder='Email'> <br>" +
                 "<span> Password: </span> <input type='password' name='password' id='password' placeholder='Password'> <br>" +
                 "<span> Indirizzo: </span> <input type='text' name='indirizzo' id='indirizzo' placeholder='Indirizzo'> <br>" +
                 "<span> Telefono: </span> <input type='text' name='tel' id='tel' placeholder='Telefono'> <br>" +
-                "<button class='btn primary' type='submit'>Salva</button> </fieldset>")
-        });
-        /*$("#annulla").click(function (){
+                "<span> isAdmin: </span> <select name='admin'><option>true</option> <option>false</option></select> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button> " +
+                "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
+            $("#annulla").click(function (){
                 $(".allCustomer").show();
                 $(".newCustomer").hide();
-        });*/
+            });
+        });
+
+        /**/
     });
 
 </script>
