@@ -8,6 +8,7 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -48,8 +49,9 @@
                 </tr>
         </c:forEach>
         </table>
-        <button onclick="">Aggiungi Cliente</button> <!--ON CLICK DA FARE-->
-
+        <button id="add" >Aggiungi Cliente</button> <!--ON CLICK DA FARE-->
+        <form action="" method="post" id="newCustomer" >
+        </form>
 
     </section>
 </main>
@@ -67,6 +69,13 @@
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
+
+    $(document).ready(function(){
+        $("#add").click(function(){
+            $(#newCustomer).innerHTML=
+
+        })
+    });
 </script>
 
 </body>

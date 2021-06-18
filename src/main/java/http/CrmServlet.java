@@ -29,6 +29,8 @@ public class CrmServlet extends HttpServlet {
         HttpSession session=request.getSession();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path) {
+            case "/addcust":
+                break;
             case "/updatepro":
                 break;
             case "/updateord":

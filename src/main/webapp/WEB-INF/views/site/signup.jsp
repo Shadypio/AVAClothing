@@ -76,6 +76,7 @@
         <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
 
     </div>
+
     <fieldset class="grid-y cell w50 login">
         <span> Nome </span>
         <label for="nome" class="field">

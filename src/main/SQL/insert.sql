@@ -95,6 +95,10 @@ insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagl
 insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('Camicia morbida a righe', 14.99, 'Camicia morbida a righe azzurra','Camicia a righe morbida a maniche lunghe con tasca anteriore e chiusura con bottoni.', 0, 45, 2, 12, 8);
 insert into avabase.prodotto (Nome, Prezzo, DescrizioneBreve, DescrizioneDettagliata, inOfferta, idProdotto, mag_fk, cat_fk, quantita) values ('Camicia popeline', 25.99, 'Camicia popeline taschino bianco','Camicia in popeline a maniche lunghe con taschino anteriore, colletto classico e chiusura con bottoni. Realizzata in 100% cotone.', 0, 46, 1, 12, 14);
 
+/*Ordini*/
 
-
+insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210618,100,2);
+insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210401,101,1);
+insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210112,102,3);
+insert into avabase.ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES (21,20210517,103,2);
 

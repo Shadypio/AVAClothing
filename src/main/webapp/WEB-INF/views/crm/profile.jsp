@@ -31,7 +31,6 @@
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
 
         <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
-
             <%Cliente c= (Cliente) session.getAttribute("profilo");%>
             <span>ID: </span>
             <input type="hidden" name="idAdmin" value="<%=c.getIdCliente()%>">
