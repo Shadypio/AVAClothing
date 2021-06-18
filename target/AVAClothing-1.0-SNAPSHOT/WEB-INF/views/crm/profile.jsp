@@ -48,8 +48,8 @@
             <input type="text" value="<%=c.getIndirizzo()%>" readonly name="indirizzo"><br>
             <span>Telefono: </span>
             <input type="text" value="<%=c.getTelefono()%>" readonly name="telefono"><br>
-            <button type="submit" onclick="salva()">Salva</button>
-            <button type="button" id="mod">Modifica</button>
+            <button type="submit" onclick="salva()" class="btn primary">Salva</button>
+            <button type="button" id="mod" class="btn primary">Modifica</button>
         </form>
     </fieldset>
     </section>

@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.categoria.Categoria" %>
+<%@ page import="model.categoria.CategoriaDAO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -35,15 +38,30 @@
             </tr>
             <c:forEach var="cate" items="${listaCat}">
                 <tr>
-                    <td>${cate.idCategoria}</td>
-                    <td>${cate.nome}</td>
-                    <td>${cate.descrizione}</td>
+                    <td id="${cate.idCategoria}">${cate.idCategoria}</td>
+                    <td id="${cate.idCategoria}">${cate.nome}</td>
+                    <td id="${cate.idCategoria}">${cate.descrizione}</td>
                 </tr>
             </c:forEach>
         </table>
-        <button class="butAdd">Aggiungi Categoria</button>
-        <button class="butMod">Modifica Categoria</button>
-        <p id="demo"></p>
+        <div>
+            <button class="butAdd btn primary">Aggiungi Categoria</button>
+            <select name="catSelezionata" id="selected">
+            <c:forEach var="cate" items="${listaCat}">
+                <option>${cate.idCategoria} </option>
+            </c:forEach>
+            </select><button class="butMod btn primary">Modifica Categoria</button>
+        </div>
+        <form action="${pageContext.request.contextPath}/crm/addcat" method="post" >
+            <div class="newCat">
+
+            </div>
+        </form>
+        <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
+            <div class="modCat">
+
+            </div>
+        </form>
 
     </section>
 </main>
@@ -62,11 +80,27 @@
         document.getElementById("main").style.marginLeft= "0";
     }
 
-    $(document).ready(function(){
-        $(".butMod").click(function (){
+    $(document).ready(function() {
+        $(".butAdd").click(function () {
             $(".allCategories").hide();
-            $("#demo").html("<p>MOCC A MAMMMT</p>" +
-                "<p> e MOCC A SORT</p>");
+            $(".newCat").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+                "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button> " +
+                "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
+            $("#annulla").click(function () {
+                $(".allCategories").show();
+                $(".newCat").hide();
+            });
+        });
+
+        $(".butMod").click(function () {
+            $(".modCat").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+                "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button>" +
+                "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
+            $("#annulla2").click(function () {
+                $(".modCat").hide();
+            });
         });
     });
 </script>

@@ -49,7 +49,9 @@
                 </tr>
         </c:forEach>
         </table>
-        <button id="add" >Aggiungi Cliente</button> <!--ON CLICK DA FARE-->
+        <div>
+        <button id="add" class="btn primary">Aggiungi Cliente</button>
+        </div>
         <form action="${pageContext.request.contextPath}/crm/addcust" method="post" >
             <div class="newCustomer">
 
@@ -91,7 +93,7 @@
             });
         });
 
-        /**/
+
     });
 
 </script>

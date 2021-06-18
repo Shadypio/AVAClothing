@@ -50,6 +50,9 @@ public class CrmServlet extends HttpServlet {
                 session.setAttribute("listaCli",cli);
                 request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
                 break;
+            case "/addcat":
+
+                break;
             case "/updatepro":
                 break;
             case "/updateord":

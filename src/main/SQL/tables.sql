@@ -20,7 +20,7 @@ create table cliente
     password     varchar(40) not null,
     indirizzo    varchar(40) not null,
     isAdmin      tinyint(1)  null,
-    telefono     varchar(15)  not null,
+    telefono     varchar(15) not null,
     idCliente    int         not null
         primary key
 );
