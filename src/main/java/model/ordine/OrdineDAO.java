@@ -1,6 +1,7 @@
 package model.ordine;
 
 import model.ConPool;
+import model.categoria.Categoria;
 import model.prodotto.Prodotto;
 import model.prodotto.ProdottoExtractor;
 import model.prodottoordine.ProdottoOrdine;
@@ -17,7 +18,7 @@ public class OrdineDAO {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO ordine (iva, dataInserimento, idOrdine, cli_fk) VALUES(?,?,?,?)");
             ps.setDouble(1, p.getIva());
-            ps.setDate(2, p.getDataInserimento());
+            ps.setDate(2, (Date) p.getDataInserimento());
             ps.setLong(3, p.getIdOrdine());
             ps.setLong(4, c.getIdCliente());
             if (ps.executeUpdate() != 1) {
@@ -28,15 +29,18 @@ public class OrdineDAO {
         }
     }
 
-    public void doChanges(Ordine p){
+    public boolean doChanges(Ordine p){
         try (Connection con = ConPool.getConnection()) {
-            Statement st = con.createStatement();
-            String query = "update Ordine set iva='" + p.getIva() + "', " + "dataInserimento="+p.getDataInserimento() + " " +
-                    "where idOrdine=" + p.getIdOrdine() + ";";
-            st.executeUpdate(query);
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
+            PreparedStatement ps = con.prepareStatement("UPDATE ordine o SET o.iva = (?), o.dataInserimento = (?) WHERE o.idOrdine = (?);");
+            ps.setDouble(1, p.getIva());
+            ps.setDate(2, (Date) p.getDataInserimento());
+            ps.setLong(3, p.getIdOrdine());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            return true;
+        } catch(SQLException e){
+            return false;
         }
     }
 

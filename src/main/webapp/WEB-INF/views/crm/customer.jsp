@@ -8,7 +8,6 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -77,7 +76,7 @@
     $(document).ready(function(){
         $("#add").click(function (){
             $(".allCustomer").hide();
-            $(".newCustomer").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+            $(".newCustomer").show().html("<fieldset>  <legend>Aggiungi Cliente:</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Cognome: </span> <input type='text' name='cognome' id='cognome' placeholder='Cognome'> <br>" +
                 "<span> Username: </span> <input type='text' name='username' id='username' placeholder='Username'> <br>" +
                 "<span> Email: </span> <input type='text' name='email' id='email' placeholder='Email'> <br>" +
@@ -92,7 +91,6 @@
                 $(".newCustomer").hide();
             });
         });
-
 
     });
 

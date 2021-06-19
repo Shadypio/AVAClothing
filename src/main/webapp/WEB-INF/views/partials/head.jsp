@@ -22,3 +22,4 @@
 <c:if test="${not empty param.script}">
     <script src="./js/${param.script}" defer></script>
 </c:if>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

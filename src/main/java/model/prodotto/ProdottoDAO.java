@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
-//AGGIUNGI STRINGA IMMAGINE
 public class ProdottoDAO {
     public Prodotto doRetrieveById(long id) {
         Prodotto p;
@@ -46,18 +45,20 @@ public class ProdottoDAO {
 
     public boolean doChanges(Prodotto prodotto){
         try(Connection con = ConPool.getConnection()){
-            long idProdotto = prodotto.getIdProdotto();
-            String nome = prodotto.getNome();
-            double prezzo = prodotto.getPrezzo();
-            boolean inOfferta = prodotto.isInOfferta();
-            String descrizioneBreve = prodotto.getDescrizioneBreve();
-            String descrizioneDettagliata = prodotto.getDescrizioneDettagliata();
-            int quantita=prodotto.getQuantita();
-            String query = "UPDATE prodotto p SET p.nome = '" + nome + "', p.prezzo = " + prezzo +
-                    ", p.inofferta = " + inOfferta + ", p.descrizioneBreve = '" + descrizioneBreve + "'," +
-                    "p.descrizioneDettagliata = '" + descrizioneDettagliata + "', p.quantita= " + quantita +", WHERE p.IdProdotto = " + idProdotto + ";";
-            PreparedStatement s = con.prepareStatement(query);
-            s.execute();
+            PreparedStatement ps = con.prepareStatement("UPDATE prodotto p SET p.nome = (?), p.prezzo = (?),p.mag_fk = (?), p.cat_fk = (?), p.inofferta = (?)," +
+                    " p.descrizioneBreve = (?), p.descrizioneDettagliata = (?), p.quantita= (?) WHERE p.IdProdotto = (?);");
+            ps.setString(1, prodotto.getNome());
+            ps.setDouble(2, prodotto.getPrezzo());
+            ps.setLong(3,prodotto.getMagazzino().getIdMagazzino());
+            ps.setLong(4,prodotto.getCategoria().getIdCategoria());
+            ps.setBoolean(5, prodotto.isInOfferta());
+            ps.setString(6, prodotto.getDescrizioneBreve());
+            ps.setString(7, prodotto.getDescrizioneDettagliata());
+            ps.setLong(8,prodotto.getQuantita());
+            ps.setLong(9, prodotto.getIdProdotto());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
             return true;
         } catch(SQLException e){
             return false;
@@ -102,4 +103,18 @@ public class ProdottoDAO {
         }
         return prodotti;
     }
+
+    public void deleteById(long id){
+        try (Connection con = ConPool.getConnection()) {
+            String query ="DELETE FROM prodotto as pro WHERE pro.IdProdotto = (?);";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, id);
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("DELETE error.");
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
 }

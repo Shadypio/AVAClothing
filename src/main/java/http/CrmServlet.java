@@ -4,6 +4,7 @@ import model.categoria.Categoria;
 import model.categoria.CategoriaDAO;
 import model.cliente.Cliente;
 import model.cliente.ClienteDAO;
+import model.magazzino.Magazzino;
 import model.ordine.Ordine;
 import model.ordine.OrdineDAO;
 import model.prodotto.Prodotto;
@@ -11,11 +12,12 @@ import model.prodotto.ProdottoDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import javax.swing.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import static javax.xml.crypto.dsig.DigestMethod.SHA1;
+import java.util.Date;
 
 @WebServlet(name = "CrmServlet", value = "/crm/*")
 public class CrmServlet extends HttpServlet {
@@ -27,11 +29,42 @@ public class CrmServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
+        ProdottoDAO proDAO=new ProdottoDAO();
+        ClienteDAO cliDAO=new ClienteDAO();
+        CategoriaDAO catDAO=new CategoriaDAO();
+        OrdineDAO ordDAO=new OrdineDAO();
+        String address=getServletContext().getContextPath();
+
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path) {
+            case "/addpro":
+                String nomePro=request.getParameter("nome");
+                String prezzo=request.getParameter("prezzo");
+                double price=Double.parseDouble(prezzo);
+                String descB=request.getParameter("descBreve");
+                String descD=request.getParameter("descDett");
+                String inOff=request.getParameter("offerta");
+                boolean off=false;
+                if (inOff.equals("true"))
+                    off=true;
+                String quan=request.getParameter("quantita");
+                String Mag=request.getParameter("idMag");
+                String Cat=request.getParameter("idCat");
+                String Pro=request.getParameter("idPro");
+                int idPro=Integer.parseInt(Pro);
+                int idCat=Integer.parseInt(Cat);
+                int idMag=Integer.parseInt(Mag);
+                int quantita=Integer.parseInt(quan);
+                Categoria cat=new Categoria();
+                cat.setIdCategoria(idCat);
+                Magazzino mag=new Magazzino();
+                mag.setIdMagazzino(idMag);
+                Prodotto p=new Prodotto(idPro,nomePro,price,off,descB,descD,quantita,mag,cat);
+                proDAO.addProdotto(p,cat,mag);
+                response.sendRedirect(address+"/crm/product");
+                break;
             case "/addcust":
-                ClienteDAO cliDAO=new ClienteDAO();
-                String nome = request.getParameter("nome");
+                String nomeCust = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String user = request.getParameter("username");
                 String mail = request.getParameter("email");
@@ -44,23 +77,78 @@ public class CrmServlet extends HttpServlet {
                 Boolean b=false;
                 if (admin.equals("true"))
                     b=true;
-                Cliente nuovo=new Cliente(cognome,nome,mail,user,newPass,indirizzo,tel,creaId,b);
+                Cliente nuovo=new Cliente(cognome,nomeCust,mail,user,newPass,indirizzo,tel,creaId,b);
                 cliDAO.addCliente(nuovo);
-                cli=cliDAO.doRetrieveAll();
-                session.setAttribute("listaCli",cli);
-                request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
+                response.sendRedirect(address+"/crm/customer");
                 break;
             case "/addcat":
-
+                String nomeCat=request.getParameter("nome");
+                String desc=request.getParameter("descrizione");
+                ArrayList<Categoria> listaCat=catDAO.doRetrieveAll();
+                int idCate=listaCat.size()+1;
+                Categoria x=new Categoria(nomeCat,desc,idCate);
+                catDAO.addCategoria(x);
+                response.sendRedirect(address+"/crm/category");
                 break;
             case "/updatepro":
+                nomePro = request.getParameter("nome");
+                prezzo= request.getParameter("prezzo");
+                descB= request.getParameter("descB");
+                descD= request.getParameter("descD");
+                inOff= request.getParameter("offerta");
+                b=false;
+                if (inOff.equals("true"))
+                    b=true;
+                String idProdotto=request.getParameter("selezioneMod");
+                System.out.println(idProdotto);
+                String idCategoria=request.getParameter("idCat");
+                String idMagazzino=request.getParameter("idMag");
+                quan=request.getParameter("quantita");
+                price=Double.parseDouble(prezzo);
+                quantita=Integer.parseInt(quan);
+                idPro=Integer.parseInt(idProdotto);
+                idCat=Integer.parseInt(idCategoria);
+                cat=new Categoria();
+                cat.setIdCategoria(idCat);
+                idMag=Integer.parseInt(idMagazzino);
+                mag=new Magazzino();
+                mag.setIdMagazzino(idMag);
+                Prodotto newProdotto=new Prodotto(idPro,nomePro,price,b,descB,descD,quantita,mag,cat);
+                proDAO.doChanges(newProdotto);
+                response.sendRedirect(address+"/crm/product");
                 break;
             case "/updateord":
+                String idOrdine=request.getParameter("ordSelezionato");
+                int idOrd=Integer.parseInt(idOrdine);
+                Ordine oldOrdine=ordDAO.doRetrieveById(idOrd);
+                String iva=request.getParameter("iva");
+                int ivaOrd=Integer.parseInt(iva);
+                String data=request.getParameter("data");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                df.setLenient (false);
+                java.util.Date dataOrdine;
+                Ordine newOrdine= new Ordine();
+                try {
+                    dataOrdine = df.parse (data);
+                    java.sql.Date sqlDate = new java.sql.Date(dataOrdine.getTime());
+                    newOrdine=new Ordine(ivaOrd, sqlDate,idOrd,oldOrdine.getCliente());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                ordDAO.doChanges(newOrdine);
+                response.sendRedirect(address+"/crm/order");
                 break;
             case "/updatecat":
+                idCategoria=request.getParameter("catSelezionata");
+                idCat=Integer.parseInt(idCategoria);
+                nomeCat=request.getParameter("nome");
+                desc=request.getParameter("desc");
+                cat=new Categoria(nomeCat,desc,idCat);
+                catDAO.doChanges(cat);
+                response.sendRedirect(address+"/crm/category");
                 break;
             case "/updatecust":
-                nome = request.getParameter("nome");
+                nomeCust = request.getParameter("nome");
                 cognome = request.getParameter("cognome");
                 user = request.getParameter("username");
                 mail = request.getParameter("email");
@@ -71,13 +159,19 @@ public class CrmServlet extends HttpServlet {
                 newPass = request.getParameter("password");
                 cliDAO = new ClienteDAO();
                 Cliente oldProfilo= cliDAO.doRetrieveById(idIntero);
-                Cliente newProfilo =new Cliente(cognome,nome,mail,user,newPass,indirizzo,tel,idIntero,true);
+                Cliente newProfilo =new Cliente(cognome,nomeCust,mail,user,newPass,indirizzo,tel,idIntero,true);
                 if (oldProfilo.getPassword().equals(newPass))
                     cliDAO.doChanges(newProfilo);
                 else
                     cliDAO.doChangesWithPass(newProfilo);
-                session.setAttribute("profilo",newProfilo);
-                request.getRequestDispatcher("/WEB-INF/views/crm/profile.jsp").forward(request, response);
+                response.sendRedirect(address+"/crm/profile");
+                break;
+            case "/deletepro":
+                String idDelete=request.getParameter("selezioneDelete");
+                int idDelPro=Integer.parseInt(idDelete);
+                ProdottoDAO prodottoDAO=new ProdottoDAO();
+                prodottoDAO.deleteById(idDelPro);
+                response.sendRedirect(address+"/crm/product");
                 break;
             case "/profile":
                 cliDAO=new ClienteDAO();
@@ -92,21 +186,19 @@ public class CrmServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
                 break;
             case "/category":
-                CategoriaDAO catDAO=new CategoriaDAO();
-                ArrayList<Categoria> cat=catDAO.doRetrieveAll();
-                session.setAttribute("listaCat",cat);
+                catDAO=new CategoriaDAO();
+                ArrayList<Categoria> cate=catDAO.doRetrieveAll();
+                session.setAttribute("listaCat",cate);
                 request.getRequestDispatcher("/WEB-INF/views/crm/categories.jsp").forward(request, response);
                 break;
             case "/order":
-                OrdineDAO ordDAO=new OrdineDAO();
                 ArrayList<Ordine> ord=ordDAO.doRetrieveAll();
                 session.setAttribute("listaOrd",ord);
                 request.getRequestDispatcher("/WEB-INF/views/crm/orders.jsp").forward(request, response);
                 break;
             case "/product":
-                ProdottoDAO proDAO=new ProdottoDAO();
+                proDAO=new ProdottoDAO();
                 ArrayList<Prodotto> pro=proDAO.doRetrieveAll();
-
                 session.setAttribute("listaPro",pro);
                 request.getRequestDispatcher("/WEB-INF/views/crm/products.jsp").forward(request, response);
                 break;
@@ -132,8 +224,8 @@ public class CrmServlet extends HttpServlet {
                         ord=ordDAO.doRetrieveAll();
                         request.setAttribute("numeroOrdini",ord.size());
                         catDAO=new CategoriaDAO();
-                        cat=catDAO.doRetrieveAll();
-                        request.setAttribute("numeroCategorie",cat.size());
+                        cate=catDAO.doRetrieveAll();
+                        request.setAttribute("numeroCategorie",cate.size());
                         cli= cliDAO.doRetrieveAll();
                         request.setAttribute("numeroClienti",cli.size());
                         proDAO=new ProdottoDAO();
@@ -151,7 +243,6 @@ public class CrmServlet extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"Risorsa non trovata");
         }
     }
-
 
 
 }

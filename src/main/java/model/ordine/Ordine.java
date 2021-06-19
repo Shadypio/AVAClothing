@@ -8,7 +8,12 @@ import java.util.ArrayList;
 
 public class Ordine {
     public Ordine() {  }
-
+    public Ordine(double iva,Date data,int id,Cliente c) {
+        this.iva=iva;
+        this.dataInserimento=data;
+        this.idOrdine=id;
+        this.cliente=c;
+    }
     public long getIdOrdine() { return idOrdine; }
     public void setIdOrdine(long idOrdine) { this.idOrdine = idOrdine; }
     public Double getIva() { return iva; }

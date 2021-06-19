@@ -2,18 +2,19 @@ package model.categoria;
 
 import model.ConPool;
 import model.categoria.Categoria;
+import model.prodotto.Prodotto;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class CategoriaDAO {
-    public void addCategoria(Categoria c){
+    public void addCategoria(Categoria cat){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO categoria (nome, descrizione, idCategoria) VALUES(?,?,?)");
-            ps.setString(1, c.getNome());
-            ps.setString(2, c.getDescrizione());
-            ps.setLong(3, c.getIdCategoria());
+            ps.setString(1, cat.getNome());
+            ps.setString(2, cat.getDescrizione());
+            ps.setLong(3,cat.getIdCategoria());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -22,16 +23,19 @@ public class CategoriaDAO {
         }
     }
 
-    public void doChanges(Categoria c){
-        try (Connection con = ConPool.getConnection()) {
-            Statement st = con.createStatement();
-            String query = "update Categoria c set c.nome='" + c.getNome() + "', descrizione=" + c.getDescrizione() + " where idCategoria=" + c.getIdCategoria() + ";";
-            st.executeUpdate(query);
+    public boolean doChanges(Categoria cat){
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("UPDATE categoria c SET c.nome = (?), c.Descrizione = (?) WHERE c.idCategoria = (?);");
+            ps.setString(1, cat.getNome());
+            ps.setString(2, cat.getDescrizione());
+            ps.setLong(3, cat.getIdCategoria());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            return true;
+        } catch(SQLException e){
+            return false;
         }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     public ArrayList<Categoria> doRetrieveAll(){

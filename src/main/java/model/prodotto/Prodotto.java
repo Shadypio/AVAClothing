@@ -3,16 +3,21 @@ package model.prodotto;
 import model.categoria.Categoria;
 import model.magazzino.Magazzino;
 
+import java.util.Locale;
+
 public class Prodotto {
 
     public Prodotto(){ }
-    public Prodotto(long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata) {
+    public Prodotto(long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata,int quantita,Magazzino mag, Categoria cat) {
         this.idProdotto = idProdotto;
         this.nome = nome;
         this.prezzo = prezzo;
         this.isInOfferta = isInOfferta;
         this.descrizioneBreve = descrizioneBreve;
         this.descrizioneDettagliata = descrizioneDettagliata;
+        this.quantita=quantita;
+        this.magazzino=mag;
+        this.categoria=cat;
     }
 
     public long getIdProdotto() {
@@ -37,7 +42,6 @@ public class Prodotto {
     public void setMagazzino(Magazzino magazzino) { this.magazzino = magazzino; }
     public Categoria getCategoria() { return categoria; }
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
-
     public String getBase64Image() {
         return base64Image;
     }

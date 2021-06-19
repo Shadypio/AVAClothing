@@ -11,7 +11,6 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -45,23 +44,26 @@
             </c:forEach>
         </table>
         <div>
-            <button class="butAdd btn primary">Aggiungi Categoria</button>
-            <select name="catSelezionata" id="selected">
-            <c:forEach var="cate" items="${listaCat}">
-                <option>${cate.idCategoria} </option>
-            </c:forEach>
-            </select><button class="butMod btn primary">Modifica Categoria</button>
+            <button class="butAdd btn primary">Aggiungi Categoria</button> <!--Button Add-->
+
+            <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
+                <select name="catSelezionata" id="selected">
+                    <c:forEach var="cate" items="${listaCat}">
+                        <option>${cate.idCategoria} </option>
+                    </c:forEach>
+                </select>
+                <button class="butMod btn primary" type="button">Modifica Categoria</button> <!--Button Modify-->
+                <div class="modCat">
+                    <!--Al click Form Modify-->
+                </div>
+            </form>
         </div>
         <form action="${pageContext.request.contextPath}/crm/addcat" method="post" >
             <div class="newCat">
-
+                <!--Al click Form Add-->
             </div>
         </form>
-        <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
-            <div class="modCat">
 
-            </div>
-        </form>
 
     </section>
 </main>
@@ -83,7 +85,7 @@
     $(document).ready(function() {
         $(".butAdd").click(function () {
             $(".allCategories").hide();
-            $(".newCat").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+            $(".newCat").show().html("<fieldset>  <legend>Aggiungi Categoria</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
@@ -95,7 +97,7 @@
 
         $(".butMod").click(function () {
             $(".modCat").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
+                "<span> Descrizione: </span> <input type='text' name='desc' id='desc' placeholder='Descrizione'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {

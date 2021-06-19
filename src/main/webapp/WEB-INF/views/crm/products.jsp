@@ -8,6 +8,7 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
 <main class="app">
@@ -26,7 +27,7 @@
     </aside>
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table>
+        <table class="allProducts" style="overflow: auto">
             <tr>
                 <th>ID Prodotto</th>
                 <th>Nome</th>
@@ -36,7 +37,6 @@
                 <th>in Offerta</th>
                 <th>ID Categoria</th>
             </tr>
-
             <c:forEach var="prodotto" items="${listaPro}">
                 <tr>
                     <td>${prodotto.idProdotto}</td>
@@ -49,9 +49,36 @@
                 </tr>
             </c:forEach>
         </table>
-        <button onclick="">Aggiungi Prodotto</button>
-        <button onclick="">Elimina Prodotto</button>
-        <button onclick="">Modifica Prodotto</button>  <!--ON CLICK DA FARE-->
+        <div>
+            <button class="butAdd btn primary">Aggiungi Prodotto</button> <!--Button Add-->
+
+            <form action="${pageContext.request.contextPath}/crm/deletepro" method="post">
+            <select name="selezioneDelete" id="selectedDel">
+                <c:forEach var="pro" items="${listaPro}">
+                    <option>${pro.idProdotto} </option>
+                </c:forEach>
+            </select>
+            <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
+            </form>
+            <form action="${pageContext.request.contextPath}/crm/updatepro" method="post" name="up">
+                <select name="selezioneMod" id="selectedMod">
+                    <c:forEach var="pro" items="${listaPro}">
+                        <option>${pro.idProdotto} </option>
+                    </c:forEach>
+                </select>
+                <button class="butMod btn primary" type="button">Modifica Prodotto</button><!--Button Modify-->
+                <div class="modPro" name="upp">
+                    <!--Al click Form Modify-->
+                </div>
+            </form>
+
+        </div>
+        <form action="${pageContext.request.contextPath}/crm/addpro" method="post" >
+            <div class="newPro">
+                <!--Al click Form Add-->
+            </div>
+        </form>
+
     </section>
 </main>
 <footer class="info">
@@ -68,6 +95,41 @@
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
+    $(document).ready(function() {
+        $(".butAdd").click(function () {
+            $(".allProducts").hide();
+            $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve'> <br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata'> <br>" +
+                "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
+                "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto'> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button> " +
+                "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
+            $("#annulla").click(function () {
+                $(".allProducts").show();
+                $(".newPro").hide();
+            });
+        });
+        $(".butMod").click(function () {
+            $(".modPro").show().html("<fieldset> <legend>Modifica Prodotto</legend><span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descB' id='descB' placeholder='Descrizione Breve'> <br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descD' id='descD' placeholder='Descrizione Dettagliata'> <br>" +
+                "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button>" +
+                "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
+            $("#annulla2").click(function () {
+                $(".modPro").hide();
+            });
+        });
+    });
 </script>
 
 </body>

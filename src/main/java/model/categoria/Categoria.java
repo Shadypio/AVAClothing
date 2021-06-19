@@ -4,7 +4,11 @@ public class Categoria {
     public Categoria(){
         super();
     }
-
+    public Categoria(String nome,String descrizione,long idCategoria){
+        this.nome=nome;
+        this.descrizione=descrizione;
+        this.idCategoria=idCategoria;
+    }
     public long getIdCategoria() {return idCategoria;}
     public void setIdCategoria(long idCategoria) {this.idCategoria = idCategoria;}
     public String getNome() {return nome;}
