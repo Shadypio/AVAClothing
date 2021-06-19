@@ -1,6 +1,6 @@
 drop database avabase;
 create database avabase;
-
+GRANT ALL PRIVILEGES ON avabase.* TO 'root'@'localhost';
 use avabase;
 
 create table categoria
@@ -92,5 +92,3 @@ create table spedizione
         foreign key (ord_fk) references ordine (idOrdine)
             on update cascade on delete cascade
 );
-
-
