@@ -7,7 +7,6 @@
     </jsp:include>
 </head>
 <body>
-<img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
 <div>
     <a href="./cliente/secret">Login Admin</a>
     <a href="./cliente/signup">Registrazione Nuovo utente</a>

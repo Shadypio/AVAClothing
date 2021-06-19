@@ -14,7 +14,9 @@
 <meta name="theme-color" content="#000000">
 <link href="<c:url value="/css/reset.css"/>" rel="stylesheet">
 <link href="<c:url value="/css/library.css"/>" rel="stylesheet">
-
+<a href="<%=request.getContextPath()%>/index.jsp">
+<img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
+</a>
 <c:if test="${not empty param.style}">
     <link rel="stylesheet" href="css/${param.style}">
 </c:if>
