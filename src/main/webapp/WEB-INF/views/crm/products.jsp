@@ -1,3 +1,5 @@
+<%@ page import="model.prodotto.ProdottoDAO" %>
+<%@ page import="model.prodotto.Prodotto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -29,6 +31,7 @@
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
         <table class="allProducts" style="overflow: auto">
             <tr>
+                <th>Immagine</th>
                 <th>ID Prodotto</th>
                 <th>Nome</th>
                 <th>Prezzo</th>
@@ -39,6 +42,7 @@
             </tr>
             <c:forEach var="prodotto" items="${listaPro}">
                 <tr>
+                    <td><img src="data:image/jpg;base64,${prodotto.base64Image}" width="80" height="100"></td>
                     <td>${prodotto.idProdotto}</td>
                     <td>${prodotto.nome}</td>
                     <td>${prodotto.prezzo}</td>
@@ -78,13 +82,11 @@
                 <!--Al click Form Add-->
             </div>
         </form>
-
     </section>
 </main>
 <footer class="info">
     Copyright 2021, AVAClothing - Tutti i diritti riservati
 </footer>
-
 <script>
     function openNav() {
         document.getElementById("sideBar").style.width = "250px";
@@ -100,7 +102,7 @@
             $(".allProducts").hide();
             $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
-                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve'> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve'> value='' <br>" +
                 "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata'> <br>" +
                 "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
                 "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
@@ -131,6 +133,5 @@
         });
     });
 </script>
-
 </body>
 </html>
