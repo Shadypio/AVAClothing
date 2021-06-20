@@ -57,12 +57,12 @@
             <button class="butAdd btn primary">Aggiungi Prodotto</button> <!--Button Add-->
 
             <form action="${pageContext.request.contextPath}/crm/deletepro" method="post">
-            <select name="selezioneDelete" id="selectedDel">
-                <c:forEach var="pro" items="${listaPro}">
-                    <option>${pro.idProdotto} </option>
-                </c:forEach>
-            </select>
-            <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
+                <select name="selezioneDelete" id="selectedDel">
+                    <c:forEach var="pro" items="${listaPro}">
+                        <option>${pro.idProdotto} </option>
+                    </c:forEach>
+                </select>
+                <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
             </form>
             <form action="${pageContext.request.contextPath}/crm/updatepro" method="post" name="up">
                 <select name="selezioneMod" id="selectedMod">
@@ -92,7 +92,6 @@
         document.getElementById("sideBar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
     }
-
     function closeNav() {
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
