@@ -8,5 +8,5 @@
 /httpRequests/
 
 src/main/java/model/ConPool.*
-/target/
+../target/
 
