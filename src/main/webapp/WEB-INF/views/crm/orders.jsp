@@ -13,20 +13,19 @@
 <main class="app">
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
-            <img src="/AVAClothing_war_exploded/img/logo.png" width="100" height="115">
-            <a class="closebtn" onclick="closeNav()">x</a>
-            <a href="/AVAClothing_war_exploded/crm/dashboard">Dashboard</a>
-            <a href="/AVAClothing_war_exploded/crm/profile">Profilo</a>
-            <a href="/AVAClothing_war_exploded/crm/customer">Gestione Clienti</a>
-            <a href="/AVAClothing_war_exploded/crm/order">Gestione Ordini</a>
-            <a href="/AVAClothing_war_exploded/crm/product">Gestione Prodotti</a>
-            <a href="/AVAClothing_war_exploded/crm/category">Gestione Categorie</a>
-            <a href="/AVAClothing_war_exploded/crm/logout">Logout</a>
+            <img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
+            <a href="<%=request.getContextPath()%>/crm/dashboard">Dashboard</a>
+            <a href="<%=request.getContextPath()%>/crm/profile">Profilo</a>
+            <a href="<%=request.getContextPath()%>/crm/customer">Gestione Clienti</a>
+            <a href="<%=request.getContextPath()%>/crm/order">Gestione Ordini</a>
+            <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
+            <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
+            <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
 
         </nav>
     </aside>
     <div class="content grid-y" id="main">
-        <button class="openbtn" onclick="openNav()"><img src="/AVAClothing_war_exploded/icons/menu.png"></button>
+        <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
         <table class="allOrders">
             <tr>
                 <th>ID Ordine</th>
@@ -34,48 +33,21 @@
                 <th>IVA</th>
                 <th>ID Cliente</th>
             </tr>
-
-            <tr>
-                <td>100</td>
-                <td>2020-12-10</td>
-                <td>21.0</td>
-                <td>2</td>
-            </tr>
-
-            <tr>
-                <td>101</td>
-                <td>2021-04-01</td>
-                <td>21.0</td>
-                <td>1</td>
-            </tr>
-
-            <tr>
-                <td>102</td>
-                <td>2021-01-12</td>
-                <td>21.0</td>
-                <td>3</td>
-            </tr>
-
-            <tr>
-                <td>103</td>
-                <td>2021-05-17</td>
-                <td>21.0</td>
-                <td>2</td>
-            </tr>
-
+            <c:forEach var="order" items="${listaOrd}">
+                <tr>
+                    <td>${order.idOrdine}</td>
+                    <td>${order.dataInserimento}</td>
+                    <td>${order.iva}</td>
+                    <td>${(order.cliente).idCliente}</td>
+                </tr>
+            </c:forEach>
         </table>
         <div>
-            <form action="/AVAClothing_war_exploded/crm/updateord" method="post" >
+            <form action="<%=request.getContextPath()%>/crm/updateord" method="post" >
                 <select name="ordSelezionato" id="selected">
-
-                    <option>100</option>
-
-                    <option>101</option>
-
-                    <option>102</option>
-
-                    <option>103</option>
-
+                    <c:forEach var="ord" items="${listaOrd}">
+                        <option>${ord.idOrdine}</option>
+                    </c:forEach>
                 </select>
                 <button class="butMod btn primary" type="button">Modifica Ordine</button>
                 <div class="modOrd">

@@ -13,15 +13,14 @@
 <main class="app">
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
-            <img src="/AVAClothing_war_exploded/img/logo.png" width="100" height="115">
-            <a class="closebtn" onclick="closeNav()">x</a>
-            <a href="/AVAClothing_war_exploded/crm/dashboard">Dashboard</a>
-            <a href="/AVAClothing_war_exploded/crm/profile">Profilo</a>
-            <a href="/AVAClothing_war_exploded/crm/customer">Gestione Clienti</a>
-            <a href="/AVAClothing_war_exploded/crm/order">Gestione Ordini</a>
-            <a href="/AVAClothing_war_exploded/crm/product">Gestione Prodotti</a>
-            <a href="/AVAClothing_war_exploded/crm/category">Gestione Categorie</a>
-            <a href="/AVAClothing_war_exploded/crm/logout">Logout</a>
+            <img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
+            <a href="<%=request.getContextPath()%>/crm/dashboard">Dashboard</a>
+            <a href="<%=request.getContextPath()%>/crm/profile">Profilo</a>
+            <a href="<%=request.getContextPath()%>/crm/customer">Gestione Clienti</a>
+            <a href="<%=request.getContextPath()%>/crm/order">Gestione Ordini</a>
+            <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
+            <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
+            <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
         </nav>
     </aside>
     <section class="content grid-y" id="main">
@@ -36,52 +35,22 @@
                 <th>Indirizzo</th>
                 <th>Telefono</th>
             </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mariorossi00@example.com</td>
-                <td>Mario00Rossi</td>
-                <td>Via Ponzio Pilato, 12, Milano</td>
-                <td>3514235768</td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>Luca</td>
-                <td>Gialli</td>
-                <td>lucagialli98@example.com</td>
-                <td>Gialli_Luca98</td>
-                <td>Via Giulio Cesare, 21, Roma</td>
-                <td>3337756898</td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td>Matteo</td>
-                <td>Neri</td>
-                <td>matteoneri89@example.com</td>
-                <td>MatteoNeri</td>
-                <td>Via Napoli, 58, Napoli</td>
-                <td>3774621432</td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td>Gennaro</td>
-                <td>Costagliola</td>
-                <td>gencos@unisa.it</td>
-                <td>admin</td>
-                <td>Via Unisa, 10, Salerno</td>
-                <td>3774621542</td>
-            </tr>
-
+            <c:forEach var="cliente" items="${listaCli}">
+                <tr>
+                    <td>${cliente.idCliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.cognome}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.username}</td>
+                    <td>${cliente.indirizzo}</td>
+                    <td>${cliente.telefono}</td>
+                </tr>
+            </c:forEach>
         </table>
         <div>
             <button id="add" class="btn primary">Aggiungi Cliente</button>
         </div>
-        <form action="/AVAClothing_war_exploded/crm/addcust" method="post" >
+        <form action="${pageContext.request.contextPath}/crm/addcust" method="post" >
             <div class="newCustomer">
 
             </div>
