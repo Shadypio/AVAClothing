@@ -1,0 +1,13 @@
+footer{
+    background-color: var(--cream);
+    font-family: Raleway;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 30px;
+    position: relative;
+    bottom: 0;
+}
+
+span {
+
+}

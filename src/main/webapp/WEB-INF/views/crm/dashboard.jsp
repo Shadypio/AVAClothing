@@ -54,9 +54,9 @@
 
     </section>
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
+<jsp:include page="/WEB-INF/views/partials/footer.jsp">
+    <jsp:param name="title" value=""/>
+</jsp:include>
 <script>
     function openNav() {
         document.getElementById("sideBar").style.width = "250px";

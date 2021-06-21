@@ -25,9 +25,9 @@
 
         </nav>
     </aside>
-    <section class="content grid-y" id="main">
+    <div class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table>
+        <table class="allOrders">
             <tr>
                 <th>ID Ordine</th>
                 <th>Data Inserimento</th>
@@ -43,7 +43,19 @@
                 </tr>
             </c:forEach>
         </table>
-        <button onclick="">Modifica Ordine</button>  <!--ON CLICK DA FARE-->
+        <div>
+            <form action="${pageContext.request.contextPath}/crm/updateord" method="post" >
+                <select name="ordSelezionato" id="selected">
+                <c:forEach var="ord" items="${listaOrd}">
+                    <option>${ord.idOrdine}</option>
+                </c:forEach>
+                </select>
+                <button class="butMod btn primary" type="button">Modifica Ordine</button>
+                <div class="modOrd">
+
+                </div>
+            </form>
+        </div>
     </section>
 
 </main>
@@ -61,6 +73,17 @@
         document.getElementById("sideBar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
+    $(document).ready(function() {
+        $(".butMod").click(function () {
+            $(".modOrd").show().html("<fieldset> <legend>Modifica Ordine</legend><span> IVA: </span> <input type='text' name='iva' id='iva' placeholder='IVA'> <br> " +
+                "<span> Data Inserimento: </span> <input type='date' name='data' id='data' placeholder='Data Inserimento'> <br>" +
+                "<button class='btn primary' type='submit'>Salva</button>" +
+                "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
+            $("#annulla").click(function () {
+                $(".modOrd").hide();
+            });
+        });
+    });
 
 </script>
 </body>

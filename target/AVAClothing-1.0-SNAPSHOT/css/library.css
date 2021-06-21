@@ -92,6 +92,7 @@ input:focus, textarea:focus, select:focus {
     align-items: center;
 }
 
+
 .cell {
     flex-basis: 100%;
 }
@@ -157,6 +158,25 @@ button.primary:hover {
 
     .w100 {
         flex-basis: 100%;
+    }
+
+    .paginator {
+        list-style-type: none;
+    }
+
+    .paginator > li {
+        border: 1px solid var(--white);
+        padding: .5rem;
+        background-color: var(--cream);
+    }
+
+    .paginator > li > a {
+        text-decoration: none;
+        color: var(--white);
+    }
+
+    .paginator > li > a:hover {
+        filter: brightness(110%);
     }
 
 }

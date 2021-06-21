@@ -1,76 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: aless
-  Date: 12/06/2021
-  Time: 11:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Utente"/>
     </jsp:include>
-    <style>
-        .app{
-            background: #f7f7f7;
-        }
-
-        .login{
-            padding: 1rem;
-            background-color: white;
-        }
-
-        .login > * {
-            margin: 10px;
-        }
-
-        body {
-            font-family: Raleway;
-        }
-
-        input{
-            background-color: var(--cream) ;
-            padding: 10px 20px;
-            border: 1px solid grey;
-        }
-
-        span{
-            position: relative;
-            top: 16px;
-        }
-
-        .imgcontainer {
-            text-align: center;
-            margin: 24px 0 24px 0;
-        }
-        img.avatar {
-            width: 50%;
-        }
-
-        fieldset{
-            position:relative;
-            bottom:40px;
-        }
-
-        .imgcontainer {
-            text-align: center;
-            margin: 24px 0 24px 0;
-        }
-
-        img.avatar {
-            width: 50%;
-        }
-
-        fieldset {
-            position: relative;
-            bottom: 40px;
-        }
-    </style>
 </head>
 <body>
-    <h1>Login Utente</h1>
-                                                                        <%--CAMBIARE ACTION--%>
+    <jsp:include page="/WEB-INF/views/partials/header.jsp">
+        <jsp:param name="title" value=""/>
+    </jsp:include>
+    <%--CAMBIARE ACTION--%>
     <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard"  method="get">
         <div class="imgcontainer">
             <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
@@ -88,6 +31,8 @@
             <button class="btn primary" type="submit">Accedi</button>
         </fieldset>
     </form>
-
+    <jsp:include page="/WEB-INF/views/partials/footer.jsp">
+        <jsp:param name="title" value=""/>
+    </jsp:include>
 </body>
 </html>

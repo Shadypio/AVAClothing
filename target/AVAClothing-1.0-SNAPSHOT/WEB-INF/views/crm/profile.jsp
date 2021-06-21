@@ -30,6 +30,7 @@
     <section class="content grid-y" id="main">
         <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
     <fieldset class="grid-y cell w50 login">
+        <legend>Profilo Admin:</legend>
         <form action="${pageContext.request.contextPath}/crm/updatecust" method="post">
             <%Cliente c= (Cliente) session.getAttribute("profilo");%>
             <span>ID: </span>

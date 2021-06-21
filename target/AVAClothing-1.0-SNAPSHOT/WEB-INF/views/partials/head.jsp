@@ -1,5 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page errorPage="errors.jsp" %>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${param.title}</title>
@@ -14,7 +14,6 @@
 <meta name="theme-color" content="#000000">
 <link href="<c:url value="/css/reset.css"/>" rel="stylesheet">
 <link href="<c:url value="/css/library.css"/>" rel="stylesheet">
-
 <c:if test="${not empty param.style}">
     <link rel="stylesheet" href="css/${param.style}">
 </c:if>
@@ -22,3 +21,4 @@
 <c:if test="${not empty param.script}">
     <script src="./js/${param.script}" defer></script>
 </c:if>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
