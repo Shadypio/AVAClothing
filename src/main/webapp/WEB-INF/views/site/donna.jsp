@@ -4,20 +4,16 @@
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Donna"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/partials/header.jsp">
     <jsp:param name="title" value=""/>
 </jsp:include>
-<section>
+<div class="grid-y">
     <div class="dropdown">
         <button class="dropbtn">Seleziona Categoria</button>
         <div class="dropdown-content">
@@ -27,14 +23,15 @@
             </c:forEach>
         </div>
     </div>
-</section>
-<section>
+</div>
+<div class="viewProduct">
     <c:forEach items="${prodotti}" var="prodotto" >
-        <p> <img src="data:image/jpg;base64,${prodotto.base64Image}" width="150" height="200">
-                ${prodotto.nome} ${prodotto.prezzo} ${prodotto.descrizioneBreve} ${prodotto.descrizioneDettagliata}
-                ${prodotto.inOfferta} ${prodotto.idProdotto}</p>
+        <div class="card">
+            <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
+            <span>Nome: ${prodotto.nome}</span><br> <span>Prezzo: ${prodotto.prezzo}</span><br>
+        </div>
     </c:forEach>
-</section>
+</div>
 <!--FOOTER DI MERDA DA INSERIRE-->
 </body>
 </html>

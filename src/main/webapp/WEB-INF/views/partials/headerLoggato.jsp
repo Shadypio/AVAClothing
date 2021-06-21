@@ -14,9 +14,8 @@
             <div class="dropdown">
                 <button class="dropbtn"><img src="<%=request.getContextPath()%>/icons/user.png" width="30" height="30"></button>
                 <div class="dropdown-content">
-                    <a href="<%=request.getContextPath()%>/cliente/secret">Login Admin</a>
-                    <a href="<%=request.getContextPath()%>/cliente/signup">Registrazione Nuovo utente</a>
-                    <a href="<%=request.getContextPath()%>/cliente/signin">Login utente</a>
+                    <p>Bentornato ${profilo.nome}</p>
+                    <a href="<%=request.getContextPath()%>/cliente/logout">Logout</a>
                 </div>
             </div>
             <img src="<%=request.getContextPath()%>/icons/shopping-cart.png" width="30" height="30">

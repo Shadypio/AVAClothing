@@ -60,7 +60,7 @@ public class OrdineDAO {
     }
 
     public Ordine doRetrieveById(long id){
-        Ordine p = null;
+        Ordine p = new Ordine();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Ordine as ord WHERE idOrdine=?");
             ps.setLong(1,id);
@@ -74,8 +74,23 @@ public class OrdineDAO {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<Ordine> doRetrieveByIdCliente(long id){
+        ArrayList<Ordine> result = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Ordine as ord WHERE ord.cli_fk=?");
+            ps.setLong(1,id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                OrdineExtractor ordExtractor = new OrdineExtractor();
+                result.add(ordExtractor.extract(rs));
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    public Ordine doRetrieveByIdOrdine(long idOrdine, long idCliente){
+    public Ordine doRetrieveByIdOrdineAndCliente(long idOrdine, long idCliente){
         Ordine p=new Ordine();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +

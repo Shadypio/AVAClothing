@@ -18,19 +18,16 @@
 
     <div class="slideshow-container">
         <div class="mySlides">
-            <div class="numbertext">1 / 3</div>
             <img src="<%=request.getContextPath()%>/img/cop1.jpeg" style="width: 100%;">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides">
-            <div class="numbertext">2 / 3</div>
             <img src="<%=request.getContextPath()%>/img/cop2.jpeg" style="width: 100%;">
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides">
-            <div class="numbertext">3 / 3</div>
             <img src="<%=request.getContextPath()%>/img/cop3.jpeg" style="width: 100%;">
             <div class="text">Caption Three</div>
         </div>
@@ -64,6 +61,7 @@
         dots[slideIndex-1].className += " active";
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
+</script>
 </script>
 </body>
 </html>
