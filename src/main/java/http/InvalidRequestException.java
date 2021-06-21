@@ -19,6 +19,12 @@ public class InvalidRequestException extends Exception {
         this.errorCode = errorCode;
     }
 
+    public InvalidRequestException(String message, List<String> errors){
+        super(message);
+        this.errors = errors;
+        this.errorCode = 404;
+    }
+
     public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, IOException {
         switch(errorCode){
             case HttpServletResponse.SC_BAD_REQUEST:

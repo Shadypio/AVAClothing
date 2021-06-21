@@ -1,10 +1,4 @@
-/**
- *
- * DA' MOLTI ERRORI
- */
-
-
-/*package http;
+package http;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +15,10 @@ public abstract class Controller extends HttpServlet {
         return req.getPathInfo() != null ? req.getPathInfo() : "/";
     }
 
-    protected String getPath(HttpServletRequest req) {
+    protected String getPath(HttpServletRequest req, String viewPath) {
         String basePath = getServletContext().getInitParameter("basePath");
         String engine = getServletContext().getInitParameter("engine");
-        return basePath +viewPath + engine;
+        return basePath + viewPath + engine;
     }
 
     protected String back(HttpServletRequest request){
@@ -41,4 +35,4 @@ public abstract class Controller extends HttpServlet {
         return System.getenv("CATALINA_HOME") + File.separator + "webapps" + File.separator + "Clothing" +
                 File.separator + "uploads" + File.separator;
     }
-}*/
+}
