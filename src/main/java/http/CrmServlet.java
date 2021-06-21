@@ -1,5 +1,6 @@
 package http;
 
+import component.Paginator;
 import model.categoria.Categoria;
 import model.categoria.CategoriaDAO;
 import model.cliente.Cliente;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @WebServlet(name = "CrmServlet", value = "/crm/*")
-public class CrmServlet extends HttpServlet {
+public class CrmServlet extends HttpServlet implements ErrorHandler{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
@@ -197,9 +198,17 @@ public class CrmServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/crm/orders.jsp").forward(request, response);
                 break;
             case "/product": // show products admin
-
+                try {
+                    authorize(request.getSession(false));
+                    //validate(CommonValidator.validateId(request));
+                } catch (InvalidRequestException e) {
+                    e.printStackTrace();
+                }
+                //int intPage = parsePage(request);
+                //Paginator paginator = new Paginator(intPage, 30);
                 proDAO=new ProdottoDAO();
                 ArrayList<Prodotto> pro=proDAO.doRetrieveAll();
+                //request.setAttribute("pages", paginator.getPages(pro.size()));
                 session.setAttribute("listaPro",pro);
                 request.getRequestDispatcher("/WEB-INF/views/crm/products.jsp").forward(request, response);
                 break;
