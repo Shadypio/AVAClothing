@@ -196,7 +196,8 @@ public class CrmServlet extends HttpServlet {
                 session.setAttribute("listaOrd",ord);
                 request.getRequestDispatcher("/WEB-INF/views/crm/orders.jsp").forward(request, response);
                 break;
-            case "/product":
+            case "/product": // show products admin
+
                 proDAO=new ProdottoDAO();
                 ArrayList<Prodotto> pro=proDAO.doRetrieveAll();
                 session.setAttribute("listaPro",pro);
