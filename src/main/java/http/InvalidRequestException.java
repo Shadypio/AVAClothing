@@ -1,5 +1,7 @@
 package http;
 
+import component.Alert;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +22,7 @@ public class InvalidRequestException extends Exception {
     public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, IOException {
         switch(errorCode){
             case HttpServletResponse.SC_BAD_REQUEST:
-                request.setAttribute("alert", "dange" /*new Alert(errors, "danger")*/);
+                request.setAttribute("alert", new Alert(errors, "danger"));
                 String backPath = (String) request.getAttribute("back");
                 response.setStatus(errorCode);
                 request.getRequestDispatcher(backPath).forward(request, response);
