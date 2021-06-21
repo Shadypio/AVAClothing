@@ -8,7 +8,8 @@ create table categoria
     Nome        varchar(30)  not null,
     Descrizione varchar(500) null,
     idCategoria int          not null
-        primary key
+        primary key,
+    Genere      varchar(10)  null
 );
 
 create table cliente
