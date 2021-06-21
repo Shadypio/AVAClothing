@@ -5,8 +5,8 @@
         <div class="dropdown">
             <button class="dropbtn">Prodotti <i class="fa fa-caret-down"></i></button>
             <div class="dropdown-content">
-                <a href="${pageContext.request.contextPath}/uomo.jsp">Uomo</a>
-                <a href="${pageContext.request.contextPath}/donna.jsp">Donna</a>
+                <a href="<%=request.getContextPath()%>/prodotto/prodottouomo">Uomo</a>
+                <a href="<%=request.getContextPath()%>/prodotto/prodottodonna">Donna</a>
             </div>
         </div>
         <a href="#">Info</a>

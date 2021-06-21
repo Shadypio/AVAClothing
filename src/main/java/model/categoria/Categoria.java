@@ -31,8 +31,17 @@ public class Categoria {
                 '}';
     }
 
+    public String getGenere() {
+        return genere;
+    }
+
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
+
     private long idCategoria;
     private String nome;
     private String descrizione;
+    private String genere;
 
 }

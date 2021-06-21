@@ -13,11 +13,9 @@
     <jsp:include page="/WEB-INF/views/partials/header.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
-    <%--CAMBIARE ACTION--%>
     <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard"  method="get">
         <div class="imgcontainer">
             <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
-
         </div>
         <fieldset class="grid-y cell w50 login">
             <span> Email </span>

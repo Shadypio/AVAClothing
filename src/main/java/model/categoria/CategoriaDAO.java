@@ -51,7 +51,22 @@ public class CategoriaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public ArrayList<Categoria>  doRetrieveByGenere(String genere){
+        ArrayList<Categoria> result=new ArrayList<Categoria>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria as cat WHERE Genere=(?)");
+            ps.setString(1, genere);
+            ResultSet rs = ps.executeQuery();
+            CategoriaExtractor catExtractor=new CategoriaExtractor();
+            while(rs.next()) {
+                result.add(catExtractor.extract(rs));
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Categoria doRetrieveById(long idCategoria){

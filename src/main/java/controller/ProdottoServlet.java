@@ -1,5 +1,7 @@
 package controller;
 
+import model.categoria.Categoria;
+import model.categoria.CategoriaDAO;
 import model.prodotto.Prodotto;
 import model.prodotto.ProdottoDAO;
 
@@ -15,74 +17,40 @@ public class ProdottoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
         String genere;
-        ProdottoDAO proDAO;
+        ProdottoDAO proDAO=new ProdottoDAO();
+        CategoriaDAO catDAO= new CategoriaDAO();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path) {
-            case "/tshirt":
-                genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(1);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(7);
-                    session.setAttribute("prodotti",lista);
+            case "/prodottouomo":
+                ArrayList<Categoria> listaGenere=catDAO.doRetrieveByGenere("uomo");
+                ArrayList<Prodotto> result= new ArrayList<>();
+                for(int i=0; i<listaGenere.size(); i++) {
+                    ArrayList<Prodotto> temp = proDAO.doRetrieveProdottiWithCategoria(listaGenere.get(i).getIdCategoria());
+                    for(int j=0; j<temp.size(); j++)
+                        result.add(temp.get(j));
                 }
+                session.setAttribute("prodotti",result);
+                session.setAttribute("listaCat",listaGenere);
+                request.getRequestDispatcher("/WEB-INF/views/site/uomo.jsp").forward(request, response);
                 break;
-            case "/pantaloni":
-                genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(2);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(8);
-                    session.setAttribute("prodotti",lista);
+            case "/prodottodonna":
+                catDAO=new CategoriaDAO();
+                listaGenere=catDAO.doRetrieveByGenere("donna");
+                result= new ArrayList<>();
+                for(int i=0; i<listaGenere.size(); i++) {
+                    ArrayList<Prodotto> temp = proDAO.doRetrieveProdottiWithCategoria(listaGenere.get(i).getIdCategoria());
+                    for(int j=0; j<temp.size(); j++)
+                        result.add(temp.get(j));
                 }
+                session.setAttribute("prodotti",result);
+                session.setAttribute("listaCat",listaGenere);
+                request.getRequestDispatcher("/WEB-INF/views/site/donna.jsp").forward(request, response);
                 break;
-            case "/felpe":
+            case "/selezione":
                 genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(5);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(11);
-                    session.setAttribute("prodotti",lista);
-                }
-                break;
-            case "/accessori":
-                genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(4);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(10);
-                    session.setAttribute("prodotti",lista);
-                }
-                break;
-            case "/camicie":
-                genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(6);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(12);
-                    session.setAttribute("prodotti",lista);
-                }
-                break;
-            case "/scarpe":
-                genere= (String) session.getAttribute( "genere");
-                proDAO=new ProdottoDAO();
-                if (genere.equalsIgnoreCase("uomo")) {
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(3);
-                    session.setAttribute("prodotti",lista);
-                }else{
-                    ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(9);
-                    session.setAttribute("prodotti",lista);
-                }
+                int id=Integer.parseInt(request.getParameter("id"));
+                ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(id);
+                session.setAttribute("prodotti",lista);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
