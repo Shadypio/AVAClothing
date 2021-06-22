@@ -7,9 +7,9 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Ordini"/>
     </jsp:include>
-    <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+
 </head>
-<body>
+<body style="background-color: var(--cream)">
 <main class="app">
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
@@ -21,63 +21,71 @@
             <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
             <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
             <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
-
         </nav>
     </aside>
+
     <section class="content grid-y" id="main">
-        <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table class="allOrders">
-            <tr>
-                <th>ID Ordine</th>
-                <th>Data Inserimento</th>
-                <th>IVA</th>
-                <th>ID Cliente</th>
-            </tr>
-            <c:forEach var="order" items="${listaOrd}">
-                <tr>
-                    <td>${order.idOrdine}</td>
-                    <td>${order.dataInserimento}</td>
-                    <td>${order.iva}</td>
-                    <td>${(order.cliente).idCliente}</td>
-                </tr>
-            </c:forEach>
-        </table>
         <div>
-            <form action="<%=request.getContextPath()%>/crm/updateord" method="post" >
-                <select name="ordSelezionato" id="selected">
-                    <c:forEach var="ord" items="${listaOrd}">
-                        <option>${ord.idOrdine}</option>
-                    </c:forEach>
-                </select>
-                <button class="butMod btn primary" type="button">Modifica Ordine</button>
+            <div>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png">
+                </button>
+            </div>
+            <table class="redTable">
+                <thead>
+                <tr>
+                    <th>ID Ordine</th>
+                    <th>Data Inserimento</th>
+                    <th>IVA</th>
+                    <th>ID Cliente</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="order" items="${listaOrd}">
+                    <tr>
+                        <td>${order.idOrdine}</td>
+                        <td>${order.dataInserimento}</td>
+                        <td>${order.iva}</td>
+                        <td>${(order.cliente).idCliente}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+
+            </table>
+
+            <select name="ordSelezionato" id="selected">
+                <option> MODIFICA </option>
+                <c:forEach var="ord" items="${listaOrd}">
+                    <option>${ord.idOrdine}</option>
+                </c:forEach>
+            </select>
+            <div>
+            <button class="butMod btn primary" type="button">Modifica Ordine</button>
+        </div>
+            <form action="<%=request.getContextPath()%>/crm/updateord" method="post">
                 <div class="modOrd">
 
                 </div>
+
             </form>
         </div>
     </section>
-
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
-
-
 <script>
     let status = false;
-    function toggleNav(){
-        if(status) {
+
+    function toggleNav() {
+        if (status) {
             document.getElementById("sideBar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
             status = false;
-        }else{
+        } else {
             document.getElementById("sideBar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
             status = true;
         }
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".butMod").click(function () {
             $(".modOrd").show().html("<fieldset> <legend>Modifica Ordine</legend><span> IVA: </span> <input type='text' name='iva' id='iva' placeholder='IVA'> <br> " +
                 "<span> Data Inserimento: </span> <input type='date' name='data' id='data' placeholder='Data Inserimento'> <br>" +

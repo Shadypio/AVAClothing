@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -7,9 +6,7 @@
     <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Categorie"/>
-        <jsp:param name="styles" value="crm"/>
     </jsp:include>
-    <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
 
 </head>
 <body style="background-color: var(--cream)">
@@ -30,7 +27,8 @@
     <section class="content grid-y" id="main">
         <div>
             <div>
-            <button class="openbtn" onclick="toggleNav()"> <img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png">
+                </button>
             </div>
             <table class="redTable">
                 <thead>
@@ -53,6 +51,7 @@
             </table>
             <div>
                 <select name="catSelezionata" id="selected">
+                    <option> MODIFICA </option>
                     <c:forEach var="cate" items="${listaCat}">
                         <option>${cate.idCategoria} </option>
                     </c:forEach>
@@ -63,41 +62,36 @@
             </div>
 
             <div class="formWrapper">
-                    <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
-                        <div class="modCat">
-                            <!--Al click Form Modify-->
-                        </div>
-                    </form>
-                    <form action="${pageContext.request.contextPath}/crm/addcat" method="post" >
-                        <div class="newCat">
-                             <!--Al click Form Add-->
-                        </div>
-                    </form>
+                <form action="${pageContext.request.contextPath}/crm/updatecat" method="post">
+                    <div class="modCat">
+                        <!--Al click Form Modify-->
+                    </div>
+                </form>
+                <form action="${pageContext.request.contextPath}/crm/addcat" method="post">
+                    <div class="newCat">
+                        <!--Al click Form Add-->
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 </main>
-
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
-
 <script>
     let status = false;
 
-    function toggleNav(){
-        if(status) {
+    function toggleNav() {
+        if (status) {
             document.getElementById("sideBar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
             status = false;
-        }else{
+        } else {
             document.getElementById("sideBar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
             status = true;
         }
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".butAdd").click(function () {
             $(".allCategories").hide();
             $(".newCat").show().html("<fieldset>  <legend>AGGIUNGI CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +

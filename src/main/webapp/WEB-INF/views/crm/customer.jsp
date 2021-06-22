@@ -6,11 +6,10 @@
     <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Clienti"/>
-        <jsp:param name="styles" value="crm"/>
     </jsp:include>
 
 </head>
-<body>
+<body style="background-color: var(--cream)">
 <main class="app">
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
@@ -28,10 +27,11 @@
     <section class="content grid-y" id="main">
         <div>
             <div>
-                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png">
+                </button>
             </div>
-        <table class="redTable">
-            <thead>
+            <table class="redTable">
+                <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
@@ -41,8 +41,8 @@
                     <th>Indirizzo</th>
                     <th>Telefono</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <c:forEach var="cliente" items="${listaCli}">
                     <tr>
                         <td>${cliente.idCliente}</td>
@@ -54,39 +54,37 @@
                         <td>${cliente.telefono}</td>
                     </tr>
                 </c:forEach>
-            </tbody>
+                </tbody>
 
-        </table>
-        <div>
-            <button id="add" class="btn primary">Aggiungi Cliente</button>
-        </div>
-        <form action="${pageContext.request.contextPath}/crm/addcust" method="post" class="formWrapper">
-            <div class="newCustomer">
-
+            </table>
+            <div>
+                <button id="add" class="btn primary">Aggiungi Cliente</button>
             </div>
-        </form>
+            <form action="${pageContext.request.contextPath}/crm/addcust" method="post" class="formWrapper">
+                <div class="newCustomer">
+
+                </div>
+            </form>
         </div>
     </section>
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
 <script>
     let status = false;
-    function toggleNav(){
-        if(status) {
+
+    function toggleNav() {
+        if (status) {
             document.getElementById("sideBar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
             status = false;
-        }else{
+        } else {
             document.getElementById("sideBar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
             status = true;
         }
     }
 
-    $(document).ready(function(){
-        $("#add").click(function (){
+    $(document).ready(function () {
+        $("#add").click(function () {
             $(".allCustomer").hide();
             $(".newCustomer").show().html("<fieldset>  <legend>Aggiungi Cliente:</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Cognome: </span> <input type='text' name='cognome' id='cognome' placeholder='Cognome'> <br>" +
@@ -98,7 +96,7 @@
                 "<span> isAdmin: </span> <select name='admin'><option>true</option> <option>false</option></select> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
-            $("#annulla").click(function (){
+            $("#annulla").click(function () {
                 $(".allCustomer").show();
                 $(".newCustomer").hide();
             });
@@ -110,7 +108,7 @@
 </body>
 </html>
 
-<!--"<fieldset class="grid-y cell w50 login"> <span> Nome </span> <label for="nome" class="field"> <input type="text" name="nome" id="nome" placeholder="Nome">  </label>
+<!--"<fieldset class="grid-y cell w50 login"> <span> Nome </span> <label for="nome" class="field"> <input type="text" name="nome" id="nome" placeholder="Nome"> </label>
 <span> Cognome </span> <label for="cognome" class="field"> <input type="text" name="cognome" id="cognome" placeholder="Cognome"> </label>
 <span> Username </span> <label for="username" class="field"> <input type="text" name="username" id="username" placeholder="Username"></label>
 <span> Email </span> <label for="email" class="field"> <input type="email" name="email" id="email" placeholder="Email"> </label>

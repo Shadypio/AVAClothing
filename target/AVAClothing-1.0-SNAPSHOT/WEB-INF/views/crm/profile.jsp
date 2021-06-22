@@ -12,6 +12,11 @@
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        input{
+            opacity: 35%;
+        }
+    </style>
 </head>
 <body>
 <main class="app">
@@ -78,9 +83,11 @@
     }
 
     $(document).ready(function(){
-        $("#mod").click(function(){
-            $("input").removeAttr("readonly");
-        })
+            $("#mod").click(function () {
+                $("input").removeAttr("readonly");
+                $("input").css("opacity", "100%");
+                read = false;
+            })
     });
     function salva(){
         var elemento = document.getElementsByTagName("input");

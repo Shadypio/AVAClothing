@@ -1,4 +1,4 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -25,7 +25,7 @@
             box-sizing: border-box;
         }
 
-        @media screen and (max-width: 768px){
+        @media screen and (max-width: 768px) {
             .dash {
                 display: flex;
                 position: relative;
@@ -40,21 +40,21 @@
             }
         }
 
-        .dash:link{
+        .dash:link {
             background-color: var(--darkcream);
         }
 
-        .dash:visited{
+        .dash:visited {
             background-color: var(--darkcream);
         }
 
-        .dash:hover{
+        .dash:hover {
             background-color: var(--darkred);
             color: var(--cream);
             cursor: pointer;
         }
 
-        .dash:active{
+        .dash:active {
             background-color: var(--red);
             cursor: pointer;
         }
@@ -81,24 +81,29 @@
     <section class="content grid-y" id="main">
         <div>
             <div>
-                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png">
+                </button>
             </div>
 
             <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/order', '_self');">
                 <h4>Gestione Ordini</h4>
-                <p>N° Ordini: <%=request.getAttribute("numeroOrdini")%></p>
+                <p>N° Ordini: <%=request.getAttribute("numeroOrdini")%>
+                </p>
             </div>
             <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/customer', '_self');">
                 <h4>Gestione Clienti</h4>
-                <p>N° Cliente: <%=request.getAttribute("numeroClienti")%></p>
+                <p>N° Cliente: <%=request.getAttribute("numeroClienti")%>
+                </p>
             </div>
             <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/category', '_self');">
                 <h4>Gestione Categorie</h4>
-                <p>N° Categorie: <%=request.getAttribute("numeroCategorie")%></p>
+                <p>N° Categorie: <%=request.getAttribute("numeroCategorie")%>
+                </p>
             </div>
             <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/product', '_self');">
                 <h4>Gestione Prodotti</h4>
-                <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%></p>
+                <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%>
+                </p>
             </div>
 
             <footer class="info grid-y">
@@ -110,23 +115,22 @@
 </main>
 
 
-
 <script>
     let status = false;
 
-    function toggleNav(){
-        if(status) {
+    function toggleNav() {
+        if (status) {
             document.getElementById("sideBar").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
             status = false;
-        }else{
+        } else {
             document.getElementById("sideBar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
             status = true;
         }
     }
 
-    function modify(){
+    function modify() {
         document.getElementsByTagName("input").readOnly = true
     }
 </script>
