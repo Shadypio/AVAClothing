@@ -24,8 +24,8 @@
 
         </nav>
     </aside>
-    <div class="content grid-y" id="main">
-        <button class="openbtn" onclick="openNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+    <section class="content grid-y" id="main">
+        <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
         <table class="allOrders">
             <tr>
                 <th>ID Ordine</th>
@@ -55,7 +55,7 @@
                 </div>
             </form>
         </div>
-        </section>
+    </section>
 
 </main>
 <footer class="info">
@@ -64,14 +64,19 @@
 
 
 <script>
-    function openNav() {
-        document.getElementById("sideBar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
+    let status = false;
+    function toggleNav(){
+        if(status) {
+            document.getElementById("sideBar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            status = false;
+        }else{
+            document.getElementById("sideBar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            status = true;
+        }
     }
-    function closeNav() {
-        document.getElementById("sideBar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-    }
+
     $(document).ready(function() {
         $(".butMod").click(function () {
             $(".modOrd").show().html("<fieldset> <legend>Modifica Ordine</legend><span> IVA: </span> <input type='text' name='iva' id='iva' placeholder='IVA'> <br> " +

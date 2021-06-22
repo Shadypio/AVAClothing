@@ -28,7 +28,7 @@
     </aside>
     <section class="content grid-y" id="main">
         <div>
-            <button class="openbtn" onclick="toggleNav()"><img src="/AVAClothing_war_exploded/icons/menu.png"></button>
+            <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
         </div>
         <table class="allProducts" style="overflow: auto">
             <tr>
@@ -78,7 +78,7 @@
             </form>
 
         </div>
-        <form action="/AVAClothing_war_exploded/crm/addpro" method="post" >
+        <form action="<%=request.getContextPath()%>/crm/addpro" method="post" >
             <div class="newPro">
                 <!--Al click Form Add-->
             </div>

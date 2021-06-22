@@ -12,9 +12,18 @@
 </head>
 <body>
 <main>
-    <jsp:include page="/WEB-INF/views/partials/header.jsp">
-        <jsp:param name="title" value=""/>
-    </jsp:include>
+    <c:choose>
+    <c:when test="${log}">
+        <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
+            <jsp:param name="title" value=""/>
+        </jsp:include>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/views/partials/header.jsp">
+            <jsp:param name="title" value=""/>
+        </jsp:include>
+    </c:otherwise>
+    </c:choose>
 
     <div class="slideshow-container">
         <div class="mySlides">

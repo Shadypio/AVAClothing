@@ -111,7 +111,7 @@
         </nav>
     </aside>
     <div>
-        <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+        <button class="openbtn" onclick="toggleNav()"> <img src="<%=request.getContextPath()%>/icons/menu.png"></button>
     </div>
     <section class="content grid-y" id="main">
 

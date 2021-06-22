@@ -4,7 +4,6 @@ import model.cliente.Cliente;
 import model.cliente.ClienteDAO;
 import model.ordine.Ordine;
 import model.ordine.OrdineDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -26,6 +25,16 @@ public class ClienteServlet extends HttpServlet {
         OrdineDAO ordDAO=new OrdineDAO();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
+            case "/signup":
+                request.getRequestDispatcher("/WEB-INF/views/site/signup.jsp").forward(request,response);
+                break;
+            case "/show": // mostra profilo
+                Boolean b=(Boolean) session.getAttribute("log");
+                if (b)
+                    request.getRequestDispatcher("/WEB-INF/views/site/account.jsp").forward(request,response);
+                else
+                    response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita" );
+                break;
             case "/create": // // registrazione cliente
                 String nomeCust = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
@@ -59,8 +68,9 @@ public class ClienteServlet extends HttpServlet {
                 response.sendRedirect(address+"/cliente/signin");
                 break;
             case "/logout":
+                session.setAttribute("log",false);
                 session.invalidate();
-                response.sendRedirect(request.getContextPath()+"/cliente/signin");
+                response.sendRedirect(address+"/cliente/signin");
                 break;
             case "/secret": // login admin  (ricerca nel db)
                 request.getRequestDispatcher("/WEB-INF/views/crm/secret.jsp").forward(request,response);
@@ -73,6 +83,7 @@ public class ClienteServlet extends HttpServlet {
                     ArrayList<Ordine> listaOrd=ordDAO.doRetrieveByIdCliente(c.getIdCliente());
                     session.setAttribute("listaOrd",listaOrd);
                     session.setAttribute("profilo", c);
+                    session.setAttribute("log",true);
                     request.getRequestDispatcher("/WEB-INF/views/site/account.jsp").forward(request,response);
                 }else{
                     session.setAttribute("failed",true);

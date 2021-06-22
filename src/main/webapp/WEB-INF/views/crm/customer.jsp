@@ -24,7 +24,7 @@
         </nav>
     </aside>
     <section class="content grid-y" id="main">
-        <button class="openbtn" onclick="openNav()"><img src="/AVAClothing_war_exploded/icons/menu.png"></button>
+        <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
         <table class="allCustomer">
             <tr>
                 <th>ID</th>
@@ -62,14 +62,17 @@
     Copyright 2021, AVAClothing - Tutti i diritti riservati
 </footer>
 <script>
-    function openNav() {
-        document.getElementById("sideBar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-        document.getElementById("sideBar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+    let status = false;
+    function toggleNav(){
+        if(status) {
+            document.getElementById("sideBar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            status = false;
+        }else{
+            document.getElementById("sideBar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            status = true;
+        }
     }
 
     $(document).ready(function(){

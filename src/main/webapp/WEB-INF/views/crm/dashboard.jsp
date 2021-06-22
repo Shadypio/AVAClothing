@@ -66,38 +66,38 @@
 
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
-            <img src="/AVAClothing_war_exploded/img/logo.png" width="100" height="115">
-            <a href="/AVAClothing_war_exploded/crm/dashboard">Dashboard</a>
-            <a href="/AVAClothing_war_exploded/crm/profile">Profilo</a>
-            <a href="/AVAClothing_war_exploded/crm/customer">Gestione Clienti</a>
-            <a href="/AVAClothing_war_exploded/crm/order">Gestione Ordini</a>
-            <a href="/AVAClothing_war_exploded/crm/product">Gestione Prodotti</a>
-            <a href="/AVAClothing_war_exploded/crm/category">Gestione Categorie</a>
-            <a href="/AVAClothing_war_exploded/crm/logout">Logout</a>
+            <img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
+            <a href="<%=request.getContextPath()%>/crm/dashboard">Dashboard</a>
+            <a href="<%=request.getContextPath()%>/crm/profile">Profilo</a>
+            <a href="<%=request.getContextPath()%>/crm/customer">Gestione Clienti</a>
+            <a href="<%=request.getContextPath()%>/crm/order">Gestione Ordini</a>
+            <a href="<%=request.getContextPath()%>/crm/product">Gestione Prodotti</a>
+            <a href="<%=request.getContextPath()%>/crm/category">Gestione Categorie</a>
+            <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
         </nav>
     </aside>
 
     <section class="content grid-y" id="main">
         <div>
             <div>
-                <button class="openbtn" onclick="toggleNav()"><img src="/AVAClothing_war_exploded/icons/menu.png"></button>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
             </div>
 
-            <div class="dash" onclick="window.open('/AVAClothing_war_exploded/crm/order', '_self');">
+            <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/order', '_self');">
                 <h4>Gestione Ordini</h4>
-                <p>N° Ordini: 4</p>
+                <p>N° Ordini: <%=request.getAttribute("numeroOrdini")%></p>
             </div>
-            <div class="dash" onclick="window.open('/AVAClothing_war_exploded/crm/customer', '_self');">
+            <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/customer', '_self');">
                 <h4>Gestione Clienti</h4>
-                <p>N° Cliente: 4</p>
+                <p>N° Cliente: <%=request.getAttribute("numeroClienti")%></p>
             </div>
-            <div class="dash" onclick="window.open('/AVAClothing_war_exploded/crm/category', '_self');">
+            <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/category', '_self');">
                 <h4>Gestione Categorie</h4>
-                <p>N° Categorie: 12</p>
+                <p>N° Categorie: <%=request.getAttribute("numeroCategorie")%></p>
             </div>
-            <div class="dash" onclick="window.open('/AVAClothing_war_exploded/crm/product', '_self');">
+            <div class="dash" onclick="window.open('<%=request.getContextPath()%>/crm/product', '_self');">
                 <h4>Gestione Prodotti</h4>
-                <p>N° Prodotti: 46</p>
+                <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%></p>
             </div>
 
             <footer class="info grid-y">

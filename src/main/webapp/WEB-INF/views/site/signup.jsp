@@ -20,17 +20,17 @@
         <fieldset class="grid-y cell w50 login">
             <span> Nome </span>
             <label for="nome" class="field">
-                <input type="text" name="nome" id="nome" placeholder="Nome">
+                <input type="text" name="nome" id="nome" placeholder="Nome" required>
             </label>
 
             <span> Cognome </span>
             <label for="cognome" class="field">
-                <input type="text" name="cognome" id="cognome" placeholder="Cognome">
+                <input type="text" name="cognome" id="cognome" placeholder="Cognome" required>
             </label>
 
             <span> Username </span>
             <label for="username" class="field">
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="text" name="username" id="username" placeholder="Username" required>
             </label>
 
             <span> Email </span>
@@ -40,20 +40,20 @@
 
             <span> Password </span>
             <label for="password" class="field">
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password" required>
             </label>
 
             <span> Indirizzo </span>
             <label for="indirizzo" class="field">
-                <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo">
+                <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo" required>
             </label>
 
             <span> Telefono </span>
             <label for="telefono" class="field">
-                <input type="text" name="telefono" id="telefono" placeholder="Telefono">
+                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
             </label>
 
-            <button class="btn primary" type="submit">Accedi</button>
+            <button class="btn primary" type="submit">Registrati</button>
         </fieldset>
     </form>
     <jsp:include page="/WEB-INF/views/partials/footer.jsp">
