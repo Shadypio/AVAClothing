@@ -11,90 +11,7 @@
         <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
-    <style>
-        table.redTable {
-            border: 6px solid var(--darkred);
-            background-color: var(--white);
-            width: 100%;
-            text-align: center;
-            border-collapse: collapse;
-            box-sizing: border-box;
-        }
 
-        table.redTable td, table.redTable th {
-            border: 1px solid var(--white);
-            padding: 3px 2px;
-        }
-
-        table.redTable tbody td {
-            font-size: 13px;
-            font-weight: bold;
-            color: #000000;
-            border-bottom: 1px solid var(--red);
-        }
-
-        table.redTable thead {
-            background: var(--red);
-        }
-
-        table.redTable thead th {
-            font-size: 19px;
-            font-weight: bold;
-            color: #FFFFFF;
-            text-align: center;
-        }
-
-        table.redTable td{
-            font-size: 13px;
-        }
-
-        table.redTable{
-            text-align: left;
-        }
-
-        @media screen and (max-width: 768px) {
-            table.redTable {
-                float:left;
-            }
-            .btnProp {
-                float:left;
-                clear: left;
-            }
-            table.redTable thead{
-                display: none;
-            }
-
-            table.redTable, table.redTable tbody, table.redTable td, table.redTable th{
-                display: block;
-                width:100%;
-            }
-
-            table.redTable tr{
-                margin-bottom: 15px;
-            }
-
-            table.redTable td{
-                text-align: right;
-                padding-left: 50%;
-                text-align: right;
-                position: relative;
-            }
-
-            table.redTable td::before{
-                content: attr(data-label);
-                position: absolute;
-                left: 0;
-                width: 50%;
-                padding-left: 15px;
-                font-size: 15px;
-                font-weight: bold;
-                text-align: left;
-            }
-
-
-
-        }
-    </style>
 </head>
 <body style="background-color: var(--cream)">
 <main class="app">
@@ -110,13 +27,12 @@
             <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
         </nav>
     </aside>
-    <div>
-        <button class="openbtn" onclick="toggleNav()"> <img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-    </div>
+
     <section class="content grid-y" id="main">
-
-
-        <div id="wrapper" class="content">
+        <div>
+            <div>
+            <button class="openbtn" onclick="toggleNav()"> <img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+            </div>
             <table class="redTable">
                 <thead>
                 <tr>
@@ -134,35 +50,35 @@
                     </tr>
                 </c:forEach>
                 </tbody>
+
             </table>
+            <div>
+                <select name="catSelezionata" id="selected">
+                    <c:forEach var="cate" items="${listaCat}">
+                        <option>${cate.idCategoria} </option>
+                    </c:forEach>
+                </select>
 
-
-            <div class="btnProp">
+                <button class="butMod btn primary" type="button">Modifica Categoria</button> <!--Button Modify-->
                 <button class="butAdd btn primary">Aggiungi Categoria</button> <!--Button Add-->
+            </div>
 
-                <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
-                    <select name="catSelezionata" id="selected">
-                        <c:forEach var="cate" items="${listaCat}">
-                            <option>${cate.idCategoria} </option>
-                        </c:forEach>
-                    </select>
-
-                    <button class="butMod btn primary" type="button">Modifica Categoria</button> <!--Button Modify-->
-                    <div class="modCat">
-                        <!--Al click Form Modify-->
-                    </div>
-                </form>
+            <div class="formWrapper">
+                    <form action="${pageContext.request.contextPath}/crm/updatecat" method="post" >
+                        <div class="modCat">
+                            <!--Al click Form Modify-->
+                        </div>
+                    </form>
+                    <form action="${pageContext.request.contextPath}/crm/addcat" method="post" >
+                        <div class="newCat">
+                             <!--Al click Form Add-->
+                        </div>
+                    </form>
             </div>
         </div>
-        <form action="${pageContext.request.contextPath}/crm/addcat" method="post" >
-            <div class="newCat">
-                <!--Al click Form Add-->
-            </div>
-        </form>
-
-
     </section>
 </main>
+
 <footer class="info">
     Copyright 2021, AVAClothing - Tutti i diritti riservati
 </footer>
@@ -185,7 +101,7 @@
     $(document).ready(function() {
         $(".butAdd").click(function () {
             $(".allCategories").hide();
-            $(".newCat").show().html("<fieldset>  <legend>Aggiungi Categoria</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+            $(".newCat").show().html("<fieldset>  <legend>AGGIUNGI CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
@@ -195,7 +111,7 @@
             });
         });
         $(".butMod").click(function () {
-            $(".modCat").show().html("<fieldset> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
+            $(".modCat").show().html("<fieldset>  <legend>MODIFICA CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='desc' id='desc' placeholder='Descrizione'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")

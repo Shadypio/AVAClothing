@@ -2,12 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Clienti"/>
-        <jsp:param name="styles" value="crm,dashboard"/>
-        <jsp:param name="scripts" value="crm,dashboard"/>
     </jsp:include>
-    <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
 <main class="app">
@@ -23,39 +22,48 @@
             <a href="<%=request.getContextPath()%>/crm/logout">Logout</a>
         </nav>
     </aside>
+
     <section class="content grid-y" id="main">
-        <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
-        <table class="allCustomer">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>Indirizzo</th>
-                <th>Telefono</th>
-            </tr>
-            <c:forEach var="cliente" items="${listaCli}">
+        <div>
+            <div>
+                <button class="openbtn" onclick="toggleNav()"><img src="<%=request.getContextPath()%>/icons/menu.png"></button>
+            </div>
+        <table class="redTable">
+            <thead>
                 <tr>
-                    <td>${cliente.idCliente}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cognome}</td>
-                    <td>${cliente.email}</td>
-                    <td>${cliente.username}</td>
-                    <td>${cliente.indirizzo}</td>
-                    <td>${cliente.telefono}</td>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Indirizzo</th>
+                    <th>Telefono</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach var="cliente" items="${listaCli}">
+                    <tr>
+                        <td>${cliente.idCliente}</td>
+                        <td>${cliente.nome}</td>
+                        <td>${cliente.cognome}</td>
+                        <td>${cliente.email}</td>
+                        <td>${cliente.username}</td>
+                        <td>${cliente.indirizzo}</td>
+                        <td>${cliente.telefono}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+
         </table>
         <div>
             <button id="add" class="btn primary">Aggiungi Cliente</button>
         </div>
-        <form action="${pageContext.request.contextPath}/crm/addcust" method="post" >
+        <form action="${pageContext.request.contextPath}/crm/addcust" method="post" class="formWrapper">
             <div class="newCustomer">
 
             </div>
         </form>
-
+        </div>
     </section>
 </main>
 <footer class="info">
