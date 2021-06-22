@@ -1,13 +1,13 @@
-<%@ page import="model.prodotto.ProdottoDAO" %>
-<%@ page import="model.prodotto.Prodotto" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="<c:url value="/css/crm2.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Prodotti"/>
-        <jsp:param name="styles" value="crm,dashboard"/>
-        <jsp:param name="scripts" value="crm,dashboard"/>
+        <jsp:param name="styles" value="crm"/>
     </jsp:include>
     <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
 

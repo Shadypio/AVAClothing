@@ -14,11 +14,5 @@
 <meta name="theme-color" content="#000000">
 <link href="<c:url value="/css/reset.css"/>" rel="stylesheet">
 <link href="<c:url value="/css/library.css"/>" rel="stylesheet">
-<c:if test="${not empty param.style}">
-    <link rel="stylesheet" href="css/${param.style}">
-</c:if>
 <script src="<c:url value="/js/library.js"/>" defer> </script>
-<c:if test="${not empty param.script}">
-    <script src="./js/${param.script}" defer></script>
-</c:if>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

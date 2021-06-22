@@ -2,9 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="<c:url value="/css/crm2.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Clienti"/>
+        <jsp:param name="styles" value="crm"/>
     </jsp:include>
 
 </head>
