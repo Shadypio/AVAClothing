@@ -16,10 +16,12 @@
                 <div class="dropdown-content">
                     <a href="<%=request.getContextPath()%>/cliente/secret">Login Admin</a>
                     <a href="<%=request.getContextPath()%>/cliente/signup">Registrati</a>
-                    <a href="<%=request.getContextPath()%>/cliente/signin">Login utente</a>
+                    <a href="<%=request.getContextPath()%>/cliente/signin">Login Utente</a>
                 </div>
             </div>
-            <img src="<%=request.getContextPath()%>/icons/shopping-cart.png" width="30" height="30">
+            <a href="<%=request.getContextPath()%>/cliente/carrello">
+                <img src="<%=request.getContextPath()%>/icons/shopping-cart.png" width="30" height="30">
+            </a>
         </div>
     </nav>
 </header>

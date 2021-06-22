@@ -56,8 +56,7 @@
         </table>
         <div>
             <button class="butAdd btn primary">Aggiungi Prodotto</button> <!--Button Add-->
-
-            <form action="{pageContext.request.contextPath}/crm/deletepro" method="post">
+            <form action="${pageContext.request.contextPath}/crm/deletepro" method="post">
                 <select name="selezioneDelete" id="selectedDel">
                     <c:forEach var="pro" items="${listaPro}">
                         <option>${pro.idProdotto} </option>

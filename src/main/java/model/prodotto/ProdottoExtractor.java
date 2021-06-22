@@ -2,6 +2,7 @@ package model.prodotto;
 
 import model.ResultSetExtractor;
 import model.categoria.Categoria;
+import model.magazzino.Magazzino;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,9 +39,13 @@ public class ProdottoExtractor implements ResultSetExtractor<Prodotto> {
             outputStream.close();
         }
         int idcat=rs.getInt("pro.cat_fk");
+        int idmag=rs.getInt("pro.mag_fk");
         Categoria c=new Categoria();
         c.setIdCategoria(idcat);
         p.setCategoria(c);
+        Magazzino m=new Magazzino();
+        m.setIdMagazzino(idmag);
+        p.setMagazzino(m);
         return p;
     }
 }

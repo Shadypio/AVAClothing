@@ -1,5 +1,6 @@
 package model.ordine;
 
+import model.prodotto.Prodotto;
 import model.prodottoordine.ProdottoOrdine;
 import model.cliente.Cliente;
 
@@ -7,12 +8,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Ordine {
-    public Ordine() {  }
+    public Ordine() {
+        this.prodotti=new ArrayList<>();
+    }
     public Ordine(double iva,Date data,int id,Cliente c) {
         this.iva=iva;
         this.dataInserimento=data;
         this.idOrdine=id;
         this.cliente=c;
+        this.prodotti=new ArrayList<>();
     }
     public long getIdOrdine() { return idOrdine; }
     public void setIdOrdine(long idOrdine) { this.idOrdine = idOrdine; }
@@ -28,18 +32,18 @@ public class Ordine {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    public ArrayList<ProdottoOrdine> getProdotti() {
+    public ArrayList<Prodotto> getProdotti() {
         return prodotti;
     }
 
-    public void setProdotti(ArrayList<ProdottoOrdine> prodotti) {
+    public void setProdotti(ArrayList<Prodotto> prodotti) {
         this.prodotti = prodotti;
     }
     public String toString() {
         return "Ordine{" +
                 "idOrdine=" + idOrdine +
                 ", IVA=" + iva +
-                ", dataInserimento=" + dataInserimento +
+                ", dataInserimento=" + dataInserimento + "prodotti"+prodotti+
                 '}';
     }
 
@@ -54,7 +58,7 @@ public class Ordine {
     private Double iva;
     private Date dataInserimento;
     private Cliente cliente;
-    private ArrayList<ProdottoOrdine> prodotti;
+    private ArrayList<Prodotto> prodotti;
 
 
 }

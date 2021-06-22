@@ -102,20 +102,18 @@ public class OrdineDAO {
             OrdineExtractor ordExtractor=new OrdineExtractor();
             if(rs.next()) {
                 p=ordExtractor.extract(rs);
-                ArrayList<ProdottoOrdine> prodotti=new ArrayList<>();
+                ArrayList<Prodotto> prodotti=new ArrayList<>();
                 p.setProdotti(prodotti);
                 Prodotto a;
                 ProdottoExtractor proExtractor=new ProdottoExtractor();
                 a=proExtractor.extract(rs);
-                ProdottoOrdine x=new ProdottoOrdine();
-                x.setProdotto(a);
+                Prodotto x=new Prodotto();
                 x.setQuantita(rs.getInt("po.quantita"));
                 prodotti.add(x);
                 while(rs.next()) {
                     Prodotto b;
                     b=proExtractor.extract(rs);
-                    ProdottoOrdine y = new ProdottoOrdine();
-                    y.setProdotto(b);
+                    Prodotto y = new Prodotto();
                     y.setQuantita(rs.getInt("po.quantita"));
                     prodotti.add(y);
                 }
