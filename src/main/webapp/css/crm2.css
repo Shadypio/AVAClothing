@@ -92,31 +92,15 @@ fieldset legend {
         display: none;
     }
 
-    .redTable, .redTable tbody, .redTable td, .redTable th{
-        display: block;
-        width:100%;
-    }
-
     .redTable tr{
         margin-bottom: 15px;
     }
 
     .redTable td{
-        text-align: right;
         text-align: left;
         position: relative;
     }
 
-    .redTable td::before{
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 50%;
-        padding-left: 15px;
-        font-size: 15px;
-        font-weight: bold;
-        text-align: left;
-    }
 }
 
 
