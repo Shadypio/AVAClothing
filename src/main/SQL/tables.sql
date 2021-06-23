@@ -49,7 +49,7 @@ create table ordine
 create table prodotto
 (
     Nome                   varchar(30)  not null,
-    Prezzo                 double(2, 0) not null, /* Forse si deve cambiare in decimal, problemi di precisione */
+    Prezzo                 decimal(10, 2) not null,
     DescrizioneBreve       varchar(100) not null,
     DescrizioneDettagliata varchar(200) not null,
     inOfferta              tinyint(1)   not null,
