@@ -35,7 +35,7 @@
 </div>
 <div class="viewProduct">
     <c:forEach items="${prodotti}" var="prodotto" >
-        <div class="card">
+        <div class="card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
             <span>Nome: ${prodotto.nome}</span><br> <span>Prezzo: ${prodotto.prezzo}</span><br>
         </div>

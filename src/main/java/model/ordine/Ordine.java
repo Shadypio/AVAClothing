@@ -32,11 +32,11 @@ public class Ordine {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    public ArrayList<Prodotto> getProdotti() {
+    public ArrayList<ProdottoOrdine> getProdotti() {
         return prodotti;
     }
 
-    public void setProdotti(ArrayList<Prodotto> prodotti) {
+    public void setProdotti(ArrayList<ProdottoOrdine> prodotti) {
         this.prodotti = prodotti;
     }
     public String toString() {
@@ -58,7 +58,7 @@ public class Ordine {
     private Double iva;
     private Date dataInserimento;
     private Cliente cliente;
-    private ArrayList<Prodotto> prodotti;
+    private ArrayList<ProdottoOrdine> prodotti;
 
 
 }
