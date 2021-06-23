@@ -58,34 +58,26 @@
                 </tbody>
 
             </table>
-            <div>
-                <select name="selezioneDelete" id="selectedDel">
-                <option> ELIMINA </option>
-                <c:forEach var="pro" items="${listaPro}">
-                    <option>${pro.idProdotto} </option>
-                </c:forEach>
-            </select>
-                <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
 
-                <select name="selezioneMod" id="selectedMod">
-                    <option> MODIFICA </option>
-                    <c:forEach var="pro" items="${listaPro}">
-                        <option>${pro.idProdotto} </option>
-                    </c:forEach>
-                </select>
-                <button class="butMod btn primary" type="button">Modifica Prodotto</button> <!--Button Mod-->
-
-
-                <button class="butAdd btn primary">Aggiungi Prodotto</button> <!--Button Add-->
-            </div>
-
+            <button class="butAdd btn primary" type="button">Aggiungi Prodotto</button> <!--Button Add-->
 
             <div class="formWrapper">
-                <form action="${pageContext.request.contextPath}/crm/deletepro" method="post"></form>
+                <form action="${pageContext.request.contextPath}/crm/deletepro" method="post">
+                    <select name="selezioneDelete" id="selectedDel">
+                        <c:forEach var="pro" items="${listaPro}">
+                            <option>${pro.idProdotto} </option>
+                        </c:forEach>
+                    </select>
+                    <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
+                </form>
 
                 <form action="${pageContext.request.contextPath}/crm/updatepro" method="post" name="up">
-
-
+                    <select name="selezioneMod" id="selezioneMod">
+                        <c:forEach var="pro" items="${listaPro}">
+                            <option>${pro.idProdotto} </option>
+                        </c:forEach>
+                    </select>
+                    <button class="butMod btn primary" type="button">Modifica Prodotto</button> <!--Button Mod-->
                     <div class="modPro" name="upp">
                         <!--Al click Form Modify-->
                     </div>

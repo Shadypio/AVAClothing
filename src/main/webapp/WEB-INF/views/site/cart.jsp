@@ -1,4 +1,7 @@
-<%@ page import="model.ordine.Ordine" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.prodotto.Prodotto" %>
+<%@ page import="model.cliente.Cliente" %>
+<%@ page import="model.prodottoordine.ProdottoOrdine" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,23 +23,42 @@
         <jsp:param name="title" value=""/>
     </jsp:include> <br>
 
-    <%Ordine cart=(Ordine) request.getSession().getAttribute("cart");%>
-    <%=cart.getProdotti()%>
-    <c:choose>
-        <c:when test="${not empty cart.prodotti}">
-            <c:forEach var="pro" items="${cart.prodotti}">
-                <div class="card">
-                    <img src="data:image/jpg;base64,${pro.base64Image}" width="350" height="370">
-                    <span>Nome: ${pro.nome}</span><br> <span>Prezzo: ${pro.prezzo}</span><br>
-                    <span>Descrizione Dettagliata: ${pro.getDescrizioneDettagliata}</span><br>
-                </div>
-            </c:forEach>
-        </c:when>
-        <c:otherwise>
+    <%ArrayList<Prodotto> lista=(ArrayList<Prodotto>) request.getSession().getAttribute("cart");
+      Cliente c=(Cliente) request.getSession().getAttribute("profilo");
+      ArrayList<ProdottoOrdine> elenco =(ArrayList<ProdottoOrdine>) request.getSession().getAttribute("elencocart");
+      double totale=0;
+      Double tot=(Double) request.getSession().getAttribute("totale");
+      if(tot!=null)
+          totale=tot;
+    %>
+    <div class="totale">
+        <span>Totale Carrello:<%=totale%></span>
+    </div>
+    <%if (lista.isEmpty()){%>
+    <div class="card">
+        <p>Carrello Vuoto</p>
+    </div>
+    <%}else {
+        for (int i=0; i<lista.size(); i++){%>
+        <form action="${pageContext.request.contextPath}/cliente/acquistacarrello" method="post">
+            <input hidden type="text" name="id" value="${c.idCliente}">
             <div class="card">
-                <p>Carrello Vuoto</p>
+                <input hidden type="text" name="id" value="${lista.i.idProdotto}">
+                <img src="data:image/jpg;base64,<%=lista.get(i).getBase64Image()%>" width="350" height="370">
+                <span>Nome: <%=lista.get(i).getNome()%></span><br>
+                <span>Prezzo: <%=lista.get(i).getPrezzo()%></span><br>
+                <span>Descrizione Dettagliata: <%=lista.get(i).getDescrizioneDettagliata()%></span><br>
+                <span>Quantità: <%=elenco.get(i).getQuantita()%></span>
             </div>
-        </c:otherwise>
-    </c:choose>
+            <%}
+        }%>
+            <button type="submit" class="btn primary">Acquista</button>
+            <button type="button" class="btn primary">Elimina</button>
+        </form>
+
+
+
+
+
 </body>
 </html>

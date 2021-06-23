@@ -100,7 +100,6 @@ public class CrmServlet extends HttpServlet {
                 if (inOff.equals("true"))
                     b=true;
                 String idProdotto=request.getParameter("selezioneMod");
-                System.out.println(idProdotto);
                 String idCategoria=request.getParameter("idCat");
                 String idMagazzino=request.getParameter("idMag");
                 quan=request.getParameter("quantita");

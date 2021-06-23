@@ -90,7 +90,7 @@ public class OrdineDAO {
         }
     }
 
-    public Ordine doRetrieveByIdOrdineAndCliente(long idOrdine, long idCliente){
+    /*public Ordine doRetrieveByIdOrdineAndCliente(long idOrdine, long idCliente){
         Ordine p=new Ordine();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
@@ -122,7 +122,7 @@ public class OrdineDAO {
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
 }
 
