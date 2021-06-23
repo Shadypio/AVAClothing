@@ -41,6 +41,5 @@
         </div>
     </c:forEach>
 </div>
-<!--FOOTER DI MERDA DA INSERIRE-->
 </body>
 </html>

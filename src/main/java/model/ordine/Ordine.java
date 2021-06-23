@@ -11,7 +11,7 @@ public class Ordine {
     public Ordine() {
         this.prodotti=new ArrayList<>();
     }
-    public Ordine(double iva,Date data,int id,Cliente c) {
+    public Ordine(double iva,Date data,long id,Cliente c) {
         this.iva=iva;
         this.dataInserimento=data;
         this.idOrdine=id;

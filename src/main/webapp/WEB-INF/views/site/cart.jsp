@@ -40,25 +40,30 @@
     </div>
     <%}else {
         for (int i=0; i<lista.size(); i++){%>
-        <form action="${pageContext.request.contextPath}/cliente/acquistacarrello" method="post">
-            <input hidden type="text" name="id" value="${c.idCliente}">
+        <form method="post">
             <div class="card">
-                <input hidden type="text" name="id" value="${lista.i.idProdotto}">
-                <img src="data:image/jpg;base64,<%=lista.get(i).getBase64Image()%>" width="350" height="370">
-                <span>Nome: <%=lista.get(i).getNome()%></span><br>
-                <span>Prezzo: <%=lista.get(i).getPrezzo()%></span><br>
-                <span>Descrizione Dettagliata: <%=lista.get(i).getDescrizioneDettagliata()%></span><br>
-                <span>Quantità: <%=elenco.get(i).getQuantita()%></span>
+                    <img src="data:image/jpg;base64,<%=lista.get(i).getBase64Image()%>" width="350" height="370">
+                    <span>Nome: <%=lista.get(i).getNome()%></span><br>
+                    <span>Prezzo: <%=lista.get(i).getPrezzo()%></span><br>
+                    <span>Descrizione Dettagliata: <%=lista.get(i).getDescrizioneDettagliata()%></span><br>
+                    <span>Quantità: <%=elenco.get(i).getQuantita()%></span>
+                    <button type="submit" class="delete btn primary" name="delete" value="<%=lista.get(i).getIdProdotto()%>">Elimina</button>
             </div>
             <%}
         }%>
-            <button type="submit" class="btn primary">Acquista</button>
-            <button type="button" class="btn primary">Elimina</button>
+            <button type="submit" class="buy btn primary" name="buy">Acquista</button>
         </form>
+<script>
+    $(document).ready(function(){
+        $(".delete").click(function () {
+            $('form').attr('action', '${pageContext.request.contextPath}/cliente/deletepro');
 
-
-
-
+        })
+        $(".buy").click(function () {
+            $('form').attr('action', '${pageContext.request.contextPath}/cliente/acquistacarrello');
+        })
+    });
+</script>
 
 </body>
 </html>

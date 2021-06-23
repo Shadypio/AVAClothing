@@ -7,12 +7,15 @@ import model.ordine.OrdineDAO;
 import model.prodotto.Prodotto;
 import model.prodotto.ProdottoDAO;
 import model.prodottoordine.ProdottoOrdine;
+import model.prodottoordine.ProdottoOrdineDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 @WebServlet(name = "ClienteServlet", value = "/cliente/*")
 public class ClienteServlet extends HttpServlet {
@@ -30,16 +33,56 @@ public class ClienteServlet extends HttpServlet {
         ProdottoDAO proDAO=new ProdottoDAO();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
-            case "/acquistacarrello":
-                //Ordine ord=new Ordine();  NEL CASO FAI ANCHE IDORDINE
+            case "/deletepro": //CANCELLAZIONE PRODOTTO DA CARRELLO
+                int idDel=Integer.parseInt(request.getParameter("delete"));
+                ArrayList<ProdottoOrdine> elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
+                ArrayList<Prodotto> lista=(ArrayList<Prodotto>) session.getAttribute("cart");
+                for(int i=0; i<elenco.size(); i++){
+                    if (elenco.get(i).getProdotto().getIdProdotto()==idDel) {
+                        elenco.remove(i);
+                        lista.remove(i);
+                    }
+                }
+                double totale=0;
+                for(int i=0; i<lista.size(); i++){
+                    double temp=lista.get(i).getPrezzo();
+                    long idPro=lista.get(i).getIdProdotto();
+                    if (elenco.get(i).getProdotto().getIdProdotto()==idPro){
+                        int quantita=elenco.get(i).getQuantita();
+                        totale+=(quantita*temp);
+                    }
+                }  // calcolo totale carrello mando in sessione
+                session.setAttribute("totale",totale);
+
+                session.setAttribute("elencocart",elenco);
+                session.setAttribute("cart",lista);
+                response.sendRedirect(address+"/cliente/carrello");
+
                 break;
-            case "/product":
-                int id=Integer.parseInt(request.getParameter("id"));
-                Prodotto pro=proDAO.doRetrieveById(id);
-                session.setAttribute("prodotto",pro);
-                request.getRequestDispatcher("/WEB-INF/views/site/singleproduct.jsp").forward(request, response);
+            case "/acquistacarrello": //ACQUISTO DA CARRELLO
+                Cliente c=(Cliente) session.getAttribute("profilo");
+                java.util.Date dataOrdine=new Date();
+                java.sql.Date sqlDate = new java.sql.Date(dataOrdine.getTime());
+                ArrayList<Ordine> listaOrd=ordDAO.doRetrieveAll();
+                long newId=listaOrd.get(listaOrd.size()-1).getIdOrdine()+1;
+                Ordine ord=new Ordine(21,sqlDate,newId,c);
+                ordDAO.addOrdine(ord,c);
+
+                elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
+                lista=(ArrayList<Prodotto>) session.getAttribute("cart");
+                for(int i=0; i<elenco.size(); i++){
+                    ProdottoOrdineDAO poDAO=new ProdottoOrdineDAO();
+                    poDAO.addProdottoOrdine(ord,lista.get(i),elenco.get(i).getQuantita());
+                }
+                totale=0;
+                session.setAttribute("totale",totale);
+                elenco=new ArrayList<>();
+                lista=new ArrayList<>();
+                session.setAttribute("elencocart",elenco);
+                session.setAttribute("cart",lista);
+                response.sendRedirect(address+"/cliente/show");
                 break;
-            case "/inputcarrello":
+            case "/inputcarrello": //INSERIMENTO IN CARRELLO
                 Boolean b=(Boolean)session.getAttribute("log"); // DA SESSIONE PRENDO LOGGATO
                 ArrayList<Prodotto> cart;
                 if (b==null){ //CONTROLLO SE PRIMA VOLTA
@@ -49,16 +92,16 @@ public class ClienteServlet extends HttpServlet {
                 if (!b) { //CONTROLLO SE NON LOGGATO
                     request.getRequestDispatcher("/WEB-INF/views/site/signin.jsp").forward(request, response);
                 }else { //SE LOGGATO PRENDO tutto
-                    ArrayList<ProdottoOrdine> elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
+                    elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
                     ProdottoOrdine po=new ProdottoOrdine();
                     if (elenco==null)
                         elenco=new ArrayList<>();
 
-                    id=Integer.parseInt(request.getParameter("id"));
+                    int id=Integer.parseInt(request.getParameter("id"));
                     int selezionati=Integer.parseInt(request.getParameter("selected"));
                     session.setAttribute("selezionati",selezionati);
 
-                    pro = proDAO.doRetrieveById(id);//RECUPERO PRODOTTO
+                    Prodotto pro = proDAO.doRetrieveById(id);//RECUPERO PRODOTTO
                     pro.setQuantita(pro.getQuantita()-selezionati);//DIMINUISCO I SELEZIONATI
                    // proDAO.doChanges(pro);
 
@@ -86,7 +129,7 @@ public class ClienteServlet extends HttpServlet {
                         cart.add(pro); //aggiungo a cart il prodotto se non c'è gia
                         session.setAttribute("cart", cart);
                     }
-                    double totale=0;
+                    totale=0;
                     for(int i=0; i<cart.size(); i++){
                         double temp=cart.get(i).getPrezzo();
                         long idPro=cart.get(i).getIdProdotto();
@@ -100,7 +143,7 @@ public class ClienteServlet extends HttpServlet {
                     response.sendRedirect(address+"/cliente/carrello");
                 }
                 break;
-            case "/carrello":
+            case "/carrello": //VIEW CARRELLO
                 b=(Boolean) session.getAttribute("log"); // DA SESSIONE PRENDO LOGGATO
                 if (b==null){ //CONTROLLO SE PRIMA VOLTA
                     b=false;
@@ -113,7 +156,7 @@ public class ClienteServlet extends HttpServlet {
                     else {
                         cart=new ArrayList<>();
                         session.setAttribute("cart",cart);
-                        ArrayList<ProdottoOrdine> elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
+                        elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
                         if (elenco==null)
                             elenco=new ArrayList<>();
 
@@ -123,17 +166,42 @@ public class ClienteServlet extends HttpServlet {
                 }else // ALTRIMENTI DEVE LOGGARE
                     request.getRequestDispatcher("/WEB-INF/views/site/signin.jsp").forward(request,response);
                 break;
-            case "/signup":
+            case "/product": //VIEW PRODOTTO SINGOLO
+                int id=Integer.parseInt(request.getParameter("id"));
+                Prodotto pro=proDAO.doRetrieveById(id);
+                session.setAttribute("prodotto",pro);
+                request.getRequestDispatcher("/WEB-INF/views/site/singleproduct.jsp").forward(request, response);
+                break;
+            case "/signup": //PAGINA REGISTRAZIONE CLIENTE
                 request.getRequestDispatcher("/WEB-INF/views/site/signup.jsp").forward(request,response);
                 break;
-            case "/show": // mostra profilo
+            case "/showord": //MOSTRA ORDINE UTENTE
+                int idOrdine=Integer.parseInt(request.getParameter("id"));
+                ProdottoOrdineDAO poDAO=new ProdottoOrdineDAO();
+                ArrayList<ProdottoOrdine> result=poDAO.doRetrieveProdottiWithIdOrdine(idOrdine);
+                ArrayList<Prodotto> showOrdine=new ArrayList<>();
+                double totOrdine=0;
+                for (int i=0; i<result.size(); i++){
+                    Prodotto p=proDAO.doRetrieveById(result.get(i).getProdotto().getIdProdotto());
+                    totOrdine+=(p.getPrezzo()*result.get(i).getQuantita());
+                    showOrdine.add(p);
+                };
+                session.setAttribute("showOrdine",showOrdine);
+                session.setAttribute("result",result);
+                session.setAttribute("totOrdine",totOrdine);
+                request.getRequestDispatcher("/WEB-INF/views/site/showordine.jsp").forward(request,response);
+                break;
+            case "/show": // SHOW PROFILO CLIENTE
                 b=(Boolean) session.getAttribute("log");
-                if (b)
-                    request.getRequestDispatcher("/WEB-INF/views/site/account.jsp").forward(request,response);
-                else
+                if (b) {
+                    c=(Cliente) session.getAttribute("profilo");
+                    listaOrd=ordDAO.doRetrieveByIdCliente(c.getIdCliente());
+                    session.setAttribute("listaOrd",listaOrd);
+                    request.getRequestDispatcher("/WEB-INF/views/site/account.jsp").forward(request, response);
+                }else
                     response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita" );
                 break;
-            case "/create": // // registrazione cliente
+            case "/create": // CREAZIONE PROFILO CLIENTE
                 String nomeCust = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String user = request.getParameter("username");
@@ -146,7 +214,7 @@ public class ClienteServlet extends HttpServlet {
                 cliDAO.addCliente(newProfilo);
                 response.sendRedirect(address+"/index.jsp");
                 break;
-            case "/update": // aggiornamento delle info degli account
+            case "/update": // AGGIORNAMENTO PROFILO CLIENTE
                 nomeCust = request.getParameter("nome");
                 cognome = request.getParameter("cognome");
                 user = request.getParameter("username");
@@ -165,20 +233,20 @@ public class ClienteServlet extends HttpServlet {
                     cliDAO.doChangesWithPass(newProfilo);
                 response.sendRedirect(address+"/cliente/signin");
                 break;
-            case "/logout":
+            case "/logout": //LOGOUT CLIENTE
                 session.setAttribute("log",false);
                 session.invalidate();
                 response.sendRedirect(address+"/cliente/signin");
                 break;
-            case "/secret": // login admin  (ricerca nel db)
+            case "/secret": // LOGIN ADMIN
                 request.getRequestDispatcher("/WEB-INF/views/crm/secret.jsp").forward(request,response);
                 break;
-            case "/signin": // login cliente (ricerca nel db)
+            case "/signin": // LOGIN CLIENTE
                 mail = request.getParameter("email");
                 newPass = request.getParameter("password");
-                Cliente c=cliDAO.doRetrieveClienteByEmailPassword(mail,newPass);
+                c=cliDAO.doRetrieveClienteByEmailPassword(mail,newPass);
                 if (c!=null){
-                    ArrayList<Ordine> listaOrd=ordDAO.doRetrieveByIdCliente(c.getIdCliente());
+                    listaOrd=ordDAO.doRetrieveByIdCliente(c.getIdCliente());
                     session.setAttribute("listaOrd",listaOrd);
                     session.setAttribute("profilo", c);
                     session.setAttribute("log",true);
@@ -189,7 +257,7 @@ public class ClienteServlet extends HttpServlet {
                 }
                 break;
 
-            default: // diverso da doGet perchè non chiede una risorsa ma un cambiamento nel server non consentito
+            default:
                 response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita" );
 
         }

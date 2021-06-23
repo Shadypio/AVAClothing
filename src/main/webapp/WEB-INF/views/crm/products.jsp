@@ -91,9 +91,6 @@
         </div>
     </section>
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
 <script>
     let status = false;
 

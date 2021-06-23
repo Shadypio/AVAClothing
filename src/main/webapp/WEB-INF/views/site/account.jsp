@@ -1,4 +1,7 @@
 <%@ page import="model.cliente.Cliente" %>
+<%@ page import="model.prodotto.Prodotto" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.prodottoordine.ProdottoOrdine" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
@@ -6,6 +9,7 @@
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Utente"/>
     </jsp:include>
@@ -15,7 +19,7 @@
         }
     </style>
 </head>
-    <body>
+<body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
@@ -44,7 +48,6 @@
                 <button type="submit" onclick="salva()" class="btn primary">Salva</button>
                 <button type="button" id="mod" class="btn primary">Modifica</button>
             </form>
-            <!--<button type="button" id="riduci" class="btn primary">Mostra Profilo</button>-->
         </fieldset>
     </section>
 
@@ -59,7 +62,7 @@
                 </tr>
                 <c:forEach var="order" items="${listaOrd}">
                     <tr>
-                        <td>${order.idOrdine}</td>
+                        <td> <a href="<%=request.getContextPath()%>/cliente/showord?id=${order.idOrdine}">${order.idOrdine}</a></td>
                         <td>${order.dataInserimento}</td>
                         <td>${order.iva}</td>
                     </tr>
@@ -67,29 +70,16 @@
             </table>
         </fieldset>
     </section>
-    <!--<button class="btn primary" id="showOrdini">Mostra Ordini</button>
-           AGGIUNGI BOTTONE RIMUOVI ORDINE-->
-    <script>
 
+
+    <script>
         $(document).ready(function(){
             $("#mod").click(function(){
                 $("input").removeAttr("readonly");
             })
         });
-
-        $(document).ready(function(){
-            $("#riduci").click(function(){
-                $(form).toggle();
-            })
-        });
-        $(document).ready(function(){
-            $("#showOrdini").click(function(){
-                $(table).toggle();
-            })
-        });
-
     </script>
-    </body>
+</body>
 </html>
 
 

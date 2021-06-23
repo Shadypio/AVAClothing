@@ -46,9 +46,6 @@
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
-    <jsp:include page="/WEB-INF/views/partials/footer.jsp">
-        <jsp:param name="title" value=""/>
-    </jsp:include>
 </main>
 <script>
     var slideIndex = 0;

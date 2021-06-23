@@ -27,7 +27,7 @@
         <button class="dropbtn">Seleziona Categoria</button>
         <div class="dropdown-content">
             <c:forEach items="${listaCat}" var="categoria" >
-                <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}" >${categoria.nome}</a>
+                <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}">${categoria.nome}</a>
             </c:forEach>
         </div>
     </div>

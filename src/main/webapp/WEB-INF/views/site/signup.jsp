@@ -56,8 +56,5 @@
             <button class="btn primary" type="submit">Registrati</button>
         </fieldset>
     </form>
-    <jsp:include page="/WEB-INF/views/partials/footer.jsp">
-        <jsp:param name="title" value=""/>
-    </jsp:include>
 </body>
 </html>

@@ -72,13 +72,8 @@ create table prodotto_ordine
     ord_fk   int not null,
     pro_fk   int not null,
     quantita int not null,
-    primary key (pro_fk, ord_fk),
-    constraint prodotto_ordine_ordine_idOrdine_fk
-        foreign key (ord_fk) references ordine (idOrdine)
-            on update cascade on delete cascade,
-    constraint prodotto_ordine_prodotto_idProdotto_fk
-        foreign key (pro_fk) references prodotto (idProdotto)
-            on update cascade on delete cascade
+    primary key (pro_fk, ord_fk)
+
 );
 
 create table spedizione

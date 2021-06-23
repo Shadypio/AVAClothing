@@ -5,6 +5,11 @@ import model.prodotto.Prodotto;
 
 public class ProdottoOrdine {
     public ProdottoOrdine() { }
+    public ProdottoOrdine(Prodotto p, Ordine o,int q){
+        this.prodotto=p;
+        this.ordine=o;
+        this.quantita=q;
+    }
 
     public Prodotto getProdotto() { return prodotto; }
     public void setProdotto(Prodotto prodotto) { this.prodotto = prodotto; }

@@ -3,8 +3,10 @@ package model.prodottoordine;
 import model.ConPool;
 import model.ordine.Ordine;
 import model.prodotto.Prodotto;
+import model.prodotto.ProdottoExtractor;
 import model.prodottoordine.ProdottoOrdine;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -32,6 +34,38 @@ public class ProdottoOrdineDAO {
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<ProdottoOrdine> doRetrieveProdottiWithIdOrdine(long id){
+        ArrayList<ProdottoOrdine> result = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM prodotto_ordine as po WHERE po.ord_fk = (?);";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+            ProdottoOrdineExtractor poExtractor = new ProdottoOrdineExtractor();
+            while( rs.next()) {
+                ProdottoOrdine po;
+                po = poExtractor.extract(rs);
+                result.add(po);
+            }
+        } catch (SQLException | IOException throwable) {
+            throwable.printStackTrace();
+        }
+        return result;
+    }
+
+    public void deleteByIdOrdine(long id){
+        try (Connection con = ConPool.getConnection()) {
+            String query ="DELETE FROM prodotto_ordine as po WHERE po.ord_fk = (?);";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, id);
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("DELETE error.");
+            }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 
@@ -69,6 +103,8 @@ public class ProdottoOrdineDAO {
             throw new RuntimeException(e);
         }
     }
+
+
 
 
 }
