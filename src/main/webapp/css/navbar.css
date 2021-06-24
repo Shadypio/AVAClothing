@@ -67,16 +67,10 @@
     color: black;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .dropdown:hover .content-product  {
     display: block;
-    position: absolute;
-    right: 47px;
 }
 
-.dropdown:hover .content-product {
-    display: block;
-    position: absolute;
-}
 
 .iconWrapper {
     float: right;

@@ -47,8 +47,8 @@
     font-size: clamp(16px, 2vw, 24px);
     --error: #EE4037;
     --success: #5FCB12;
-    --cream: #E4DBD3;
-    --darkcream: #8C8070;
+    --cream: #e4dbd3;
+    --darkcream: #8c8070;
     --darkred: #730303;
     --red: #A60808;
     --white: #F2F2F2;

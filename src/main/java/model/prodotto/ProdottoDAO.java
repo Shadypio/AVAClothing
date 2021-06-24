@@ -91,7 +91,6 @@ public class ProdottoDAO {
         String address="C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\";
         try (Connection con = ConPool.getConnection()) {
             address=address+prodotto.getBase64Image();
-
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,image,mag_fk,cat_fk,quantita) VALUES(?,?,?,?,?,?,LOAD_FILE(?),?,?,?)");
             ps.setString(1, prodotto.getNome());
