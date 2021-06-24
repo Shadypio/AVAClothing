@@ -1,31 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Info"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-            font-family: 'Raleway';
-            font-weight: bold;
-            font-style: normal;
-            font-size: 30px;
-        }
-        .card{
-            display: flex;
-            position: relative;
-            flex-direction: column;
-            align-items: center;
-            border: solid 5px var(--cream);
-            width: 90%;
-            float: left;
-            margin: 0 auto;
-            box-sizing: border-box;
-        }
-    </style>
 </head>
 <body>
 <c:choose>

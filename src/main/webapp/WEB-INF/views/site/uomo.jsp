@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
@@ -23,12 +23,15 @@
     </c:otherwise>
 </c:choose>
 
-<div class="grid-y">
+
+<div>
     <div class="dropdown">
-        <button class="dropbtn">Seleziona Categoria</button>
+        <div>
+            <button class="dropbtn">Seleziona Categoria</button>
+        </div>
         <div class="dropdown-content">
-            <% request.getSession().setAttribute("genere","uomo");%>
-            <c:forEach items="${listaCat}" var="categoria" >
+            <% request.getSession().setAttribute("genere", "uomo");%>
+            <c:forEach items="${listaCat}" var="categoria">
                 <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}">${categoria.nome}</a>
             </c:forEach>
         </div>
@@ -36,13 +39,15 @@
 </div>
 
 <div class="viewProduct">
-    <c:forEach items="${prodotti}" var="prodotto" >
-        <div class="card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
+    <c:forEach items="${prodotti}" var="prodotto">
+        <div class="card"
+             onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
-            <span>Nome: ${prodotto.nome}</span><br> <span>Prezzo: ${prodotto.prezzo}</span><br>
+            <span>${prodotto.nome}</span><span id="second">${prodotto.prezzo} €</span><br>
         </div>
     </c:forEach>
 </div>
+
 
 </body>
 </html>
