@@ -22,10 +22,16 @@
         </c:otherwise>
     </c:choose>
 
+    <style>
+        p {
+            font-family: Raleway;
+            color: var(--darkcream);
+        }
+    </style>
 </head>
 <body>
 <br><br>
-<section class="content grid-y" id="main">
+<section class="content grid-y" class="main">
 <fieldset class="grid-y cell w50 login">
     <legend>Obiettivo</legend>
     <p>
@@ -40,14 +46,19 @@
     </p>
 </fieldset>
 </section>
-<section id="main">
-<fieldset>
+<section class="content grid-y" class="main">
+<fieldset class="grid-y cell w50 login">
     <legend>Orari di Apertura</legend>
     <p>Lunedì – Venerdì 08.00 – 21.00</p>
     <p>Sabato e Domenica 09.00 – 17.00</p>
     <p>Giorni festivi 09.00 – 17.00</p>
 </fieldset>
 </section>
-
+<fieldset class="grid-y cell w50 login">
+    <legend>Contattaci</legend>
+    <p>Puoi trovarci su <a target="_blank" href="https://www.instagram.com" methods="_blank">Instagram</a> e su
+        <a target="_blank" href="https://www.facebook.com">Facebook</a></p>
+</fieldset>
+</section>
 </body>
 </html>
