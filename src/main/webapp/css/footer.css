@@ -1,13 +1,14 @@
-footer{
-    background-color: var(--cream);
+.footer {
     font-family: Raleway;
     font-weight: 300;
     font-style: italic;
     font-size: 30px;
-    position: relative;
-    bottom: 0;
-}
-
-span {
-
+    position: fixed;
+    float: bottom;
+    left: 0;
+    bottom: 0.5em;
+    width: 100%;
+    background-color: var(--cream);
+    color: var(--darkcream);
+    text-align: center;
 }

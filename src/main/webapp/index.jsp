@@ -5,13 +5,13 @@
 <head>
     <link href="<c:url value="/css/index.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Home Page"/>
     </jsp:include>
 </head>
 <body>
 <main>
+    <%int i=Integer.parseInt("Hello");%>
     <c:choose>
     <c:when test="${log}">
         <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
@@ -27,17 +27,17 @@
 
     <div class="slideshow-container">
         <div class="mySlides">
-            <img src="<%=request.getContextPath()%>/img/cop1.jpeg" style="width: 100%;">
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop1.jpeg">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides">
-            <img src="<%=request.getContextPath()%>/img/cop2.jpeg" style="width: 100%;">
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop2.jpeg">
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides">
-            <img src="<%=request.getContextPath()%>/img/cop3.jpeg" style="width: 100%;">
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop3.jpeg">
             <div class="text">Caption Three</div>
         </div>
     </div>
@@ -67,7 +67,6 @@
         dots[slideIndex-1].className += " active";
         setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
-</script>
 </script>
 </body>
 </html>

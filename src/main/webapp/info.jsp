@@ -3,7 +3,6 @@
 <html>
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Info"/>
     </jsp:include>

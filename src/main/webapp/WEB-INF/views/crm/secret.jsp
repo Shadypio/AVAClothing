@@ -4,7 +4,6 @@
 <html lang="it" dir="ltr">
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/footer.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Utente"/>
