@@ -103,7 +103,7 @@ public class ClienteServlet extends HttpServlet {
 
                     Prodotto pro = proDAO.doRetrieveById(id);//RECUPERO PRODOTTO
                     pro.setQuantita(pro.getQuantita()-selezionati);//DIMINUISCO I SELEZIONATI
-                   // proDAO.doChanges(pro);
+                    proDAO.doChanges(pro);
 
                     boolean add=false;
                     for(int i=0; i<elenco.size(); i++){

@@ -38,7 +38,7 @@
             <span>Descrizione Dettagliata: <%=pro.getDescrizioneDettagliata()%></span><br>
             <span>Quantità: <%=pro.getQuantita()%></span><br>
             <span>Seleziona Quantità</span>
-            <input type="number"  min="1" max="<%=pro.getQuantita()%>" name="selected"><br>
+            <input type="number" min="1" max="<%=pro.getQuantita()%>" name="selected"><br>
             <button type="submit" class="butAdd btn primary">Aggiungi al Carrello</button>
         </form>
     </div>
