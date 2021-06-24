@@ -11,11 +11,6 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Carrello"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-        }
-    </style>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">

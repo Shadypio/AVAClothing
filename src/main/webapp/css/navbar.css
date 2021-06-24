@@ -1,3 +1,7 @@
+body{
+    background-color: var(--cream);
+}
+
 .navbar{
     font-family: 'Raleway';
     font-weight: bold;

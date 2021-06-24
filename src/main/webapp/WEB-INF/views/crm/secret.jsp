@@ -6,7 +6,7 @@
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="title" value="Login Utente"/>
+        <jsp:param name="title" value="Login Admin"/>
     </jsp:include>
 </head>
 <body>

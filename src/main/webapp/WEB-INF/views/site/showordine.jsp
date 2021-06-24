@@ -11,11 +11,6 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Show Ordine"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-        }
-    </style>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">

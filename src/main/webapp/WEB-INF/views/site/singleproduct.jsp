@@ -9,11 +9,6 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Single Product"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-        }
-    </style>
 </head>
 <body>
     <c:choose>
