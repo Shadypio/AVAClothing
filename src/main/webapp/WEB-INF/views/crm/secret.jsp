@@ -11,14 +11,27 @@
     <jsp:include page="/WEB-INF/views/partials/header.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
+
+    <style>
+        html{
+            background-color: #f7f7f7;
+        }
+
+        h3{
+            font-family: Raleway;
+            color: var(--darkcream);
+            position: center;
+        }
+    </style>
+
 </head>
 <body>
-<h3>Login Admin</h3>
 <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="post">
     <div class="imgcontainer">
     <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
     </div>
     <fieldset class="grid-y cell w50 login">
+        <h3>Login Admin</h3>
         <span> Email </span>
         <label for="email" class="field">
             <input type="email" name="email" id="email" placeholder="Email">

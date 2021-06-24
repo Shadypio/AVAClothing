@@ -11,6 +11,10 @@
         <jsp:param name="title" value=""/>
     </jsp:include>
     <style>
+        html{
+            background-color: #f7f7f7;
+        }
+
         .inner{
             background-color:var(--cream);
             border:5px solid var(--darkcream);
@@ -28,15 +32,25 @@
             color: var(--darkcream);
         }
 
+        h3{
+            font-family: Raleway;
+            color: var(--darkcream);
+            position: center;
+        }
+
+        .registerform{
+            height: 80%;
+        }
+
     </style>
 </head>
 <body>
-    <h3>Registrazione Utente</h3>
-    <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
+    <form class=" registerform app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
         <div class="imgcontainer">
             <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
         </div>
         <fieldset class="grid-y cell w50 login">
+            <h3>Registrazione Utente</h3>
             <span> Nome </span>
             <label for="nome" class="field">
                 <input type="text" name="nome" id="nome" placeholder="Nome" required>
