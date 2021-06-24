@@ -4,14 +4,22 @@
 <html>
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
-    <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/crm2.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Profilo Utente"/>
     </jsp:include>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
+    <style>
+        body{
+            background-color: var(--cream);
+        }
+        input{
+             opacity: 35%;
+         }
+    </style>
 </head>
 <body>
 <br><br>
@@ -69,6 +77,7 @@
     $(document).ready(function () {
         $("#mod").click(function () {
             $("input").removeAttr("readonly");
+            $("input").css("opacity", "100%");
         })
     });
 

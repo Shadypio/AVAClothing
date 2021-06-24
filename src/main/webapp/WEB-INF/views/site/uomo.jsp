@@ -21,7 +21,6 @@
     </c:choose>
 </head>
 <body>
-
 <div>
     <div class="dropdown">
         <div>
@@ -35,11 +34,9 @@
         </div>
     </div>
 </div>
-
 <div class="viewProduct">
     <c:forEach items="${prodotti}" var="prodotto">
-        <div class="card"
-             onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
+        <div class="card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
             <span>${prodotto.nome}</span><span id="second">${prodotto.prezzo} €</span><br>
         </div>

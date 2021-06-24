@@ -36,7 +36,6 @@ img.avatar {
 
 fieldset{
     position:relative;
-    bottom:40px;
 }
 
 .imgcontainer {
@@ -46,9 +45,4 @@ fieldset{
 
 img.avatar {
     width: 50%;
-}
-
-fieldset {
-    position: relative;
-    bottom: 40px;
 }

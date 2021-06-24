@@ -225,18 +225,18 @@ public class CrmServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/cliente/secret");
                 break;
             case "/dashboard":  //DASHBOARD GENERALE ADMIN
-                String email =null,pass= null;
+                String email,pass;
                 email=(String) session.getAttribute("email");
                 pass=(String) session.getAttribute("pass");
-                if (email==null && pass==null ) {
-                    email = (String) request.getParameter("email");
-                    pass = (String) request.getParameter("password");
+                if (email==null && pass==null ) { //SE PRIMA VOLTA
+                    email = request.getParameter("email");
+                    pass = request.getParameter("password");
                     session.setAttribute("email", email);
                     session.setAttribute("pass", pass);
                 }
                 cliDAO=new ClienteDAO();
                 c=cliDAO.doRetrieveClienteByEmailPassword(email,pass);
-                if (c!=null && c.isAdmin()) {
+                if (c!=null && c.isAdmin()) { //SE ADMIN
                         session.setAttribute("id",c.getIdCliente());
                         ordDAO=new OrdineDAO();
                         ord=ordDAO.doRetrieveAll();
@@ -250,10 +250,11 @@ public class CrmServlet extends HttpServlet {
                         pro= proDAO.doRetrieveAll();
                         request.setAttribute("numeroProdotti",pro.size());
                         request.getRequestDispatcher("/WEB-INF/views/crm/dashboard.jsp").forward(request, response);
-                }else{
+                }else{ // ALTRIMENTI NON SEI AUTORIZZATO
                     session.removeAttribute("email");
                     session.removeAttribute("pass");
                     session.removeAttribute("id");
+                    session.setAttribute("failedAdmin",true);
                     response.sendRedirect(request.getContextPath() + "/cliente/secret");     //alert da aggiungere
                 }
                 break;

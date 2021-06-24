@@ -5,12 +5,10 @@ body, html {
 }
 
 .bg {
-
     background-image: url('https://cdn.shopify.com/s/files/1/1529/9657/articles/Copy_of_Copy_of_Copy_of_Copy_of_Untitled_6.jpg?v=1587571845');
     filter: blur(4px);
     -webkit-filter: blur(4px);
     height: 100%;
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -23,8 +23,10 @@
 <body>
 <div class="grid-y">
     <div class="dropdown">
-        <button class="dropbtn">Seleziona Categoria</button>
-        <div class="dropdown-content">
+        <div>
+            <button class="dropbtn">Seleziona Categoria</button>
+        </div>
+        <div class="content-product">
             <c:forEach items="${listaCat}" var="categoria" >
                 <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}">${categoria.nome}</a>
             </c:forEach>

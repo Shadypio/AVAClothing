@@ -47,7 +47,6 @@ public class ProdottoServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/site/donna.jsp").forward(request, response);
                 break;
             case "/selezione":
-                //genere= (String) session.getAttribute( "genere");
                 int id=Integer.parseInt(request.getParameter("id"));
                 ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(id);
                 session.setAttribute("prodotti",lista);

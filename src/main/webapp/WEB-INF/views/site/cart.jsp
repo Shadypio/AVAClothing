@@ -14,6 +14,13 @@
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
+    <style>
+        .totale span{
+            left:20px;
+            font-style: inherit;
+
+        }
+    </style>
 </head>
 <body>
      <br>
@@ -26,7 +33,7 @@
           totale=tot;
     %>
     <div class="totale">
-        <span>Totale Carrello:<%=totale%></span>
+        <span>Totale Carrello: <%=totale%></span>
     </div>
     <%if (lista.isEmpty()){%>
     <div class="card">
@@ -45,7 +52,9 @@
             </div>
             <%}
         }%>
-            <button type="submit" class="buy btn primary" name="buy">Acquista</button>
+            <div>
+                <button type="submit" class="buy btn primary" name="buy">Acquista</button>
+            </div>
         </form>
 <script>
     $(document).ready(function(){

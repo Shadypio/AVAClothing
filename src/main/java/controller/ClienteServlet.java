@@ -209,7 +209,6 @@ public class ClienteServlet extends HttpServlet {
                 id=cliDAO.doRetrieveAll().size()+1;
                 Cliente newProfilo=new Cliente(cognome,nomeCust,mail,user,newPass,indirizzo,tel,id,false);
                 cliDAO.addCliente(newProfilo);
-                //response.sendRedirect(address+ "/WEB-INF/views/site/registered.jsp");
                 request.getRequestDispatcher("/WEB-INF/views/site/registered.jsp").forward(request, response);
                 break;
             case "/update": // AGGIORNAMENTO PROFILO CLIENTE
@@ -237,10 +236,13 @@ public class ClienteServlet extends HttpServlet {
             case "/logout": //LOGOUT CLIENTE
                 session.setAttribute("log",false);
                 session.invalidate();
-                response.sendRedirect(address+"/cliente/signin");
+                response.sendRedirect(address+"/cliente/sign");
                 break;
             case "/secret": // LOGIN ADMIN
                 request.getRequestDispatcher("/WEB-INF/views/crm/secret.jsp").forward(request,response);
+                break;
+            case "/sign":
+                request.getRequestDispatcher("/WEB-INF/views/site/signin.jsp").forward(request,response);
                 break;
             case "/signin": // LOGIN CLIENTE
                 mail = request.getParameter("email");
@@ -253,7 +255,7 @@ public class ClienteServlet extends HttpServlet {
                     session.setAttribute("log",true);
                     request.getRequestDispatcher("/WEB-INF/views/site/account.jsp").forward(request,response);
                 }else{
-                    session.setAttribute("failed",true);
+                    session.setAttribute("failedUtente", true);
                     request.getRequestDispatcher("/WEB-INF/views/site/signin.jsp").forward(request,response);
                 }
                 break;

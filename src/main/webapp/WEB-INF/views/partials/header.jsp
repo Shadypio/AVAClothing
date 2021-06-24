@@ -16,7 +16,7 @@
                 <div class="dropdown-content">
                     <a href="<%=request.getContextPath()%>/cliente/secret">Login Admin</a>
                     <a href="<%=request.getContextPath()%>/cliente/signup">Registrati</a>
-                    <a href="<%=request.getContextPath()%>/cliente/signin">Login Utente</a>
+                    <a href="<%=request.getContextPath()%>/cliente/sign">Login Utente</a>
                 </div>
             </div>
             <a href="<%=request.getContextPath()%>/cliente/carrello" class="carrello"><img src="<%=request.getContextPath()%>/icons/shopping-cart.png" width="15" height="15"></a>

@@ -21,9 +21,22 @@
             color: var(--darkcream);
             position: center;
         }
+
+        .alert{
+            text-align: center;
+            background-color: var(--red);
+            border: 1px solid var(--white);
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <c:if test="${failedUtente}">
+        <div class="alert grid-y cell w50 login">
+            <p>Utente NON Registrato</p>
+            <button type="button" class="okAlert">OK</button>
+        </div>
+    </c:if>
     <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/signin"  method="post">
         <div class="imgcontainer">
             <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
@@ -32,14 +45,19 @@
             <h3>Login Utente</h3>
             <span> Email </span>
             <label for="email" class="field">
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Email" required>
             </label>
             <span> Password </span>
             <label for="password" class="field">
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password" required>
             </label>
             <button class="btn primary" type="submit">Accedi</button>
         </fieldset>
     </form>
+    <script>
+        $(".okAlert").click(function () {
+            $(".alert").hide();
+        });
+    </script>
 </body>
 </html>

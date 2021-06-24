@@ -14,6 +14,9 @@
         html{
             background-color: #f7f7f7;
         }
+        .login{
+            top:20px;
+        }
 
         .inner{
             background-color:var(--cream);
@@ -109,28 +112,16 @@
     }
     /**
      * REGEX FOR THIS PASSWORD
-     * /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
-     * ---
+     * /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/
+     *
 
      ^.*              : Start
-     (?=.{8,})        : Length
+     (?=.{8,10})      : Length
      (?=.*[a-zA-Z])   : Letters
      (?=.*\d)         : Digits
      (?=.*[!#$%&? "]) : Special characters
      .*$              : End
 
-     OPPURE
-
-     /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/
-     ---
-
-     (/^
-     (?=.*\d)                //should contain at least one digit
-     (?=.*[a-z])             //should contain at least one lower case
-     (?=.*[A-Z])             //should contain at least one upper case
-     [a-zA-Z0-9]{8,}         //should contain at least 8 from the mentioned characters
-
-     $/)
      */
 
     function validateTelPass() {
