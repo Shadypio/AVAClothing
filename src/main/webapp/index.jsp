@@ -23,6 +23,14 @@
             </jsp:include>
         </c:otherwise>
 </c:choose>
+
+    <style>
+        h2 {
+            font-family: Raleway;
+            color: var(--darkcream);
+            position: center;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -53,7 +61,7 @@
     <%ProdottoDAO proDAO=new ProdottoDAO();
       ArrayList<Prodotto> offerta=proDAO.doRetrieveProdottiinOfferta();%>
       <div class="saldi">
-          <h2>Prodotti in Offerta</h2>
+          <h2>Prodotti in offerta</h2>
           <%for (int i=0; i<offerta.size(); i++){ %>
             <div class="card">
                 <img src="data:image/jpg;base64,<%=offerta.get(i).getBase64Image()%>" width="350" height="370">

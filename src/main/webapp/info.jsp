@@ -23,10 +23,19 @@
     </c:choose>
 
     <style>
-        p {
+        .infotext {
             font-family: Raleway;
             color: var(--darkcream);
         }
+
+        .ainfo:link, .ainfo:visited {
+            color: var(--darkcream);
+        }
+
+        .ainfo:active {
+            color: #c7c1b8;
+        }
+
     </style>
 </head>
 <body>
@@ -34,7 +43,7 @@
 <section class="content grid-y" class="main">
 <fieldset class="grid-y cell w50 login">
     <legend>Obiettivo</legend>
-    <p>
+    <p class="infotext">
         Il sito si pone come obiettivo quello di diventare un punto di riferimento tra gli e-commerce del
         fast fashion. Prendendo spunto dalle features più interessanti dei siti competitors, AVA
         Clothing propone un’interfaccia semplice, minimale e funzionale sia dal punto di vista
@@ -49,15 +58,15 @@
 <section class="content grid-y" class="main">
 <fieldset class="grid-y cell w50 login">
     <legend>Orari di Apertura</legend>
-    <p>Lunedì – Venerdì 08.00 – 21.00</p>
-    <p>Sabato e Domenica 09.00 – 17.00</p>
-    <p>Giorni festivi 09.00 – 17.00</p>
+    <p class="infotext">Lunedì – Venerdì 08.00 – 21.00</p>
+    <p class="infotext">Sabato e Domenica 09.00 – 17.00</p>
+    <p class="infotext">Giorni festivi 09.00 – 17.00</p>
 </fieldset>
 </section>
 <fieldset class="grid-y cell w50 login">
     <legend>Contattaci</legend>
-    <p>Puoi trovarci su <a target="_blank" href="https://www.instagram.com" methods="_blank">Instagram</a> e su
-        <a target="_blank" href="https://www.facebook.com">Facebook</a></p>
+    <p class="infotext">Puoi trovarci su <a class="ainfo" target="_blank" href="https://www.instagram.com" methods="_blank">Instagram</a> e su
+        <a class="ainfo" target="_blank" href="https://www.facebook.com">Facebook</a>.</p>
 </fieldset>
 </section>
 </body>
