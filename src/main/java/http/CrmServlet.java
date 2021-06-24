@@ -12,7 +12,13 @@ import model.prodotto.ProdottoDAO;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Blob;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @WebServlet(name = "CrmServlet", value = "/crm/*")
+@MultipartConfig
 public class CrmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,8 +66,20 @@ public class CrmServlet extends HttpServlet {
                 cat.setIdCategoria(idCat);
                 Magazzino mag=new Magazzino();
                 mag.setIdMagazzino(idMag);
-                Prodotto p=new Prodotto(idPro,nomePro,price,off,descB,descD,quantita,mag,cat);
-                proDAO.addProdotto(p,cat,mag);
+                //Upload File
+                String updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
+                Part filePart=request.getPart("img");
+                String fileName= Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                InputStream stream = filePart.getInputStream();
+                String linkImg = updatePath + fileName;
+                File file= new File(linkImg);
+                try{
+                    Files.copy(stream,file.toPath());
+                } catch (FileAlreadyExistsException e){
+                    /* do nothing */
+                }
+                Prodotto p=new Prodotto(fileName,idPro,nomePro,price,off,descB,descD,quantita,mag,cat);
+                proDAO.addProdottoImg(p,cat,mag);
                 response.sendRedirect(address+"/crm/product");
                 break;
             case "/addcust": // ADMIN AGGIUNGE UN PROFILO UTENTE
@@ -125,7 +144,7 @@ public class CrmServlet extends HttpServlet {
                 String data=request.getParameter("data");
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 df.setLenient (false);
-                java.util.Date dataOrdine;
+                Date dataOrdine;
                 Ordine newOrdine= new Ordine();
                 try {
                     dataOrdine = df.parse (data);

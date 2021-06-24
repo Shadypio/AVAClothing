@@ -6,6 +6,7 @@ import model.magazzino.Magazzino;
 import model.prodotto.Prodotto;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -86,11 +87,55 @@ public class ProdottoDAO {
         }
     }
 
+    public boolean addProdottoImg(Prodotto prodotto, Categoria categoria, Magazzino magazzino) {
+        String address="C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\";
+        try (Connection con = ConPool.getConnection()) {
+            address=address+prodotto.getBase64Image();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO prodotto (nome, prezzo, descrizioneBreve, descrizioneDettagliata, inOfferta, idProdotto,image,mag_fk,cat_fk,quantita) VALUES(?,?,?,?,?,?,LOAD_FILE(?),?,?,?)");
+            ps.setString(1, prodotto.getNome());
+            ps.setDouble(2, prodotto.getPrezzo());
+            ps.setString(3, prodotto.getDescrizioneBreve());
+            ps.setString(4, prodotto.getDescrizioneDettagliata());
+            ps.setBoolean(5, prodotto.isInOfferta());
+            ps.setLong(6, prodotto.getIdProdotto());
+            ps.setString(7,address);
+            ps.setLong(8,magazzino.getIdMagazzino());
+            ps.setLong(9,categoria.getIdCategoria());
+            ps.setLong(10,prodotto.getQuantita());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
     public ArrayList<Prodotto> doRetrieveProdottiWithCategoria(long id){
         ArrayList<Prodotto> prodotti = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM prodotto as pro INNER JOIN categoria ON pro.cat_fk = categoria.idCategoria WHERE categoria.idCategoria = " + id;
             PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            ProdottoExtractor proExtractor = new ProdottoExtractor();
+            while( rs.next()) {
+                Prodotto p;
+                p = proExtractor.extract(rs);
+                prodotti.add(p);
+            }
+        } catch (SQLException | IOException throwable) {
+            throwable.printStackTrace();
+        }
+        return prodotti;
+    }
+
+    public ArrayList<Prodotto> doRetrieveProdottiinOfferta(){
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto as pro WHERE pro.inOfferta = (?)");
+            ps.setBoolean(1, true);
             ResultSet rs = ps.executeQuery();
             ProdottoExtractor proExtractor = new ProdottoExtractor();
             while( rs.next()) {

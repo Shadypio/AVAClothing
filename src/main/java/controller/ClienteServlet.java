@@ -224,11 +224,14 @@ public class ClienteServlet extends HttpServlet {
                 cliDAO = new ClienteDAO();
                 Cliente oldProfilo= cliDAO.doRetrieveById(idIntero);
                 newProfilo =new Cliente(cognome,nomeCust,mail,user,newPass,indirizzo,tel,idIntero,true);
-                if (oldProfilo.getPassword().equals(newPass))
+                if (oldProfilo.getPassword().equals(newPass)) {
                     cliDAO.doChanges(newProfilo);
-                else
+                    session.setAttribute("profilo",newProfilo);
+                }else {
                     cliDAO.doChangesWithPass(newProfilo);
-                response.sendRedirect(address+"/cliente/signin");
+                    session.setAttribute("profilo",newProfilo);
+                }
+                response.sendRedirect(address+"/cliente/show");
                 break;
             case "/logout": //LOGOUT CLIENTE
                 session.setAttribute("log",false);

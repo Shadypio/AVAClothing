@@ -20,6 +20,19 @@ public class Prodotto {
         this.categoria=cat;
     }
 
+    public Prodotto(String img,long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata,int quantita,Magazzino mag, Categoria cat) {
+        this.idProdotto = idProdotto;
+        this.nome = nome;
+        this.prezzo = prezzo;
+        this.isInOfferta = isInOfferta;
+        this.descrizioneBreve = descrizioneBreve;
+        this.descrizioneDettagliata = descrizioneDettagliata;
+        this.quantita=quantita;
+        this.magazzino=mag;
+        this.categoria=cat;
+        this.base64Image=img;
+    }
+
     public long getIdProdotto() {
         return idProdotto;
     }

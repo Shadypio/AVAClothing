@@ -69,6 +69,7 @@
                 $("input").removeAttr("readonly");
             })
         });
+
         function salva(){
             var elemento = document.getElementsByTagName("input");
             var i;

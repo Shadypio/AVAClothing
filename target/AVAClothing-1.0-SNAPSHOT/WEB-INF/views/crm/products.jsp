@@ -82,7 +82,7 @@
                         <!--Al click Form Modify-->
                     </div>
                 </form>
-                <form action="<%=request.getContextPath()%>/crm/addpro" method="post">
+                <form action="<%=request.getContextPath()%>/crm/addpro" method="post" enctype="multipart/form-data">
                     <div class="newPro">
                         <!--Al click Form Add-->
                     </div>
@@ -91,9 +91,6 @@
         </div>
     </section>
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
 <script>
     let status = false;
 
@@ -120,7 +117,8 @@
                 "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
                 "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto'> <br>" +
                 "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> ID Magazzino: </span> <input type='blob' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
             $("#annulla").click(function () {

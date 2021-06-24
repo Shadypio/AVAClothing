@@ -7,11 +7,8 @@
     <link href="<c:url value="/css/crm2.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="title" value="Profilo"/>
-        <jsp:param name="styles" value="crm"/>
+        <jsp:param name="title" value="Profilo Admin"/>
     </jsp:include>
-    <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         input{
             opacity: 35%;
@@ -63,9 +60,6 @@
         </fieldset>
     </section>
 </main>
-<footer class="info">
-    Copyright 2021, AVAClothing - Tutti i diritti riservati
-</footer>
 
 <script>
     let status = false;

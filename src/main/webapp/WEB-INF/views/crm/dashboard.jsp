@@ -105,10 +105,6 @@
                 </p>
             </div>
 
-            <footer class="info grid-y">
-                <div>Copyright 2021, AVAClothing</div>
-            </footer>
-
         </div>
     </section>
 </main>

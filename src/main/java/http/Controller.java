@@ -32,7 +32,6 @@ public abstract class Controller extends HttpServlet {
     }
 
     protected String getUploadPath(){
-        return System.getenv("CATALINA_HOME") + File.separator + "webapps" + File.separator + "Clothing" +
-                File.separator + "uploads" + File.separator;
+        return System.getenv("CATALINA_HOME") + File.separator + "uploads"+ File.separator;
     }
 }

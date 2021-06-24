@@ -102,7 +102,6 @@ public class ClienteDAO {
     public void doChanges(Cliente c){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-
             String query = "UPDATE Cliente cl SET cl.nome='" + c.getNome() + "', " + "cl.cognome='"+c.getCognome() + "', cl.email='"+c.getEmail() +"'," +
                     "cl.username='"+c.getUsername()+"', cl.indirizzo='"+c.getIndirizzo()+"', cl.isAdmin="+
                     c.isAdmin()+", cl.telefono='"+c.getTelefono()+"' WHERE cl.idCliente=" + c.getIdCliente() + ";";
@@ -115,7 +114,6 @@ public class ClienteDAO {
     public void doChangesWithPass(Cliente c){
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
-
             String query = "UPDATE Cliente cl SET cl.nome='" + c.getNome() + "', " + "cl.cognome='"+c.getCognome() + "', cl.email='"+c.getEmail() +"'," +
                     "cl.username='"+c.getUsername()+"',cl.password=SHA1('"+c.getPassword()+"'), cl.indirizzo='"+c.getIndirizzo()+"', cl.isAdmin="+
                     c.isAdmin()+", cl.telefono='"+c.getTelefono()+"' WHERE cl.idCliente=" + c.getIdCliente() + ";";
