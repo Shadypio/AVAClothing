@@ -33,7 +33,7 @@
         <jsp:param name="title" value=""/>
     </jsp:include>
     <h3>Registrazione Utente</h3>
-    <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return comparePasswords()">
+    <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
         <div class="imgcontainer">
             <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
         </div>
@@ -93,50 +93,55 @@
 
         var y = document.getElementById("inner");
         y.style.display = "block"
+    }
+    /**
+     * REGEX FOR THIS PASSWORD
+     * /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
+     * ---
 
-        /**
-         * REGEX FOR THIS PASSWORD
-         * ^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
-         * ---
+     ^.*              : Start
+     (?=.{8,})        : Length
+     (?=.*[a-zA-Z])   : Letters
+     (?=.*\d)         : Digits
+     (?=.*[!#$%&? "]) : Special characters
+     .*$              : End
 
-         ^.*              : Start
-         (?=.{8,})        : Length
-         (?=.*[a-zA-Z])   : Letters
-         (?=.*\d)         : Digits
-         (?=.*[!#$%&? "]) : Special characters
-         .*$              : End
+     OPPURE
 
-         OPPURE
+     /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/
+     ---
 
-         /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/
-         ---
+     (/^
+     (?=.*\d)                //should contain at least one digit
+     (?=.*[a-z])             //should contain at least one lower case
+     (?=.*[A-Z])             //should contain at least one upper case
+     [a-zA-Z0-9]{8,}         //should contain at least 8 from the mentioned characters
 
-         (/^
-         (?=.*\d)                //should contain at least one digit
-         (?=.*[a-z])             //should contain at least one lower case
-         (?=.*[A-Z])             //should contain at least one upper case
-         [a-zA-Z0-9]{8,}         //should contain at least 8 from the mentioned characters
+     $/)
+     */
 
-         $/)
-         */
+    function validateTelPass() {
+        var str1 = document.getElementById("password").value;
+        var str2 = document.getElementById("telefono").value;
+        var patt1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
+        var patt2 = /[0-9]/g;
+        var result1 = str1.match(patt1)
+        var result2 = str2.match(patt2);
+        var x = result1;
+        var y = result2;
+        var p = document.getElementById("password").value;
+        var q = document.getElementById("confermapassword").value;
+
+        if (x== str1 && y.length == 10 && p===q){
+             return true;
+        }else {
+          alert('Compila Correttamente!')
+          return false
+        }
     }
 
     function hideInfoPassword(){
         document.getElementById("inner").style.display = "none"
-    }
-
-    function comparePasswords(){
-        var x = $('#password').val();
-        var y = $('#confermapassword').val();
-
-        if(x === y) {
-            return true
-        }
-        else {
-            alert('Le password non corrispondono')
-            return false
-        }
-
     }
 </script>
 </body>
