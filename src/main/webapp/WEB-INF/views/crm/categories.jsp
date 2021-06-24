@@ -7,7 +7,6 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Gestione Categorie"/>
     </jsp:include>
-
 </head>
 <body style="background-color: var(--cream)">
 <main class="app">

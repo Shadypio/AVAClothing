@@ -69,7 +69,7 @@ public class ProdottoOrdineDAO {
         }
     }
 
-    public ArrayList<ProdottoOrdine> doRetrieveAll(){
+    /*public ArrayList<ProdottoOrdine> doRetrieveAll(){
         ArrayList<ProdottoOrdine> result=new ArrayList<ProdottoOrdine>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM prodotto_ordine as po " +
@@ -103,7 +103,7 @@ public class ProdottoOrdineDAO {
             throw new RuntimeException(e);
         }
     }
-
+*/
 
 
 

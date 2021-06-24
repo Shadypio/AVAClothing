@@ -8,11 +8,9 @@ import model.prodotto.Prodotto;
 import model.prodotto.ProdottoDAO;
 import model.prodottoordine.ProdottoOrdine;
 import model.prodottoordine.ProdottoOrdineDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,12 +29,13 @@ public class ClienteServlet extends HttpServlet {
         ClienteDAO cliDAO=new ClienteDAO();
         OrdineDAO ordDAO=new OrdineDAO();
         ProdottoDAO proDAO=new ProdottoDAO();
+        ProdottoOrdineDAO poDAO=new ProdottoOrdineDAO();
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path){
             case "/deletepro": //CANCELLAZIONE PRODOTTO DA CARRELLO
                 int idDel=Integer.parseInt(request.getParameter("delete"));
-                ArrayList<ProdottoOrdine> elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
-                ArrayList<Prodotto> lista=(ArrayList<Prodotto>) session.getAttribute("cart");
+                ArrayList<ProdottoOrdine> elenco=((ArrayList<ProdottoOrdine>) session.getAttribute("elencocart"));
+                ArrayList<Prodotto> lista=((ArrayList<Prodotto>) session.getAttribute("cart"));
                 for(int i=0; i<elenco.size(); i++){
                     if (elenco.get(i).getProdotto().getIdProdotto()==idDel) {
                         elenco.remove(i);
@@ -71,7 +70,6 @@ public class ClienteServlet extends HttpServlet {
                 elenco=(ArrayList<ProdottoOrdine>) session.getAttribute("elencocart");
                 lista=(ArrayList<Prodotto>) session.getAttribute("cart");
                 for(int i=0; i<elenco.size(); i++){
-                    ProdottoOrdineDAO poDAO=new ProdottoOrdineDAO();
                     poDAO.addProdottoOrdine(ord,lista.get(i),elenco.get(i).getQuantita());
                 }
                 totale=0;
@@ -177,7 +175,6 @@ public class ClienteServlet extends HttpServlet {
                 break;
             case "/showord": //MOSTRA ORDINE UTENTE
                 int idOrdine=Integer.parseInt(request.getParameter("id"));
-                ProdottoOrdineDAO poDAO=new ProdottoOrdineDAO();
                 ArrayList<ProdottoOrdine> result=poDAO.doRetrieveProdottiWithIdOrdine(idOrdine);
                 ArrayList<Prodotto> showOrdine=new ArrayList<>();
                 double totOrdine=0;
@@ -185,7 +182,7 @@ public class ClienteServlet extends HttpServlet {
                     Prodotto p=proDAO.doRetrieveById(result.get(i).getProdotto().getIdProdotto());
                     totOrdine+=(p.getPrezzo()*result.get(i).getQuantita());
                     showOrdine.add(p);
-                };
+                }
                 session.setAttribute("showOrdine",showOrdine);
                 session.setAttribute("result",result);
                 session.setAttribute("totOrdine",totOrdine);

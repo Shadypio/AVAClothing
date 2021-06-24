@@ -37,7 +37,7 @@ public class CrmServlet extends HttpServlet {
 
         String path=(request.getPathInfo() != null) ? request.getPathInfo(): "/";
         switch (path) {
-            case "/addpro":
+            case "/addpro": // ADMIN AGGIUNGE UN PRODOTTO
                 String nomePro=request.getParameter("nome");
                 String prezzo=request.getParameter("prezzo");
                 double price=Double.parseDouble(prezzo);
@@ -63,7 +63,7 @@ public class CrmServlet extends HttpServlet {
                 proDAO.addProdotto(p,cat,mag);
                 response.sendRedirect(address+"/crm/product");
                 break;
-            case "/addcust":
+            case "/addcust": // ADMIN AGGIUNGE UN PROFILO UTENTE
                 String nomeCust = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String user = request.getParameter("username");
@@ -81,7 +81,7 @@ public class CrmServlet extends HttpServlet {
                 cliDAO.addCliente(nuovo);
                 response.sendRedirect(address+"/crm/customer");
                 break;
-            case "/addcat":
+            case "/addcat":  //ADMIN AGGIUNGE UNA CATEGORIA
                 String nomeCat=request.getParameter("nome");
                 String desc=request.getParameter("descrizione");
                 ArrayList<Categoria> listaCat=catDAO.doRetrieveAll();
@@ -90,7 +90,7 @@ public class CrmServlet extends HttpServlet {
                 catDAO.addCategoria(x);
                 response.sendRedirect(address+"/crm/category");
                 break;
-            case "/updatepro":
+            case "/updatepro":  // AGGIORNO UN PRODOTTO
                 nomePro = request.getParameter("nome");
                 prezzo= request.getParameter("prezzo");
                 descB= request.getParameter("descB");
@@ -116,7 +116,7 @@ public class CrmServlet extends HttpServlet {
                 proDAO.doChanges(newProdotto);
                 response.sendRedirect(address+"/crm/product");
                 break;
-            case "/updateord":
+            case "/updateord": // AGGIORNA UN ORDINE
                 String idOrdine=request.getParameter("ordSelezionato");
                 int idOrd=Integer.parseInt(idOrdine);
                 Ordine oldOrdine=ordDAO.doRetrieveById(idOrd);
@@ -137,7 +137,7 @@ public class CrmServlet extends HttpServlet {
                 ordDAO.doChanges(newOrdine);
                 response.sendRedirect(address+"/crm/order");
                 break;
-            case "/updatecat":
+            case "/updatecat":  // AGGIORNA UNA CATEGORIA
                 idCategoria=request.getParameter("catSelezionata");
                 idCat=Integer.parseInt(idCategoria);
                 nomeCat=request.getParameter("nome");
@@ -146,7 +146,7 @@ public class CrmServlet extends HttpServlet {
                 catDAO.doChanges(cat);
                 response.sendRedirect(address+"/crm/category");
                 break;
-            case "/updatecust":
+            case "/updatecust":  //AGGIORNA IL SUO PROFILO
                 nomeCust = request.getParameter("nome");
                 cognome = request.getParameter("cognome");
                 user = request.getParameter("username");
@@ -165,7 +165,7 @@ public class CrmServlet extends HttpServlet {
                     cliDAO.doChangesWithPass(newProfilo);
                 response.sendRedirect(address+"/crm/profile");
                 break;
-            case "/deletepro":
+            case "/deletepro":  //CANCELLA UN PRODOTTO
                 String idDelete=request.getParameter("selezioneDelete");
                 int idDelPro=Integer.parseInt(idDelete);
                 ProdottoDAO prodottoDAO=new ProdottoDAO();
@@ -178,34 +178,34 @@ public class CrmServlet extends HttpServlet {
                 session.setAttribute("profilo",c);
                 request.getRequestDispatcher("/WEB-INF/views/crm/profile.jsp").forward(request, response);
                 break;
-            case "/customer":
+            case "/customer":  //DASHBOARD CLIENTI
                 cliDAO= new ClienteDAO();
                 cli=cliDAO.doRetrieveAll();
                 session.setAttribute("listaCli",cli);
                 request.getRequestDispatcher("/WEB-INF/views/crm/customer.jsp").forward(request, response);
                 break;
-            case "/category":
+            case "/category": //DASHBOARD CATEGORIE
                 catDAO=new CategoriaDAO();
                 ArrayList<Categoria> cate=catDAO.doRetrieveAll();
                 session.setAttribute("listaCat",cate);
                 request.getRequestDispatcher("/WEB-INF/views/crm/categories.jsp").forward(request, response);
                 break;
-            case "/order":
+            case "/order":  //DASHBOARD ORDINI
                 ArrayList<Ordine> ord=ordDAO.doRetrieveAll();
                 session.setAttribute("listaOrd",ord);
                 request.getRequestDispatcher("/WEB-INF/views/crm/orders.jsp").forward(request, response);
                 break;
-            case "/product":
+            case "/product":  // DASHBOARD PRODOTTI
                 proDAO=new ProdottoDAO();
                 ArrayList<Prodotto> pro=proDAO.doRetrieveAll();
                 session.setAttribute("listaPro",pro);
                 request.getRequestDispatcher("/WEB-INF/views/crm/products.jsp").forward(request, response);
                 break;
-            case "/logout":
+            case "/logout":  //LOGOUT ADMIN
                 session.invalidate();
                 response.sendRedirect(request.getContextPath()+"/cliente/secret");
                 break;
-            case "/dashboard":
+            case "/dashboard":  //DASHBOARD GENERALE ADMIN
                 String email =null,pass= null;
                 email=(String) session.getAttribute("email");
                 pass=(String) session.getAttribute("pass");

@@ -1,7 +1,4 @@
 <%@ page import="model.cliente.Cliente" %>
-<%@ page import="model.prodotto.Prodotto" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.prodottoordine.ProdottoOrdine" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
@@ -10,13 +7,8 @@
     <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="title" value="Login Utente"/>
+        <jsp:param name="title" value="Profilo Utente"/>
     </jsp:include>
-    <style>
-        body{
-            background-color: var(--cream);
-        }
-    </style>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
@@ -77,6 +69,12 @@
                 $("input").removeAttr("readonly");
             })
         });
+        function salva(){
+            var elemento = document.getElementsByTagName("input");
+            var i;
+            for(i=0; i<elemento.length; i++)
+                elemento[i].setAttribute("readonly", true);
+        }
     </script>
 </body>
 </html>

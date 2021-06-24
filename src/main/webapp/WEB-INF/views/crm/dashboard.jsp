@@ -6,9 +6,8 @@
     <link href="<c:url value="/css/crm2.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/crm.css"/>" rel="stylesheet">
     <jsp:include page="../partials/head.jsp">
-        <jsp:param name="title" value="AVAClothing-Home"/>
+        <jsp:param name="title" value="Dashboard Admin"/>
     </jsp:include>
-    <link href="<%=request.getContextPath()%>/css/crm.css" type="text/css" rel="stylesheet">
     <style>
         .dash {
             display: flex;
