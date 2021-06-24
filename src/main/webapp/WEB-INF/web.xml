@@ -8,6 +8,11 @@
         <location>/WEB-INF/views/partials/errors.jsp</location>
     </error-page>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/partials/errors.jsp</location>
+    </error-page>
+
     <context-param>
         <param-name>basePath</param-name>
         <param-value>WEB-INF/views/</param-value>

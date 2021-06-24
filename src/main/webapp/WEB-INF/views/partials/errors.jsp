@@ -10,7 +10,9 @@
 <head>
     <title>Error Page</title>
     <style>
-
+        h1 {
+            color: var(--cream);
+        }
     </style>
 </head>
 <body>
@@ -18,9 +20,9 @@
 </div>
 <div class="errortext">
     <h1>Ops! Sembra che qualcosa sia andato storto. Riprova più tardi.</h1>
-    div style="color: #EE4037;">
-        Error message: <%= exception.printStackTrace()%>
-    </div><br>
+    <!--div style="color: #EE4037;">
+        <Error message: <%/*exception.printStackTrace()*/%>>
+    </div--><br>
     <a href="<%=request.getContextPath()%>/index.jsp">Torna alla Home</a>
 </div>
 </body>

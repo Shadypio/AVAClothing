@@ -63,8 +63,8 @@
                 <input onfocusout="hideInfoPassword()" onfocusin="showInfoPassword()" type="password" name="password" id="password" placeholder="Password" required><br>
             </label>
                 <div class="inner" id="inner">
-                    <div id="info">La password deve essere lunga almeno 8 caratteri, deve contenere almeno una minuscola,
-                    una maiuscola, un numero e un carattere speciale</div>
+                    <div id="info">La password deve essere lunga tra gli 8 e i 10 caratteri, deve contenere almeno una minuscola,
+                    una maiuscola, un numero e un carattere speciale tra @$!%*?&</div>
                 </div>
 
             <span>Conferma  Password </span>

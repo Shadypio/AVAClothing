@@ -209,7 +209,8 @@ public class ClienteServlet extends HttpServlet {
                 id=cliDAO.doRetrieveAll().size()+1;
                 Cliente newProfilo=new Cliente(cognome,nomeCust,mail,user,newPass,indirizzo,tel,id,false);
                 cliDAO.addCliente(newProfilo);
-                response.sendRedirect(address+"/index.jsp");
+                //response.sendRedirect(address+ "/WEB-INF/views/site/registered.jsp");
+                request.getRequestDispatcher("/WEB-INF/views/site/registered.jsp").forward(request, response);
                 break;
             case "/update": // AGGIORNAMENTO PROFILO CLIENTE
                 nomeCust = request.getParameter("nome");
