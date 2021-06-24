@@ -16,6 +16,3 @@
 <link href="<c:url value="/css/library.css"/>" rel="stylesheet">
 <script src="<c:url value="/js/library.js"/>" defer> </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<jsp:include page="/WEB-INF/views/partials/footer.jsp">
-    <jsp:param name="title" value="Footer"/>
-</jsp:include>

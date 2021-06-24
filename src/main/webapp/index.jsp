@@ -11,7 +11,6 @@
 </head>
 <body>
 <main>
-    <%int i=Integer.parseInt("Hello");%>
     <c:choose>
     <c:when test="${log}">
         <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
@@ -27,18 +26,18 @@
 
     <div class="slideshow-container">
         <div class="mySlides">
-            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop1.jpeg">
-            <div class="text">Caption Text</div>
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop1.jpeg" style="width: 100%;">
+            <div class="text"><!--Inserire testo--></div>
         </div>
 
         <div class="mySlides">
-            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop2.jpeg">
-            <div class="text">Caption Two</div>
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop2.jpeg" style="width: 100%;">
+            <div class="text"><!--Inserire testo--></div>
         </div>
 
         <div class="mySlides">
-            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop3.jpeg">
-            <div class="text">Caption Three</div>
+            <img class="imageShow" src="<%=request.getContextPath()%>/img/cop3.jpeg" style="width: 100%;">
+            <div class="text"><!--Inserire testo--></div>
         </div>
     </div>
     <div style="text-align:center; background-color: var(--cream);">
