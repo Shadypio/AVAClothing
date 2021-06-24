@@ -3,27 +3,32 @@
 <html>
 <head>
     <link href="<c:url value="/css/navbar.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/sign.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/prodotti.css"/>" rel="stylesheet">
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Info"/>
     </jsp:include>
+
+    <c:choose>
+        <c:when test="${log}">
+            <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
+                <jsp:param name="title" value=""/>
+            </jsp:include>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="/WEB-INF/views/partials/header.jsp">
+                <jsp:param name="title" value=""/>
+            </jsp:include>
+        </c:otherwise>
+    </c:choose>
+
 </head>
 <body>
-<c:choose>
-    <c:when test="${log}">
-        <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
-            <jsp:param name="title" value=""/>
-        </jsp:include>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="/WEB-INF/views/partials/header.jsp">
-            <jsp:param name="title" value=""/>
-        </jsp:include>
-    </c:otherwise>
-</c:choose>
-<fieldset>
+<br><br>
+<section class="content grid-y" id="main">
+<fieldset class="grid-y cell w50 login">
     <legend>Obiettivo</legend>
-    <p class="card">
+    <p>
         Il sito si pone come obiettivo quello di diventare un punto di riferimento tra gli e-commerce del
         fast fashion. Prendendo spunto dalle features più interessanti dei siti competitors, AVA
         Clothing propone un’interfaccia semplice, minimale e funzionale sia dal punto di vista
@@ -34,12 +39,15 @@
         computer, il sito web è strutturato in modo responsive.
     </p>
 </fieldset>
+</section>
+<section id="main">
 <fieldset>
     <legend>Orari di Apertura</legend>
     <p>Lunedì – Venerdì 08.00 – 21.00</p>
     <p>Sabato e Domenica 09.00 – 17.00</p>
     <p>Giorni festivi 09.00 – 17.00</p>
 </fieldset>
+</section>
 
 </body>
 </html>

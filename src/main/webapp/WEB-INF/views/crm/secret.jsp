@@ -8,11 +8,11 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Admin"/>
     </jsp:include>
+    <jsp:include page="/WEB-INF/views/partials/header.jsp">
+        <jsp:param name="title" value=""/>
+    </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/partials/header.jsp">
-    <jsp:param name="title" value=""/>
-</jsp:include>
 <h3>Login Admin</h3>
 <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/crm/dashboard" method="post">
     <div class="imgcontainer">

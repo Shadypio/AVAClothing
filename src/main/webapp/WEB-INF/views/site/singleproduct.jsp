@@ -9,8 +9,6 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Single Product"/>
     </jsp:include>
-</head>
-<body>
     <c:choose>
         <c:when test="${log}">
             <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
@@ -23,6 +21,9 @@
             </jsp:include>
         </c:otherwise>
     </c:choose>
+</head>
+<body>
+
     <%Prodotto pro= (Prodotto) request.getSession().getAttribute("prodotto");%>
 
     <div class="card">

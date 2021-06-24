@@ -7,11 +7,11 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Login Utente"/>
     </jsp:include>
-</head>
-<body>
     <jsp:include page="/WEB-INF/views/partials/header.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
+</head>
+<body>
     <h3>Login Utente</h3>
     <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/signin"  method="post">
         <div class="imgcontainer">

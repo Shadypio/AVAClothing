@@ -11,12 +11,12 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Carrello"/>
     </jsp:include>
-</head>
-<body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
-    </jsp:include> <br>
-
+    </jsp:include>
+</head>
+<body>
+     <br>
     <%ArrayList<Prodotto> lista=(ArrayList<Prodotto>) request.getSession().getAttribute("cart");
       Cliente c=(Cliente) request.getSession().getAttribute("profilo");
       ArrayList<ProdottoOrdine> elenco =(ArrayList<ProdottoOrdine>) request.getSession().getAttribute("elencocart");

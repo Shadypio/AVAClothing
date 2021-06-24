@@ -7,7 +7,9 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Registrazione Utente"/>
     </jsp:include>
-
+    <jsp:include page="/WEB-INF/views/partials/header.jsp">
+        <jsp:param name="title" value=""/>
+    </jsp:include>
     <style>
         .inner{
             background-color:var(--cream);
@@ -29,9 +31,6 @@
     </style>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/partials/header.jsp">
-        <jsp:param name="title" value=""/>
-    </jsp:include>
     <h3>Registrazione Utente</h3>
     <form class="app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
         <div class="imgcontainer">

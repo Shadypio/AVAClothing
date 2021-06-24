@@ -4,7 +4,7 @@
         <a href="<%=request.getContextPath()%>/index.jsp" class="active">Home</a>
         <div class="dropdown">
             <button class="dropbtn">Prodotti</button>
-            <div class="dropdown-content">
+            <div class="content-product">
                 <a href="<%=request.getContextPath()%>/prodotto/prodottouomo">Uomo</a>
                 <a href="<%=request.getContextPath()%>/prodotto/prodottodonna">Donna</a>
             </div>

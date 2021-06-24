@@ -28,14 +28,15 @@
     overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdown .dropbtn{
     font-size: 17px;
+    font-weight: normal;
     border: none;
     outline: none;
     color: white;
     padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
+    background-color: var(--darkcream);
+    font-family: Raleway;
     margin: 0;
 }
 
@@ -48,6 +49,11 @@
     z-index: 1;
 }
 
+.dropdown-content a:hover, .content-product a:hover {
+     background-color: var(--cream);
+     color: black;
+ }
+
 .dropdown-content a, .content-product a {
     float: none;
     color: black;
@@ -57,20 +63,21 @@
     text-align: left;
 }
 
-.topnav a:hover, .dropdown:hover .dropbtn {
-    background-color: #555;
-    color: white;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
+.topnav a:hover , .dropdown .dropbtn:hover{
+    background-color: var(--cream);
     color: black;
 }
 
-.dropdown:hover .dropdown-content, .dropdown:hover .content-product  {
+.dropdown:hover .dropdown-content{
     display: block;
+    position: absolute;
+    right: 47px;
 }
 
+.dropdown:hover .content-product{
+    display: block;
+    position: absolute;
+}
 
 .iconWrapper {
     float: right;

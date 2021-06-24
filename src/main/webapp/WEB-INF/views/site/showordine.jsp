@@ -11,12 +11,11 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Show Ordine"/>
     </jsp:include>
-</head>
-<body>
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
-
+</head>
+<body>
     <%ArrayList<Prodotto> showOrdine=(ArrayList<Prodotto>) request.getSession().getAttribute("showOrdine");
       ArrayList<ProdottoOrdine> result =(ArrayList<ProdottoOrdine>) request.getSession().getAttribute("result");
       double tot=(Double) request.getSession().getAttribute("totOrdine");%>

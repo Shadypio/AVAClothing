@@ -7,20 +7,20 @@
     <jsp:include page="/WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Products"/>
     </jsp:include>
+    <c:choose>
+        <c:when test="${log}">
+            <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
+                <jsp:param name="title" value=""/>
+            </jsp:include>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="/WEB-INF/views/partials/header.jsp">
+                <jsp:param name="title" value=""/>
+            </jsp:include>
+        </c:otherwise>
+    </c:choose>
 </head>
 <body>
-<c:choose>
-    <c:when test="${log}">
-        <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
-            <jsp:param name="title" value=""/>
-        </jsp:include>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="/WEB-INF/views/partials/header.jsp">
-            <jsp:param name="title" value=""/>
-        </jsp:include>
-    </c:otherwise>
-</c:choose>
 <div class="grid-y">
     <div class="dropdown">
         <button class="dropbtn">Seleziona Categoria</button>
