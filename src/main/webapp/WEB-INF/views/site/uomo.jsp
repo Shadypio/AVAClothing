@@ -20,28 +20,33 @@
         </c:otherwise>
     </c:choose>
 </head>
+
 <body>
-<div>
+<div class="grid-y">
     <div class="dropdown">
-        <div>
-            <button class="dropbtn">Seleziona Categoria</button>
-        </div>
+        <button class="dropbtn">Seleziona Categoria</button>
         <div class="content-product">
-            <% request.getSession().setAttribute("genere", "uomo");%>
-            <c:forEach items="${listaCat}" var="categoria">
-                <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}">${categoria.nome}</a>
+            <% request.getSession().setAttribute("genere","donna");%>
+            <c:forEach items="${listaCat}" var="categoria" >
+                <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}" >${categoria.nome}</a>
             </c:forEach>
         </div>
     </div>
 </div>
-<div class="viewProduct">
-    <c:forEach items="${prodotti}" var="prodotto">
-        <div class="card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
-            <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
-            <span>${prodotto.nome}</span><span id="second">${prodotto.prezzo} €</span><br>
+<section class="products">
+        <c:forEach items="${prodotti}" var="prodotto" >
+        <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
+            <div class="product-image">
+                <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
+            </div>
+            <div class="product-info">
+                <h5>${prodotto.nome}</h5>
+                <h6>${prodotto.prezzo} €</h6>
+            </div>
         </div>
-    </c:forEach>
-</div>
+        </c:forEach>
+
+</section>
 
 
 </body>
