@@ -35,6 +35,7 @@
     <c:if test="${failedUtente}">
         <div class="alert grid-y cell w50 login">
             <p>Utente NON Registrato</p>
+            <% request.getSession().setAttribute("failedUtente",false);%>
             <button type="button" class="okAlert">OK</button>
         </div>
     </c:if>

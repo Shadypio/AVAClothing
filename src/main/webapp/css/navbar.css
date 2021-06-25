@@ -64,7 +64,7 @@
     text-align: left;
 }
 
-.topnav a:hover , .dropdown .dropbtn:hover{
+.topnav a:hover, .dropdown .dropbtn:hover{
     background-color: var(--cream);
     color: black;
 }

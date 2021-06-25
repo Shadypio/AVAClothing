@@ -35,6 +35,7 @@
                     <th class="id-center">ID Categoria</th>
                     <th>Nome</th>
                     <th>Descrizione</th>
+                    <th>Genere</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@
                         <td id="${cate.idCategoria}">${cate.idCategoria}</td>
                         <td id="${cate.idCategoria}">${cate.nome}</td>
                         <td id="${cate.idCategoria}">${cate.descrizione}</td>
+                        <td id="${cate.idCategoria}">${cate.genere}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -50,7 +52,6 @@
             </table>
             <div>
                 <select name="catSelezionata" id="selected">
-                    <option> MODIFICA </option>
                     <c:forEach var="cate" items="${listaCat}">
                         <option>${cate.idCategoria} </option>
                     </c:forEach>
@@ -94,7 +95,8 @@
         $(".butAdd").click(function () {
             $(".allCategories").hide();
             $(".newCat").show().html("<fieldset>  <legend>AGGIUNGI CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'> <br>" +
+                "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione'><br> " +
+                "<span> Genere: </span> <input type='text' name='genere' id='genere' placeholder='Genere'><br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
             $("#annulla").click(function () {
@@ -105,6 +107,7 @@
         $(".butMod").click(function () {
             $(".modCat").show().html("<fieldset>  <legend>MODIFICA CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='desc' id='desc' placeholder='Descrizione'> <br>" +
+                "<span> Genere: </span> <input type='text' name='genere' id='genere' placeholder='Genere'><br>"+
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {

@@ -71,7 +71,7 @@
                     <button type="submit" class="butDel btn primary">Elimina Prodotto</button> <!--Button Delete-->
                 </form>
 
-                <form action="${pageContext.request.contextPath}/crm/updatepro" method="post" name="up">
+                <form action="${pageContext.request.contextPath}/crm/updatepro" method="post" name="up" enctype="multipart/form-data">
                     <select name="selezioneMod" id="selezioneMod">
                         <c:forEach var="pro" items="${listaPro}">
                             <option>${pro.idProdotto} </option>
@@ -117,7 +117,7 @@
                 "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
                 "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto'> <br>" +
                 "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='blob' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
                 "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
@@ -135,6 +135,7 @@
                 "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
                 "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
                 "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {

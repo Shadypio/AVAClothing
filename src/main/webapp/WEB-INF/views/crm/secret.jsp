@@ -37,6 +37,7 @@
     <c:if test="${failedAdmin}">
         <div class="alert grid-y cell w50 login">
             <p>Accesso Negato</p>
+            <% request.getSession().setAttribute("failedAdmin",false);%>
             <button type="button" class="okAlert">OK</button>
         </div>
     </c:if>

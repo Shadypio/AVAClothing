@@ -88,7 +88,6 @@ public class CrmServlet extends HttpServlet {
                     throwables.printStackTrace();
                 }
                 proDAO.addProdottoImg(p,cat,mag);
-                //proDAO.retrieveEncode64Image(p);
                 response.sendRedirect(address+"/crm/product");
                 break;
             case "/addcust": // ADMIN AGGIUNGE UN PROFILO UTENTE
@@ -141,8 +140,24 @@ public class CrmServlet extends HttpServlet {
                 idMag=Integer.parseInt(idMagazzino);
                 mag=new Magazzino();
                 mag.setIdMagazzino(idMag);
-                Prodotto newProdotto=new Prodotto(idPro,nomePro,price,b,descB,descD,quantita,mag,cat);
-                proDAO.doChanges(newProdotto);
+                //Upload File
+                updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
+                filePart=request.getPart("img");
+                fileName= Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                stream = filePart.getInputStream();
+                linkImg = updatePath + fileName;
+                file= new File(linkImg);
+                try{
+                    Files.copy(stream,file.toPath());
+                } catch (FileAlreadyExistsException e) {
+                    /* do nothing */
+                }
+                try {
+                    Prodotto newProdotto = new Prodotto(fileName,idPro,nomePro,price,b,descB,descD,quantita,mag,cat);
+                    proDAO.doChanges(newProdotto);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 response.sendRedirect(address+"/crm/product");
                 break;
             case "/updateord": // AGGIORNA UN ORDINE

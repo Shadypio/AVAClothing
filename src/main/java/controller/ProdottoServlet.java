@@ -29,7 +29,6 @@ public class ProdottoServlet extends HttpServlet {
                     for(int j=0; j<temp.size(); j++)
                         result.add(temp.get(j));
                 }
-                //System.out.println(result + "\n\nciaooo\n\n" + listaGenere);
                 session.setAttribute("prodotti",result);
                 session.setAttribute("listaCat",listaGenere);
                 request.getRequestDispatcher("/WEB-INF/views/site/uomo.jsp").forward(request, response);
@@ -51,11 +50,12 @@ public class ProdottoServlet extends HttpServlet {
                 int id=Integer.parseInt(request.getParameter("id"));
                 ArrayList<Prodotto> lista=proDAO.doRetrieveProdottiWithCategoria(id);
                 session.setAttribute("prodotti",lista);
+                request.getRequestDispatcher("/WEB-INF/views/site/showproducts.jsp").forward(request, response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
         }
-        request.getRequestDispatcher("/WEB-INF/views/site/showproducts.jsp").forward(request, response);
+
     }
 
     @Override

@@ -28,6 +28,7 @@
             background-color: var(--red);
             border: 1px solid var(--white);
             color: white;
+            padding-top: 3%;
         }
     </style>
 
@@ -36,6 +37,7 @@
     <c:if test="${failedAdmin}">
         <div class="alert grid-y cell w50 login">
             <p>Accesso Negato</p>
+            <% request.getSession().setAttribute("failedAdmin",false);%>
             <button type="button" class="okAlert">OK</button>
         </div>
     </c:if>

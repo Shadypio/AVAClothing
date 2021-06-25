@@ -21,11 +21,10 @@
     </c:choose>
 </head>
 <body>
-
 <div class="grid-y">
-    <div class="dropdown">
-        <button class="dropbtn">Seleziona Categoria</button>
-        <div class="content-product">
+    <div class="dropdown-category">
+        <button class="dropbtn-category">Seleziona Categoria</button>
+        <div class="content-category">
             <% request.getSession().setAttribute("genere","donna");%>
             <c:forEach items="${listaCat}" var="categoria" >
                 <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}" >${categoria.nome}</a>
@@ -33,7 +32,7 @@
         </div>
     </div>
 </div>
-<section class="products">
+<div class="products">
     <c:forEach items="${prodotti}" var="prodotto" >
         <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <div class="product-image">
@@ -41,10 +40,10 @@
             </div>
             <div class="product-info">
                 <h5>${prodotto.nome}</h5>
-                <h6>${prodotto.prezzo}</h6>
+                <h6>${prodotto.prezzo} €</h6>
             </div>
         </div>
     </c:forEach>
-</section>
+</div>
 </body>
 </html>

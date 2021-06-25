@@ -23,18 +23,18 @@
 
 <body>
 <div class="grid-y">
-    <div class="dropdown">
-        <button class="dropbtn">Seleziona Categoria</button>
-        <div class="content-product">
-            <% request.getSession().setAttribute("genere","donna");%>
+    <div class="dropdown-category">
+        <button class="dropbtn-category">Seleziona Categoria</button>
+        <div class="content-category">
+            <% request.getSession().setAttribute("genere","uomo");%>
             <c:forEach items="${listaCat}" var="categoria" >
                 <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}" >${categoria.nome}</a>
             </c:forEach>
         </div>
     </div>
 </div>
-<section class="products">
-        <c:forEach items="${prodotti}" var="prodotto" >
+<div class="products">
+    <c:forEach items="${prodotti}" var="prodotto" >
         <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <div class="product-image">
                 <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
@@ -44,9 +44,9 @@
                 <h6>${prodotto.prezzo} €</h6>
             </div>
         </div>
-        </c:forEach>
+    </c:forEach>
+</div>
 
-</section>
 
 
 </body>
