@@ -25,6 +25,15 @@ h1{
     text-align: center;
 }
 
+.product-card-single{
+    margin-top: 40px;
+    padding-bottom: 1%;
+    flex-basis: 100%;
+    display: flex; /* so child elements can use flexbox stuff too! */
+    vertical-align: top;
+    text-align: center;
+}
+
 .product-image img {
     cursor: pointer;
     max-width: 100%;

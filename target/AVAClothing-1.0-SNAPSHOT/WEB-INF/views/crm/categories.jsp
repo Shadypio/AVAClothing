@@ -48,7 +48,6 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-
             </table>
             <div>
                 <select name="catSelezionata" id="selected">

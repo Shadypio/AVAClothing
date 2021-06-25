@@ -16,6 +16,11 @@
         body{
             background-color: var(--cream);
         }
+
+        .content{
+            margin-top: 30px;
+        }
+
         input{
              opacity: 35%;
          }

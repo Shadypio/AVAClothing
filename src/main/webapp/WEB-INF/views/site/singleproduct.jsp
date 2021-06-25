@@ -26,18 +26,24 @@
 
     <%Prodotto pro= (Prodotto) request.getSession().getAttribute("prodotto");%>
 
-    <div class="card">
-        <form action="${pageContext.request.contextPath}/cliente/inputcarrello" method="post">
-            <input type="hidden" name="id" value="<%=pro.getIdProdotto()%>">
-            <img src="data:image/jpg;base64,<%=pro.getBase64Image()%>" width="500" height="500">
-            <span>Nome: <%=pro.getNome()%></span><br> <span>Prezzo: <%=pro.getPrezzo()%></span><br>
-            <span>Descrizione Dettagliata: <%=pro.getDescrizioneDettagliata()%></span><br>
-            <span>Quantità: <%=pro.getQuantita()%></span><br>
-            <span>Seleziona Quantità</span>
-            <input type="number" min="1" max="<%=pro.getQuantita()%>" name="selected"><br>
-            <button type="submit" class="butAdd btn primary">Aggiungi al Carrello</button>
-        </form>
-    </div>
+    <form action="${pageContext.request.contextPath}/cliente/inputcarrello" method="post">ù
+        <div class="products">
+            <div class="product-card-single">
+                <input type="hidden" name="id" value="<%=pro.getIdProdotto()%>">
+                <div class="product-image">
+                    <img src="data:image/jpg;base64,<%=pro.getBase64Image()%>" width="500" height="500">
+                </div>
+                <div class="product-info">
+                    <h5>Nome:</h5><h6> <%=pro.getNome()%></h6><br> <h5>Prezzo:</h5> <h6><%=pro.getPrezzo()%></h6><br>
+                    <h5>Descrizione Dettagliata:</h5><h6> <%=pro.getDescrizioneDettagliata()%></h6><br>
+                    <h5>Quantità:</h5><h6> <%=pro.getQuantita()%></h6><br>
+                    <h5>Seleziona Quantità</h5>
+                    <input type="number" min="1" max="<%=pro.getQuantita()%>" name="selected"><br><br>
+                    <button type="submit" class="butAdd btn primary">Aggiungi al Carrello</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
 </body>
 </html>

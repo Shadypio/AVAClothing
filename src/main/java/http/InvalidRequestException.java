@@ -1,11 +1,5 @@
 package http;
 
-import component.Alert;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 public class InvalidRequestException extends Exception {
@@ -25,7 +19,7 @@ public class InvalidRequestException extends Exception {
         this.errorCode = 404;
     }
 
-    public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, IOException {
+    /*public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, IOException {
         switch(errorCode){
             case HttpServletResponse.SC_BAD_REQUEST:
                 request.setAttribute("alert", new Alert(errors, "danger"));
@@ -36,7 +30,7 @@ public class InvalidRequestException extends Exception {
             default:
                 response.sendError(errorCode, errors.get(0));
         }
-    }
+    }*/
 
     public List<String> getErrors() {
         return errors;
