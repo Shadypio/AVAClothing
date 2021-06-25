@@ -49,9 +49,11 @@ public class ProdottoDAO {
     }
 
     public boolean doChanges(Prodotto prodotto){
+        String address="C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\";
         try(Connection con = ConPool.getConnection()){
+            address=address+prodotto.getBase64Image();
             PreparedStatement ps = con.prepareStatement("UPDATE prodotto p SET p.nome = (?), p.prezzo = (?),p.mag_fk = (?), p.cat_fk = (?), p.inofferta = (?)," +
-                    " p.descrizioneBreve = (?), p.descrizioneDettagliata = (?), p.quantita= (?) WHERE p.IdProdotto = (?);");
+                    " p.descrizioneBreve = (?), p.descrizioneDettagliata = (?), p.quantita= (?), image= LOAD_FILE(?) WHERE p.IdProdotto = (?);");
             ps.setString(1, prodotto.getNome());
             ps.setDouble(2, prodotto.getPrezzo());
             ps.setLong(3,prodotto.getMagazzino().getIdMagazzino());
@@ -60,7 +62,8 @@ public class ProdottoDAO {
             ps.setString(6, prodotto.getDescrizioneBreve());
             ps.setString(7, prodotto.getDescrizioneDettagliata());
             ps.setLong(8,prodotto.getQuantita());
-            ps.setLong(9, prodotto.getIdProdotto());
+            ps.setString(9,address);
+            ps.setLong(10, prodotto.getIdProdotto());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

@@ -10,6 +10,7 @@
             </div>
         </div>
         <a href="<%=request.getContextPath()%>/info.jsp">Info</a>
+        <input type="search" name="search" id="search" placeholder="Ricerca"/><button onclick="search()" name="cerca">Cerca</button>
         <div class="iconWrapper">
             <div class="dropdown">
                 <button class="dropbtn"><img src="<%=request.getContextPath()%>/icons/user.png" width="15" height="15"></button>
@@ -33,5 +34,29 @@
                 x.className = "topnav";
             }
         }
+
+        function search(){
+           var x=document.getElementById("search").value;
+           var xmlhttp= new XMLHttpRequest();
+           xmlhttp.onreadystatechange= function() {
+               if (this.readyState==4 && this.status==200){
+                   searchDB(this);
+               }
+           };
+           xmlhttp.open("GET","JSON?data="+x,true);
+           xmlhttp.send();
+        }
+
+        function searchDB(xmlhttp){
+            var result=JSON.parse(xmlhttp.responseText);
+            let text;
+            if (result==null){
+                alert(null);
+            }
+            alert(result);
+            document.getElementById("").innerHTML= text;//id elemento
+        }
+
+
     </script>
 </header>
