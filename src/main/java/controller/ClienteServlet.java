@@ -177,12 +177,14 @@ public class ClienteServlet extends HttpServlet {
                 int idOrdine=Integer.parseInt(request.getParameter("id"));
                 ArrayList<ProdottoOrdine> result=poDAO.doRetrieveProdottiWithIdOrdine(idOrdine);
                 ArrayList<Prodotto> showOrdine=new ArrayList<>();
+
                 double totOrdine=0;
                 for (int i=0; i<result.size(); i++){
                     Prodotto p=proDAO.doRetrieveById(result.get(i).getProdotto().getIdProdotto());
                     totOrdine+=(p.getPrezzo()*result.get(i).getQuantita());
                     showOrdine.add(p);
                 }
+                session.setAttribute("idOrdine",idOrdine);
                 session.setAttribute("showOrdine",showOrdine);
                 session.setAttribute("result",result);
                 session.setAttribute("totOrdine",totOrdine);

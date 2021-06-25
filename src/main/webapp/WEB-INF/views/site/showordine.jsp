@@ -14,24 +14,41 @@
     <jsp:include page="/WEB-INF/views/partials/headerLoggato.jsp">
         <jsp:param name="title" value=""/>
     </jsp:include>
+   <style>
+       .content{
+           margin-top: 120px;
+       }
+   </style>
 </head>
 <body>
     <%ArrayList<Prodotto> showOrdine=(ArrayList<Prodotto>) request.getSession().getAttribute("showOrdine");
       ArrayList<ProdottoOrdine> result =(ArrayList<ProdottoOrdine>) request.getSession().getAttribute("result");
       double tot=(Double) request.getSession().getAttribute("totOrdine");%>
-    <div>
-        <h2>Riepilogo Ordine:</h2>
-        <h4>Totale: €<%=tot%></h4>
-    </div>
-    <%for (int i=0; i<showOrdine.size(); i++){%>
-        <div class="card">
-            <img src="data:image/jpg;base64,<%=showOrdine.get(i).getBase64Image()%>" width="350" height="370">
-            <span>Nome: <%=showOrdine.get(i).getNome()%></span><br>
-            <span>Prezzo: <%=showOrdine.get(i).getPrezzo()%></span><br>
-            <span>Descrizione Dettagliata: <%=showOrdine.get(i).getDescrizioneDettagliata()%></span><br>
-            <span>Quantità: <%=result.get(i).getQuantita()%></span>
+
+    <div class="content">
+        <div class="grid-y login">
+            <h2>Riepilogo Ordine:</h2>
+            <div class="grid-x">
+                <p><b>Ordine n°</b>${idOrdine}  <b>Totale:</b>€<%=tot%></p>
+            </div>
         </div>
-    <%}%>
+    </div>
+
+    <div class="products">
+        <%for (int i=0; i<showOrdine.size(); i++){%>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/jpg;base64,<%=showOrdine.get(i).getBase64Image()%>" width="350" height="370">
+                </div>
+                <div class="product-info">
+                    <h5>Nome: </h5><h6> <%=showOrdine.get(i).getNome()%></h6><br>
+                    <h5>Prezzo:</h5><h6> <%=showOrdine.get(i).getPrezzo()%></h6><br>
+                    <h5>Descrizione Dettagliata: </h5><h6> <%=showOrdine.get(i).getDescrizioneDettagliata()%></h6><br>
+                    <h5>Quantità: </h5><h6> <%=result.get(i).getQuantita()%></h6>
+                </div>
+            </div>
+        <%}%>
+    </div>
 
 </body>
 </html>

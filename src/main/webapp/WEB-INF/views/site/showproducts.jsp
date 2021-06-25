@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<h1>${categoria.nome}</h1>
+<h1>Categoria > ${categoriaSelected}</h1>
 
 <section class="products">
     <c:forEach items="${prodotti}" var="prodotto" >

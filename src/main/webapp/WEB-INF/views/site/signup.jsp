@@ -14,10 +14,6 @@
         html{
             background-color: #f7f7f7;
         }
-        
-        .login{
-            top:20px;
-        }
 
         .inner{
             background-color:var(--cream);
@@ -44,65 +40,71 @@
 
         .registerform{
             height: 80%;
+            margin-top: 30px;
+        }
+
+        .content{
+            margin-top: 60px;
         }
 
     </style>
 </head>
 <body>
-    <form class=" registerform app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
-        <div class="imgcontainer">
-            <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
-        </div>
-        <fieldset class="grid-y cell w50 login">
-            <h3>Registrazione Utente</h3>
-            <span> Nome </span>
-            <label for="nome" class="field">
-                <input type="text" name="nome" id="nome" placeholder="Nome" required>
-            </label>
+    <div class="content">
+        <form class=" registerform app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
+            <div class="imgcontainer">
+                <img src="<%=request.getContextPath()%>/img/logo.png" class="avatar"/>
+            </div>
+            <fieldset class="grid-y cell w50 login">
+                <h3>Registrazione Utente</h3>
+                <span> Nome </span>
+                <label for="nome" class="field">
+                    <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                </label>
 
-            <span> Cognome </span>
-            <label for="cognome" class="field">
-                <input type="text" name="cognome" id="cognome" placeholder="Cognome" required>
-            </label>
+                <span> Cognome </span>
+                <label for="cognome" class="field">
+                    <input type="text" name="cognome" id="cognome" placeholder="Cognome" required>
+                </label>
 
-            <span> Username </span>
-            <label for="username" class="field">
-                <input type="text" name="username" id="username" placeholder="Username" required>
-            </label>
+                <span> Username </span>
+                <label for="username" class="field">
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                </label>
 
-            <span> Email </span>
-            <label for="email" class="field">
-                <input type="email" name="email" id="email" placeholder="Email">
-            </label>
+                <span> Email </span>
+                <label for="email" class="field">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </label>
 
-            <span> Password </span>
-            <label for="password" class="field">
-                <input onfocusout="hideInfoPassword()" onfocusin="showInfoPassword()" type="password" name="password" id="password" placeholder="Password" required><br>
-            </label>
-                <div class="inner" id="inner">
-                    <div id="info">La password deve essere lunga tra gli 8 e i 10 caratteri, deve contenere almeno una minuscola,
-                    una maiuscola, un numero e un carattere speciale tra @$!%*?&</div>
-                </div>
+                <span> Password </span>
+                <label for="password" class="field">
+                    <input onfocusout="hideInfoPassword()" onfocusin="showInfoPassword()" type="password" name="password" id="password" placeholder="Password" required><br>
+                </label>
+                    <div class="inner" id="inner">
+                        <div id="info">La password deve essere lunga tra gli 8 e i 10 caratteri, deve contenere almeno una minuscola,
+                        una maiuscola, un numero e un carattere speciale tra @$!%*?&</div>
+                    </div>
 
-            <span>Conferma  Password </span>
-            <label for="confermapassword" class="field">
-                <input type="password" name="confermapassword" id="confermapassword" placeholder="Conferma Password" required><br>
-            </label>
+                <span>Conferma  Password </span>
+                <label for="confermapassword" class="field">
+                    <input type="password" name="confermapassword" id="confermapassword" placeholder="Conferma Password" required><br>
+                </label>
 
-            <span> Indirizzo </span>
-            <label for="indirizzo" class="field">
-                <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo" required>
-            </label>
+                <span> Indirizzo </span>
+                <label for="indirizzo" class="field">
+                    <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo" required>
+                </label>
 
-            <span> Telefono </span>
-            <label for="telefono" class="field">
-                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
-            </label>
+                <span> Telefono </span>
+                <label for="telefono" class="field">
+                    <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
+                </label>
 
-            <button class="btn primary" type="submit">Registrati</button>
-        </fieldset>
-    </form>
-
+                <button class="btn primary" type="submit">Registrati</button>
+            </fieldset>
+        </form>
+    </div>
 <script>
     function showInfoPassword(){
         var x = document.getElementById("info")
