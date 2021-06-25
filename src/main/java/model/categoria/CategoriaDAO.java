@@ -11,10 +11,11 @@ public class CategoriaDAO {
     public void addCategoria(Categoria cat){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO categoria (nome, descrizione, idCategoria) VALUES(?,?,?)");
+                    "INSERT INTO categoria (nome, descrizione, idCategoria, genere) VALUES(?,?,?, ?)");
             ps.setString(1, cat.getNome());
             ps.setString(2, cat.getDescrizione());
             ps.setLong(3,cat.getIdCategoria());
+            ps.setString(4, cat.getGenere());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -25,10 +26,11 @@ public class CategoriaDAO {
 
     public boolean doChanges(Categoria cat){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("UPDATE categoria c SET c.nome = (?), c.Descrizione = (?) WHERE c.idCategoria = (?);");
+            PreparedStatement ps = con.prepareStatement("UPDATE categoria c SET c.nome = (?), c.Descrizione = (?), c.Genere = (?) WHERE c.idCategoria = (?);");
             ps.setString(1, cat.getNome());
             ps.setString(2, cat.getDescrizione());
-            ps.setLong(3, cat.getIdCategoria());
+            ps.setString(3, cat.getGenere());
+            ps.setLong(4, cat.getIdCategoria());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

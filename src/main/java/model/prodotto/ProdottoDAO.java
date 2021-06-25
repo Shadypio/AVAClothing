@@ -5,10 +5,14 @@ import model.categoria.Categoria;
 import model.magazzino.Magazzino;
 import model.prodotto.Prodotto;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.LinkedList;
 public class ProdottoDAO {
     public Prodotto doRetrieveById(long id) {
@@ -161,4 +165,35 @@ public class ProdottoDAO {
         }
     }
 
+    /*public Blob stringToBlob(String img) throws SQLException {
+        byte[] buff = img.getBytes();
+        Blob blob = new SerialBlob(buff);
+        return blob;
+    }
+
+    public void retrieveEncode64Image(Prodotto p){
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT image FROM prodotto as pro WHERE pro.idProdotto=?");
+            ps.setLong(1, p.getIdProdotto());
+            ResultSet rs = ps.executeQuery();
+        Blob blob = rs.getBlob("pro.image");
+        if (blob!=null) {
+            InputStream inputStream = blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] imageBytes = outputStream.toByteArray();
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            p.setBase64Image(base64Image);
+            inputStream.close();
+            outputStream.close();
+        }
+    } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }*/
 }

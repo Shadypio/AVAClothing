@@ -19,6 +19,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,6 +65,8 @@ public class CrmServlet extends HttpServlet {
                 int quantita=Integer.parseInt(quan);
                 Categoria cat=new Categoria();
                 cat.setIdCategoria(idCat);
+                CategoriaDAO categoriaDAO = new CategoriaDAO();
+                cat = categoriaDAO.doRetrieveById(idCat);
                 Magazzino mag=new Magazzino();
                 mag.setIdMagazzino(idMag);
                 //Upload File
@@ -78,8 +81,14 @@ public class CrmServlet extends HttpServlet {
                 } catch (FileAlreadyExistsException e){
                     /* do nothing */
                 }
-                Prodotto p=new Prodotto(fileName,idPro,nomePro,price,off,descB,descD,quantita,mag,cat);
+                Prodotto p= null;
+                try {
+                    p = new Prodotto(fileName,idPro,nomePro,price,off,descB,descD,quantita,mag,cat);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 proDAO.addProdottoImg(p,cat,mag);
+                //proDAO.retrieveEncode64Image(p);
                 response.sendRedirect(address+"/crm/product");
                 break;
             case "/addcust": // ADMIN AGGIUNGE UN PROFILO UTENTE
@@ -103,9 +112,10 @@ public class CrmServlet extends HttpServlet {
             case "/addcat":  //ADMIN AGGIUNGE UNA CATEGORIA
                 String nomeCat=request.getParameter("nome");
                 String desc=request.getParameter("descrizione");
+                String genere = request.getParameter("genere");
                 ArrayList<Categoria> listaCat=catDAO.doRetrieveAll();
                 int idCate=listaCat.size()+1;
-                Categoria x=new Categoria(nomeCat,desc,idCate);
+                Categoria x=new Categoria(nomeCat,desc,idCate, genere);
                 catDAO.addCategoria(x);
                 response.sendRedirect(address+"/crm/category");
                 break;
@@ -161,7 +171,8 @@ public class CrmServlet extends HttpServlet {
                 idCat=Integer.parseInt(idCategoria);
                 nomeCat=request.getParameter("nome");
                 desc=request.getParameter("desc");
-                cat=new Categoria(nomeCat,desc,idCat);
+                genere=request.getParameter("genere");
+                cat=new Categoria(nomeCat,desc,idCat, genere);
                 catDAO.doChanges(cat);
                 response.sendRedirect(address+"/crm/category");
                 break;

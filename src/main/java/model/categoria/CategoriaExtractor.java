@@ -13,6 +13,7 @@ public class CategoriaExtractor implements ResultSetExtractor<Categoria> {
         c.setNome(rs.getString("cat.nome"));
         c.setDescrizione(rs.getString("cat.descrizione"));
         c.setIdCategoria(rs.getLong("cat.idCategoria"));
+        c.setGenere(rs.getString("cat.genere"));
         return c;
     }
 }

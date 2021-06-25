@@ -29,6 +29,7 @@ public class ProdottoServlet extends HttpServlet {
                     for(int j=0; j<temp.size(); j++)
                         result.add(temp.get(j));
                 }
+                //System.out.println(result + "\n\nciaooo\n\n" + listaGenere);
                 session.setAttribute("prodotti",result);
                 session.setAttribute("listaCat",listaGenere);
                 request.getRequestDispatcher("/WEB-INF/views/site/uomo.jsp").forward(request, response);

@@ -4,10 +4,11 @@ public class Categoria {
     public Categoria(){
         super();
     }
-    public Categoria(String nome,String descrizione,long idCategoria){
+    public Categoria(String nome,String descrizione,long idCategoria, String genere){
         this.nome=nome;
         this.descrizione=descrizione;
         this.idCategoria=idCategoria;
+        this.genere = genere;
     }
     public long getIdCategoria() {return idCategoria;}
     public void setIdCategoria(long idCategoria) {this.idCategoria = idCategoria;}

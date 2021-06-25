@@ -3,6 +3,12 @@ package model.prodotto;
 import model.categoria.Categoria;
 import model.magazzino.Magazzino;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Locale;
 
 public class Prodotto {
@@ -20,7 +26,7 @@ public class Prodotto {
         this.categoria=cat;
     }
 
-    public Prodotto(String img,long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata,int quantita,Magazzino mag, Categoria cat) {
+    public Prodotto(String img,long idProdotto, String nome, double prezzo, boolean isInOfferta, String descrizioneBreve, String descrizioneDettagliata,int quantita,Magazzino mag, Categoria cat) throws IOException, SQLException {
         this.idProdotto = idProdotto;
         this.nome = nome;
         this.prezzo = prezzo;
@@ -31,6 +37,23 @@ public class Prodotto {
         this.magazzino=mag;
         this.categoria=cat;
         this.base64Image=img;
+        /*ProdottoDAO prodottoDAO = new ProdottoDAO();
+        Blob blob = prodottoDAO.stringToBlob(img);
+        if (blob!=null) {
+            InputStream inputStream = blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] imageBytes = outputStream.toByteArray();
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            this.setBase64Image(base64Image);
+            inputStream.close();
+            outputStream.close();
+        }*/
+
     }
 
     public long getIdProdotto() {
