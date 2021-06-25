@@ -47,9 +47,11 @@
             margin-top: 60px;
         }
 
+
     </style>
 </head>
 <body>
+<%-- si deve vede perche va sotto--%>
     <div class="content">
         <form class=" registerform app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
             <div class="imgcontainer">
