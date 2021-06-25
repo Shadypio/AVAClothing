@@ -28,6 +28,7 @@
             background-color: var(--red);
             border: 1px solid var(--white);
             color: white;
+            padding-top: 3%;
         }
     </style>
 
