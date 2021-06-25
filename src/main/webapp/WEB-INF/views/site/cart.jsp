@@ -2,6 +2,7 @@
 <%@ page import="model.prodotto.Prodotto" %>
 <%@ page import="model.cliente.Cliente" %>
 <%@ page import="model.prodottoordine.ProdottoOrdine" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -31,10 +32,11 @@
       Double tot=(Double) request.getSession().getAttribute("totale");
       if(tot!=null)
           totale=tot;
+      DecimalFormat df = new DecimalFormat("#.00");
     %>
      <br> <br>
     <div class="totale">
-        <span>Totale Carrello: <%=totale%></span>
+        <span>Totale Carrello: €<%=df.format(totale)%></span>
     </div>
     <%if (lista.isEmpty()){%>
     <div class="card">
