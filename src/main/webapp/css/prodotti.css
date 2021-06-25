@@ -4,91 +4,56 @@ body {
     font-style: normal;
     font-size: 30px;
 }
-.dropdown-category {
-    float: left;
-    overflow: hidden;
+h1{
+    margin-bottom: 0px;
+    margin-top: 41.2px;
+    padding-left: 16px;
+    font-size: 49px;
 }
-
-.dropdown-category {
-    position: relative;
-    top: 40px;
-    font-size: 17px;
-    font-weight: normal;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: var(--darkcream);
-    font-family: Raleway;
-    margin: 0;
-}
-
-.content-category {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 99999;
-}
-
-.dropbtn-category:hover .dropdown-content{
-    display: block;
-    position: absolute;
-}
-
-.content-category a:hover {
-    background-color: var(--cream);
-    color: black;
-}
-
-.content-category a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-category .dropbtn:hover{
-    background-color: var(--cream);
-    color: black;
-}
-
-
 .products {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
 }
 
 .product-card {
-    padding: 2%;
-    flex-grow: 1;
+    margin-top: 40px;
+    padding-bottom: 1%;
     flex-basis: 33%;
     display: flex; /* so child elements can use flexbox stuff too! */
+    flex-direction: column;
+    vertical-align: top;
+    text-align: center;
 }
 
 .product-image img {
+    cursor: pointer;
     max-width: 100%;
 }
 
-.product-info {
-   margin-top: auto;
+.product-info{
+    display: block;
 }
 
+.product-info h5{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 
-@media (max-width: 920px) {
+.product-info h6{
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
     .product-card {
-        flex: 1 21%;
+        flex: 42%;
     }
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .product-card {
-        flex: 1 46%;
+        flex: 55%;
     }
 }

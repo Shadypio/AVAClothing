@@ -52,6 +52,11 @@
             <div class="text"><!--Inserire testo--></div>
         </div>
     </div>
+    <div class="main-text">
+        <div>
+            <h1>AVA CLOTHING</h1>
+        </div>
+    </div>
     <div style="text-align:center; background-color: var(--cream);">
         <span class="dot"></span>
         <span class="dot"></span>

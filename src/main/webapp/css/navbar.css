@@ -2,6 +2,7 @@
 .topnav {
     background-color: var(--darkcream);
     position: fixed;
+    top: 0;
     width: 100%;
 }
 
@@ -38,7 +39,10 @@
     padding: 14px 16px;
     background-color: var(--darkcream);
     font-family: Raleway;
-    margin: 0;
+}
+
+.dropdown #cat{
+    margin-top: 6px;
 }
 
 .dropdown-content, .content-product {
@@ -47,13 +51,13 @@
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 99999;
+    z-index: 1;
 }
 
 .dropdown-content a:hover, .content-product a:hover {
-     background-color: var(--cream);
-     color: black;
- }
+    background-color: var(--cream);
+    color: black;
+}
 
 .dropdown-content a, .content-product a {
     float: none;
@@ -64,7 +68,7 @@
     text-align: left;
 }
 
-.topnav a:hover, .dropdown .dropbtn:hover{
+.topnav a:hover , .dropdown .dropbtn:hover{
     background-color: var(--cream);
     color: black;
 }
@@ -132,3 +136,4 @@
         left: 0px;
     }
 }
+
