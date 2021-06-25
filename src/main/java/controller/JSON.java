@@ -30,8 +30,15 @@ public class JSON extends HttpServlet {
 
         response.setContentType("text/plain;charset=UTF-8");
         response.getWriter().append("[");
+        String nome;
+        long id;
         for (int i=0; i<result.size(); i++){
-            response.getWriter().append("{\"nome\":\"").append(result.get(i).getNome()).append("\"}");
+            nome = result.get(i).getNome();
+            id = result.get(i).getIdProdotto();
+            String idJSON = String.valueOf(id);
+            response.getWriter().append("{\"nome\":\"").append(nome).append("\", ");
+            response.getWriter().append("\"idProdotto\":\"").append(idJSON).append("\"");
+            response.getWriter().append("}");
             if (i!=result.size()-1)
                 response.getWriter().append(",");
         }

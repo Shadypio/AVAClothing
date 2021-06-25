@@ -78,7 +78,6 @@ public class ClienteServlet extends HttpServlet {
                 lista=new ArrayList<>();
                 session.setAttribute("elencocart",elenco);
                 session.setAttribute("cart",lista);
-                //response.sendRedirect(address+"/cliente/show");
                 request.getRequestDispatcher("/WEB-INF/views/site/ordineeffettuato.jsp").forward(request, response);
                 break;
             case "/inputcarrello": //INSERIMENTO IN CARRELLO

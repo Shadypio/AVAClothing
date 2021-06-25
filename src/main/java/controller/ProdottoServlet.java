@@ -54,14 +54,13 @@ public class ProdottoServlet extends HttpServlet {
                 break;
             case "/search":
                 String nome= request.getParameter("nome");
+                nome=nome.substring(1,nome.length()-1);
                 lista=proDAO.doRetrieveAll();
                 Prodotto pro=new Prodotto();
-                System.out.println("Nome: "+nome);
                 for (int i=0; i<lista.size(); i++){
                     if (lista.get(i).getNome().equals(nome))
                         pro=lista.get(i);
                 }
-                System.out.println("Pro: "+pro);
                 session.setAttribute("prodotto",pro);
                 request.getRequestDispatcher("/WEB-INF/views/site/singleproduct.jsp").forward(request, response);
                 break;

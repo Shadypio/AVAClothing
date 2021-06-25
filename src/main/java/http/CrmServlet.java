@@ -154,7 +154,7 @@ public class CrmServlet extends HttpServlet {
                 }
                 try {
                     Prodotto newProdotto = new Prodotto(fileName,idPro,nomePro,price,b,descB,descD,quantita,mag,cat);
-                    proDAO.doChanges(newProdotto);
+                    proDAO.doChangesWithImg(newProdotto);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

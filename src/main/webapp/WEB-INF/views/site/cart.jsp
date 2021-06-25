@@ -32,6 +32,7 @@
       if(tot!=null)
           totale=tot;
     %>
+     <br> <br>
     <div class="totale">
         <span>Totale Carrello: <%=totale%></span>
     </div>
@@ -42,13 +43,17 @@
     <%}else {
         for (int i=0; i<lista.size(); i++){%>
         <form method="post">
-            <div class="card">
+            <div class="product-card">
+                <div class="product-image">
                     <img src="data:image/jpg;base64,<%=lista.get(i).getBase64Image()%>" width="350" height="370">
-                    <span>Nome: <%=lista.get(i).getNome()%></span><br>
-                    <span>Prezzo: <%=lista.get(i).getPrezzo()%></span><br>
-                    <span>Descrizione Dettagliata: <%=lista.get(i).getDescrizioneDettagliata()%></span><br>
-                    <span>Quantità: <%=elenco.get(i).getQuantita()%></span>
+                </div>
+                <div class="product-info">
+                    <h5>Nome: </h5><h6><%=lista.get(i).getNome()%></h6><br>
+                    <h5>Prezzo: </h5><h6><%=lista.get(i).getPrezzo()%></h6><br>
+                    <h5>Descrizione Dettagliata: </h5><h6><%=lista.get(i).getDescrizioneDettagliata()%></h6><br>
+                    <h5>Quantità: </h5><h6><%=elenco.get(i).getQuantita()%></h6>
                     <button type="submit" class="delete btn primary" name="delete" value="<%=lista.get(i).getIdProdotto()%>">Elimina</button>
+                </div>
             </div>
             <%}
         }%>

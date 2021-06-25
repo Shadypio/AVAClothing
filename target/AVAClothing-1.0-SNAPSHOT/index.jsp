@@ -63,18 +63,23 @@
 
     <%ProdottoDAO proDAO=new ProdottoDAO();
       ArrayList<Prodotto> offerta=proDAO.doRetrieveProdottiinOfferta();%>
-      <div class="saldi">
-          <h2>Prodotti in offerta</h2>
-          <%for (int i=0; i<offerta.size(); i++){ %>
-            <div class="card">
-                <img src="data:image/jpg;base64,<%=offerta.get(i).getBase64Image()%>" width="350" height="370">
-                <span>Nome: <%=offerta.get(i).getNome()%></span><br>
-                <span>Prezzo: <%=offerta.get(i).getPrezzo()%></span><br>
-                <span>Descrizione Dettagliata: <%=offerta.get(i).getDescrizioneDettagliata()%></span><br>
-                <span>Quantità: <%=offerta.get(i).getQuantita()%></span>
-            </div>
-          <%}%>
-      </div>
+
+    <h2>Prodotti in offerta</h2>
+    <div class="products">
+        <%for (int i=0; i<offerta.size(); i++){ %>
+             <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/jpg;base64,<%=offerta.get(i).getBase64Image()%>" width="350" height="370">
+                </div>
+                <div class="product-info">
+                    <h5>Nome: </h5><h6><%=offerta.get(i).getNome()%></h6><br>
+                    <h5>Prezzo: </h5><h6><%=offerta.get(i).getPrezzo()%></h6><br>
+                    <h5>Descrizione Dettagliata: </h5><h6><%=offerta.get(i).getDescrizioneDettagliata()%></h6><br>
+                    <h5>Quantità: </h5><h6><%=offerta.get(i).getQuantita()%></h6>
+                </div>
+             </div>
+        <%}%>
+    </div>
 
 </main>
 

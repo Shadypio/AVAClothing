@@ -14,7 +14,7 @@
     <h1>Il tuo ordine è stato accettato correttamente!</h1>
     <h3>Ti ringraziamo per aver scelto AVAClothing!</h3>
     <br>
-    <a href="<%=request.getContextPath()%>/WEB-INF/views/site/showproducts.jsp">Continua a fare acquisti</a> oppure <a href="<%=request.getContextPath()%>/index.jsp">Torna alla home</a>
+    <a href="<%=request.getContextPath()%>/index.jsp">Torna alla home</a>
 </div>
 </body>
 </html>
