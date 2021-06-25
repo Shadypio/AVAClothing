@@ -9,6 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 @WebServlet("/JSON")
 public class JSON extends HttpServlet {
@@ -24,7 +25,7 @@ public class JSON extends HttpServlet {
         ArrayList<Prodotto> lista=proDAO.doRetrieveAll();
         ArrayList<Prodotto> result= new ArrayList<>();
         for(int i=0; i<lista.size(); i++){
-            if (lista.get(i).getNome().contains(data))
+            if (lista.get(i).getNome().toLowerCase().contains(data.toLowerCase()))
                 result.add(lista.get(i));
         }
 
