@@ -11,6 +11,7 @@
         </div>
         <a href="<%=request.getContextPath()%>/info.jsp">Info</a>
         <input type="search" name="search" id="search" placeholder="Ricerca"/><button onclick="search()" name="cerca">Cerca</button>
+        <div id="demo"></div>
         <div class="iconWrapper">
             <div class="dropdown">
                 <button class="dropbtn"><img src="<%=request.getContextPath()%>/icons/user.png" width="15" height="15"></button>
@@ -50,11 +51,14 @@
         function searchDB(xmlhttp){
             var result=JSON.parse(xmlhttp.responseText);
             let text;
-            if (result==null){
-                alert(null);
+            text="<div class='dropdown-search'>";
+            for (let i in result){
+                var x=JSON.stringify(result[i].nome);
+                text+="<a href='/AVAClothing_war_exploded/prodotto/search?nome="+x+"'>";
+                text+=x+"</a>";
             }
-            alert(result);
-            document.getElementById("").innerHTML= text;//id elemento
+            text+="</div>";
+            document.getElementById("demo").innerHTML= text;//id elemento
         }
 
 

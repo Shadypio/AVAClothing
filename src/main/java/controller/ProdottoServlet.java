@@ -52,6 +52,19 @@ public class ProdottoServlet extends HttpServlet {
                 session.setAttribute("prodotti",lista);
                 request.getRequestDispatcher("/WEB-INF/views/site/showproducts.jsp").forward(request, response);
                 break;
+            case "/search":
+                String nome= request.getParameter("nome");
+                lista=proDAO.doRetrieveAll();
+                Prodotto pro=new Prodotto();
+                System.out.println("Nome: "+nome);
+                for (int i=0; i<lista.size(); i++){
+                    if (lista.get(i).getNome().equals(nome))
+                        pro=lista.get(i);
+                }
+                System.out.println("Pro: "+pro);
+                session.setAttribute("prodotto",pro);
+                request.getRequestDispatcher("/WEB-INF/views/site/singleproduct.jsp").forward(request, response);
+                break;
             default:
                 response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
         }

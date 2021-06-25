@@ -30,14 +30,12 @@ public class JSON extends HttpServlet {
 
         response.setContentType("text/plain;charset=UTF-8");
         response.getWriter().append("[");
-        for (int i=0; i<lista.size(); i++){
+        for (int i=0; i<result.size(); i++){
             response.getWriter().append("{\"nome\":\"").append(result.get(i).getNome()).append("\"}");
-            if (i!=lista.size()-1)
+            if (i!=result.size()-1)
                 response.getWriter().append(",");
         }
         response.getWriter().append("]");
-        PrintWriter printWriter=new PrintWriter(response.getWriter());
-        System.out.println(printWriter.toString());
     }
 
     @Override

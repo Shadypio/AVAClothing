@@ -34,8 +34,6 @@
 </head>
 <body>
 <main>
-
-
     <div class="slideshow-container">
         <div class="mySlides">
             <img class="imageShow" src="<%=request.getContextPath()%>/img/cop1.jpg" style="width: 100%;">

@@ -34,8 +34,6 @@
 </head>
 <body>
 <main>
-
-
     <div class="slideshow-container">
         <div class="mySlides">
             <img class="imageShow" src="<%=request.getContextPath()%>/img/cop1.jpg" style="width: 100%;">
@@ -50,6 +48,11 @@
         <div class="mySlides">
             <img class="imageShow" src="<%=request.getContextPath()%>/img/cop3.jpg" style="width: 100%;">
             <div class="text"><!--Inserire testo--></div>
+        </div>
+    </div>
+    <div class="main-text">
+        <div>
+            <h1>AVA CLOTHING</h1>
         </div>
     </div>
     <div style="text-align:center; background-color: var(--cream);">
