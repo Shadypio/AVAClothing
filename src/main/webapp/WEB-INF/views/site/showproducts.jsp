@@ -21,18 +21,22 @@
     </c:choose>
 </head>
 <body>
-<div class="grid-y">
+<div>
     <div class="dropdown">
         <div>
-            <button class="dropbtn">Seleziona Categoria</button>
+            <button class="dropbtn" id="cat">Seleziona Categoria</button>
         </div>
         <div class="content-product">
-            <c:forEach items="${listaCat}" var="categoria" >
+            <% request.getSession().setAttribute("genere", "uomo");%>
+            <c:forEach items="${listaCat}" var="categoria">
                 <a href="<%=request.getContextPath()%>/prodotto/selezione?id=${categoria.idCategoria}">${categoria.nome}</a>
             </c:forEach>
         </div>
     </div>
 </div>
+
+<h1>${categoria.nome}</h1>
+
 <section class="products">
     <c:forEach items="${prodotti}" var="prodotto" >
         <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
