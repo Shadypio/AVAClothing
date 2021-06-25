@@ -9,7 +9,10 @@
             </div>
         </div>
         <a href="<%=request.getContextPath()%>/info.jsp">Info</a>
-        <input type="search" name="search" id="search" placeholder="Ricerca"/><button onclick="search()" name="cerca">Cerca</button>
+        <div class="search-bar">
+            <input type="search" id="search">
+            <i class="fa fa-search" onclick="search()"><img src="<%=request.getContextPath()%>/icons/search-512.webp"></i>
+        </div>
         <div id="demo" hidden></div>
         <div class="iconWrapper">
             <div class="dropdown">
