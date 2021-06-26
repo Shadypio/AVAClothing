@@ -106,12 +106,3 @@
 </script>
 </body>
 </html>
-
-<!--"<fieldset class="grid-y cell w50 login"> <span> Nome </span> <label for="nome" class="field"> <input type="text" name="nome" id="nome" placeholder="Nome"> </label>
-<span> Cognome </span> <label for="cognome" class="field"> <input type="text" name="cognome" id="cognome" placeholder="Cognome"> </label>
-<span> Username </span> <label for="username" class="field"> <input type="text" name="username" id="username" placeholder="Username"></label>
-<span> Email </span> <label for="email" class="field"> <input type="email" name="email" id="email" placeholder="Email"> </label>
-<span> Password </span> <label for="password" class="field"> <input type="password" name="password" id="password" placeholder="Password"></label>
-<span> Indirizzo </span> <label for="indirizzo" class="field"> <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo"></label>
-<span> Telefono </span> <label for="telefono" class="field"> <input type="text" name="telefono" id="telefono" placeholder="Telefono"></label>
-<button class="btn primary" type="submit">Salva</button> </fieldset>";-->
