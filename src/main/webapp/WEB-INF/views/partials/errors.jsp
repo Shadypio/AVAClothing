@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<%exception.printStackTrace(System.out);%>
+<%//exception.printStackTrace(System.out);%>
     <div class="bg">
     </div>
     <div class="errortext">
