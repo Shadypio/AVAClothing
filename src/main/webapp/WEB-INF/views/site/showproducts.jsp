@@ -1,3 +1,6 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="model.prodotto.Prodotto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -38,17 +41,23 @@
 <h1>Categoria > ${categoriaSelected}</h1>
 
 <section class="products">
+    <%DecimalFormat df = new DecimalFormat("#.00");%>
+    <%ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) request.getSession().getAttribute("prodotti");%>
+    <%!int i=0;%>
     <c:forEach items="${prodotti}" var="prodotto" >
+        <%Prodotto prodotto = prodotti.get(i);%>
         <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <div class="product-image">
                 <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
             </div>
             <div class="product-info">
                 <h5>${prodotto.nome}</h5>
-                <h6>${prodotto.prezzo}</h6>
+                <h6>€<%=df.format(prodotto.getPrezzo())%></h6>
+                <%i++;%>
             </div>
         </div>
     </c:forEach>
+    <%i=0;%>
 </section>
 </body>
 </html>

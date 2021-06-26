@@ -45,7 +45,7 @@
                 </div>
                 <div class="product-info">
                     <h5>Nome: </h5><h6> <%=showOrdine.get(i).getNome()%></h6><br>
-                    <h5>Prezzo:</h5><h6> <%=showOrdine.get(i).getPrezzo()%></h6><br>
+                    <h5>Prezzo:</h5><h6>€<%=df.format(showOrdine.get(i).getPrezzo())%></h6><br>
                     <h5>Descrizione Dettagliata: </h5><h6> <%=showOrdine.get(i).getDescrizioneDettagliata()%></h6><br>
                     <h5>Quantità: </h5><h6> <%=result.get(i).getQuantita()%></h6>
                 </div>

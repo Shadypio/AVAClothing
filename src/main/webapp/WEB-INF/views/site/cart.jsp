@@ -51,7 +51,7 @@
                 </div>
                 <div class="product-info">
                     <h5>Nome: </h5><h6><%=lista.get(i).getNome()%></h6><br>
-                    <h5>Prezzo: </h5><h6><%=lista.get(i).getPrezzo()%></h6><br>
+                    <h5>Prezzo: </h5><h6>€<%=df.format(lista.get(i).getPrezzo())%></h6><br>
                     <h5>Descrizione Dettagliata: </h5><h6><%=lista.get(i).getDescrizioneDettagliata()%></h6><br>
                     <h5>Quantità: </h5><h6><%=elenco.get(i).getQuantita()%></h6>
                     <button type="submit" class="delete btn primary" name="delete" value="<%=lista.get(i).getIdProdotto()%>">Elimina</button>
