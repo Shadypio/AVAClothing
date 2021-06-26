@@ -10,8 +10,11 @@
             </div>
         </div>
         <a href="<%=request.getContextPath()%>/info.jsp">Info</a>
-        <input type="search" name="search" id="search" placeholder="Ricerca"/><button onclick="search()" name="cerca">Cerca</button>
-        <div id="demo" hidden></div>
+        <div class="search-bar" onmouseleave="hiddenSearch()" onmouseover="showSearch()">
+            <input type="search" id="search" onkeyup="enterKey()" autocomplete="off">
+            <i class="fa fa-search" onclick="search()"><img src="<%=request.getContextPath()%>/icons/search-512.webp"></i>
+            <div id="demo" hidden></div>
+        </div>
         <div class="iconWrapper">
             <div class="dropdown">
                 <button class="dropbtn"><img src="<%=request.getContextPath()%>/icons/user.png" width="15" height="15"></button>
@@ -34,6 +37,14 @@
             } else {
                 x.className = "topnav";
             }
+        }
+
+        function enterKey(){
+            $("#search").keypress(function(event) {
+                if (event.keyCode === 13) {
+                    search();
+                }
+            });
         }
 
         function search(){
@@ -62,6 +73,15 @@
             text+="</div>";
             document.getElementById("demo").hidden=false;
             document.getElementById("demo").innerHTML= text;//id elemento
+        }
+
+
+        function hiddenSearch(){
+            $("#demo").hide();
+        }
+
+        function showSearch(){
+            $("#demo").show();
         }
     </script>
 </header>

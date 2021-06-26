@@ -151,7 +151,8 @@
     display: inline-block;
 }
 
-.search-bar input{
+.search-bar #search{
+    background-color: white;
     top: 0;
     left: 0;
     width: 102%;
@@ -200,3 +201,23 @@
     color: white;
 }
 
+div#demo {
+    position: absolute;
+    top: 44px;
+    background-color: white;
+}
+
+.dropdown-search {
+    display: grid;
+    position: absolute;
+    width: 150px;
+    top: 0px;
+    left: 9px;
+    overflow: auto;
+    max-height: 207px;
+}
+
+.dropdown-search a {
+    background-color: white;
+    color: black;
+}
