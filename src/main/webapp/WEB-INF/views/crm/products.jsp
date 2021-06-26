@@ -109,15 +109,15 @@
     $(document).ready(function () {
         $(".butAdd").click(function () {
             $(".allProducts").hide();
-            $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
-                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve'><br>" +
-                "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata'><br>" +
+            $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo' required> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve' required><br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata' required><br>" +
                 "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
-                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
-                "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto'> <br>" +
-                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità' required> <br>" +
+                "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto' required> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
                 "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
@@ -127,14 +127,14 @@
             });
         });
         $(".butMod").click(function () {
-            $(".modPro").show().html("<fieldset> <legend>Modifica Prodotto</legend><span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
-                "<span> Descrizione Breve: </span> <input type='text' name='descB' id='descB' placeholder='Descrizione Breve'> <br>" +
-                "<span> Descrizione Dettagliata: </span> <input type='text' name='descD' id='descD' placeholder='Descrizione Dettagliata'> <br>" +
+            $(".modPro").show().html("<fieldset> <legend>Modifica Prodotto</legend><span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo' required> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descB' id='descB' placeholder='Descrizione Breve' required> <br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descD' id='descD' placeholder='Descrizione Dettagliata' required> <br>" +
                 "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
-                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
-                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità' required> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
                 "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
