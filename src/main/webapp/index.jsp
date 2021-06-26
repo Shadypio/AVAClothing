@@ -23,13 +23,16 @@
                 <jsp:param name="title" value=""/>
             </jsp:include>
         </c:otherwise>
-</c:choose>
+    </c:choose>
 
     <style>
         h2 {
             font-family: Raleway;
             color: var(--darkcream);
             position: center;
+        }
+        .main-text{
+            margin-left: 70px;
         }
     </style>
 </head>
@@ -51,12 +54,12 @@
             <div class="text"><!--Inserire testo--></div>
         </div>
     </div>
-    <div class="main-text">
-        <div>
-            <h1>AVA CLOTHING</h1>
-        </div>
+    <div class="main-text grid-x">
+        <img src="<%=request.getContextPath()%>/img/logo.png" height="200" width="200">
+        <h2>Prodotti in offerta</h2>
     </div>
-    <div style="text-align:center; background-color: var(--cream);">
+
+    <div style="text-align:center; background-color: var(--cream);"> <!-- questo div non lo vede -->
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -64,7 +67,7 @@
 
     <%ProdottoDAO proDAO=new ProdottoDAO();
       ArrayList<Prodotto> offerta=proDAO.doRetrieveProdottiinOfferta();%>
-    <h2>Prodotti in offerta</h2>
+
     <div class="products">
         <%DecimalFormat df = new DecimalFormat("#.00");%>
         <%for (int i=0; i<offerta.size(); i++){ %>

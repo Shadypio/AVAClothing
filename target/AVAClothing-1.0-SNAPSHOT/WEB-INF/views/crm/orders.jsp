@@ -86,8 +86,8 @@
 
     $(document).ready(function () {
         $(".butMod").click(function () {
-            $(".modOrd").show().html("<fieldset> <legend>Modifica Ordine</legend><span> IVA: </span> <input type='text' name='iva' id='iva' placeholder='IVA'> <br> " +
-                "<span> Data Inserimento: </span> <input type='date' name='data' id='data' placeholder='Data Inserimento'> <br>" +
+            $(".modOrd").show().html("<fieldset> <legend>Modifica Ordine</legend><span> IVA: </span> <input type='text' name='iva' id='iva' placeholder='IVA' required> <br> " +
+                "<span> Data Inserimento: </span> <input type='date' name='data' id='data' placeholder='Data Inserimento' required> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
             $("#annulla").click(function () {

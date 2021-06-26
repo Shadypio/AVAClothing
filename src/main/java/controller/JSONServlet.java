@@ -2,19 +2,16 @@ package controller;
 
 import model.prodotto.Prodotto;
 import model.prodotto.ProdottoDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Locale;
 
 @WebServlet("/JSON")
-public class JSON extends HttpServlet {
+public class JSONServlet extends HttpServlet {
     private static final long serialVersionUID= 1L;
-    public JSON(){
+    public JSONServlet(){
         super();
     }
 

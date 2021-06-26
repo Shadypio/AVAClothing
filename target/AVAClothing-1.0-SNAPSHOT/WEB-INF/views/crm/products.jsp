@@ -1,3 +1,6 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="model.prodotto.Prodotto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -43,18 +46,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%DecimalFormat df = new DecimalFormat("#.00");
+                int i=0;
+                ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) request.getSession().getAttribute("listaPro");%>
                 <c:forEach var="prodotto" items="${listaPro}">
+                    <%Prodotto prodotto = prodotti.get(i++);%>
                     <tr>
                         <td><img src="data:image/jpg;base64,${prodotto.base64Image}" width="80" height="100"></td>
                         <td>${prodotto.idProdotto}</td>
                         <td>${prodotto.nome}</td>
-                        <td>${prodotto.prezzo}</td>
+                        <td>€<%=df.format(prodotto.getPrezzo())%></td>
                         <td>${prodotto.quantita}</td>
                         <td>${prodotto.descrizioneBreve}</td>
                         <td>${prodotto.inOfferta}</td>
                         <td>${(prodotto.categoria).idCategoria}</td>
                     </tr>
                 </c:forEach>
+                <%i=0;%>
                 </tbody>
 
             </table>
@@ -109,16 +117,16 @@
     $(document).ready(function () {
         $(".butAdd").click(function () {
             $(".allProducts").hide();
-            $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
-                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve'><br>" +
-                "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata'><br>" +
+            $(".newPro").show().html("<fieldset>  <legend>Aggiungi Prodotto</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo' required> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descBreve' id='descBreve' placeholder='Descrizione Breve' required><br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descDett' id='descDett' placeholder='Descrizione Dettagliata' required><br>" +
                 "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
-                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
-                "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto'> <br>" +
-                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
-                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità' required> <br>" +
+                "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto' required> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img' required> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
             $("#annulla").click(function () {
@@ -127,15 +135,15 @@
             });
         });
         $(".butMod").click(function () {
-            $(".modPro").show().html("<fieldset> <legend>Modifica Prodotto</legend><span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome'> <br> " +
-                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo'> <br>" +
-                "<span> Descrizione Breve: </span> <input type='text' name='descB' id='descB' placeholder='Descrizione Breve'> <br>" +
-                "<span> Descrizione Dettagliata: </span> <input type='text' name='descD' id='descD' placeholder='Descrizione Dettagliata'> <br>" +
+            $(".modPro").show().html("<fieldset> <legend>Modifica Prodotto</legend><span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
+                "<span> Prezzo: </span> <input type='text' name='prezzo' id='prezzo' placeholder='Prezzo' required> <br>" +
+                "<span> Descrizione Breve: </span> <input type='text' name='descB' id='descB' placeholder='Descrizione Breve' required> <br>" +
+                "<span> Descrizione Dettagliata: </span> <input type='text' name='descD' id='descD' placeholder='Descrizione Dettagliata' required> <br>" +
                 "<span> In Offerta: </span> <select name='offerta'> <option>true</option> <option>false</option> </select> <br>" +
-                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità'> <br>" +
-                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria'> <br>" +
-                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino'> <br>" +
-                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
+                "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità' required> <br>" +
+                "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
+                "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img' required> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {
