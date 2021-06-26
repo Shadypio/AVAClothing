@@ -22,7 +22,6 @@ input{
 }
 
 span{
-    position: relative;
     top: 16px;
 }
 
@@ -32,10 +31,6 @@ span{
 }
 img.avatar {
     width: 50%;
-}
-
-fieldset{
-    position:relative;
 }
 
 .imgcontainer {

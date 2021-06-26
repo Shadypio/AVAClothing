@@ -146,9 +146,10 @@
     background: white;
     box-sizing: border-box;
     border-radius: 25px;
-    border: 5px solid white;
     padding: 5px;
     display: inline-block;
+    border-left: 1px solid;
+    border-right: 1px solid;
 }
 
 .search-bar #search{
@@ -156,12 +157,12 @@
     top: 0;
     left: 0;
     width: 102%;
-    height: 19.5px;
+    height: 35.5px;
     outline: 0;
     border: 0;
     border-radius: 20px;
     padding: 0 20px 0 10px;
-    font-size: 50%;
+    font-size: 78%;
 }
 
 .fa{
@@ -215,6 +216,9 @@ div#demo {
     left: 9px;
     overflow: auto;
     max-height: 207px;
+    border-bottom:1px solid;
+    border-left:1px solid;
+    border-right:1px solid;
 }
 
 .dropdown-search a {

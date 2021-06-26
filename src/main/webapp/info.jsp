@@ -47,7 +47,7 @@
 <body>
 <br><br>
 <div class="content grid-y">
-    <fieldset class="grid-y cell w50 login">
+    <fieldset class="grid-y cell w50 login" style="z-index: -1">
         <legend>Obiettivo</legend>
         <p class="infotext">
             Il sito si pone come obiettivo quello di diventare un punto di riferimento tra gli e-commerce del
