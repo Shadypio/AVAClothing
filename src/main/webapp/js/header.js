@@ -23,7 +23,7 @@ function search(){
             searchDB(this);
         }
     };
-    xmlhttp.open("GET","JSON?data="+x,true);
+    xmlhttp.open("GET","/AVAClothing_war_exploded/JSON?data="+x,true);
     xmlhttp.send();
 }
 
