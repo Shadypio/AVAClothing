@@ -41,11 +41,12 @@
 <h1>Categoria > ${categoriaSelected}</h1>
 
 <section class="products">
-    <%DecimalFormat df = new DecimalFormat("#.00");%>
-    <%ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) request.getSession().getAttribute("prodotti");%>
-    <%!int i=0;%>
+    <%DecimalFormat df = new DecimalFormat("#.00");
+    int i=0;
+    ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) request.getSession().getAttribute("prodotti");%>
+
     <c:forEach items="${prodotti}" var="prodotto" >
-        <%Prodotto prodotto = prodotti.get(i);%>
+        <%Prodotto prodotto = prodotti.get(i++);%>
         <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=${prodotto.idProdotto}', '_self');">
             <div class="product-image">
                 <img src="data:image/jpg;base64,${prodotto.base64Image}" width="350" height="370">
@@ -53,7 +54,6 @@
             <div class="product-info">
                 <h5>${prodotto.nome}</h5>
                 <h6>€<%=df.format(prodotto.getPrezzo())%></h6>
-                <%i++;%>
             </div>
         </div>
     </c:forEach>

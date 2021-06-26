@@ -64,7 +64,6 @@
 
     <%ProdottoDAO proDAO=new ProdottoDAO();
       ArrayList<Prodotto> offerta=proDAO.doRetrieveProdottiinOfferta();%>
-
     <h2>Prodotti in offerta</h2>
     <div class="products">
         <%DecimalFormat df = new DecimalFormat("#.00");%>
