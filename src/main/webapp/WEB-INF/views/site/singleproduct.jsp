@@ -1,4 +1,5 @@
 <%@ page import="model.prodotto.Prodotto" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -34,7 +35,8 @@
                     <img src="data:image/jpg;base64,<%=pro.getBase64Image()%>" width="500" height="500">
                 </div>
                 <div class="product-info">
-                    <h5>Nome:</h5><h6> <%=pro.getNome()%></h6><br> <h5>Prezzo:</h5> <h6><%=pro.getPrezzo()%></h6><br>
+                    <%DecimalFormat df = new DecimalFormat("#.00");%>
+                    <h5>Nome:</h5><h6> <%=pro.getNome()%></h6><br> <h5>Prezzo:</h5> <h6>€<%=df.format(pro.getPrezzo())%></h6><br>
                     <h5>Descrizione Dettagliata:</h5><h6> <%=pro.getDescrizioneDettagliata()%></h6><br>
                     <h5>Quantità:</h5><h6> <%=pro.getQuantita()%></h6><br>
                     <h5>Seleziona Quantità</h5>
