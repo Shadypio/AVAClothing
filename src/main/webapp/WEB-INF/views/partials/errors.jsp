@@ -16,13 +16,14 @@
     </style>
 </head>
 <body>
+<%exception.printStackTrace(System.out);%>
     <div class="bg">
     </div>
     <div class="errortext">
         <h1>Ops! Sembra che qualcosa sia andato storto. Riprova più tardi.</h1>
         <!--div style="color: #EE4037;">
-            <Error message: <%//exception.printStackTrace();%>>
-        </div><br-->
+            <Error message: <%//exception.getMessage();%>
+        </div--><br>
         <a href="<%=request.getContextPath()%>/index.jsp">Torna alla Home</a>
     </div>
 </body>
