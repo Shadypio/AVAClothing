@@ -126,7 +126,7 @@
                 "<span> ID Prodotto: </span> <input type='text' name='idPro' id='idPro' placeholder='ID Prodotto' required> <br>" +
                 "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
                 "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
-                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img' required> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>");
             $("#annulla").click(function () {
@@ -143,7 +143,7 @@
                 "<span> Quantità: </span> <input type='text' name='quantita' id='quantita' placeholder='Quantità' required> <br>" +
                 "<span> ID Categoria: </span> <input type='text' name='idCat' id='idCat' placeholder='ID Categoria' required> <br>" +
                 "<span> ID Magazzino: </span> <input type='text' name='idMag' id='idMag' placeholder='ID Magazzino' required> <br>" +
-                "<span> File: </span> <input type='file' name='img' id='img'> <br>" +
+                "<span> File: </span> <input type='file' name='img' id='img' required> <br>" +
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {
