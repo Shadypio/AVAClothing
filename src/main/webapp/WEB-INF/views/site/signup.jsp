@@ -23,7 +23,8 @@
             width: 300px;
             display: none;
             position: absolute;
-            right: 100%
+            /*left: 100%;*/
+            right: 60%;
         }
 
         #info {
