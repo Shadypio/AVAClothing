@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<h1>Prodotti donna</h1>
+<h1>Prodotti Donna</h1>
 
 <div class="products">
     <%DecimalFormat df = new DecimalFormat("#.00");

@@ -38,6 +38,10 @@ public class ClienteServlet extends HttpServlet {
                 ArrayList<Prodotto> lista=((ArrayList<Prodotto>) session.getAttribute("cart"));
                 for(int i=0; i<elenco.size(); i++){
                     if (elenco.get(i).getProdotto().getIdProdotto()==idDel) {
+                        Prodotto x=lista.get(i);
+                        int temp=x.getQuantita();
+                        x.setQuantita(temp+elenco.get(i).getQuantita());
+                        proDAO.doChanges(x);
                         elenco.remove(i);
                         lista.remove(i);
                     }

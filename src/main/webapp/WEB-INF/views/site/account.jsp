@@ -31,9 +31,8 @@
 <section class="content grid-y">
     <fieldset class="grid-y cell w50 login">
         <legend> Profilo:</legend>
-        <form action="${pageContext.request.contextPath}/cliente/update" method="post" class="agg">
+        <form action="${pageContext.request.contextPath}/cliente/update" method="post" class="agg" onsubmit="return validatePass()">
             <%Cliente c = (Cliente) session.getAttribute("profilo");%>
-            <span>ID: </span>
             <input type="hidden" name="id" value="<%=c.getIdCliente()%>">
             <span>Nome: </span>
             <input type="text" value="<%=c.getNome()%>" readonly name="nome"><br>
@@ -44,7 +43,7 @@
             <span>Username: </span>
             <input type="text" value="<%=c.getUsername()%>" readonly name="username"><br>
             <span>Password: </span>
-            <input type="password" value="<%=c.getPassword()%>" readonly name="password"><br>
+            <input type="password" value="<%=c.getPassword()%>" readonly name="password" id="password"><br>
             <span>Indirizzo: </span>
             <input type="text" value="<%=c.getIndirizzo()%>" readonly name="indirizzo"><br>
             <span>Telefono: </span>
@@ -92,6 +91,20 @@
         for (i = 0; i < elemento.length; i++)
             elemento[i].setAttribute("readonly", true);
     }
+
+    function validatePass() {
+        var str1 = document.getElementById("password").value;
+        var patt1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
+        var result1 = str1.match(patt1)
+        var x = result1;
+        if (x== str1 ){
+            return true;
+        }else {
+            alert('Compila Password Correttamente!')
+            return false
+        }
+    }
+
 </script>
 </body>
 </html>

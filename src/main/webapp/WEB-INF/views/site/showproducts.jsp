@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<h1>Categoria > ${categoriaSelected}</h1>
+<h1>${categoriaSelected}</h1>
 
 <section class="products">
     <%DecimalFormat df = new DecimalFormat("#.00");
