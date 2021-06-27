@@ -30,7 +30,7 @@
     overflow: hidden;
 }
 
-.dropdown .dropbtn{
+.dropdown .dropbtn,.dropdown .catbtn{
     font-size: 17px;
     font-weight: normal;
     border: none;
@@ -89,22 +89,22 @@
 }
 
 @media screen and (max-width: 600px) {
-    .topnav a:not(:first-child), .dropdown .dropbtn {
+    .topnav a:not(:first-child), .dropdown .dropbtn, .topnav .search-bar{
         display: none;
     }
 
-    .topnav a.icon, .iconWrapper {
+    .topnav a.icon{
         float: right;
         display: block;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .topnav.responsive, .iconWrapper {
+    .topnav.responsive, .iconWrapper, .dropdown .dropbtn {
         position: relative;
     }
 
-    .topnav.responsive a.icon, .iconWrapper {
+    .topnav.responsive a.icon {
         position: absolute;
         right: 0;
         top: 0;
@@ -116,25 +116,30 @@
         text-align: left;
     }
 
-    .topnav.responsive .dropdown, .iconWrapper {
+    .topnav.responsive .dropdown, .iconWrapper, .dropbtn, .topnav.responsive .search-bar {
         float: none;
     }
 
-    .topnav.responsive .dropdown-content, .content-product, .iconWrapper {
+    .topnav.responsive .dropdown-content, .content-product, .dropbtn{
         position: relative;
     }
 
-    .topnav.responsive .dropdown .dropbtn, .iconWrapper {
+    .topnav.responsive .dropdown .dropbtn, .iconWrapper, .topnav.responsive .search-bar {
         display: block;
         width: 100%;
         text-align: left;
     }
 
-    .dropdown:hover .dropdown-content, .dropdown:hover .content-product {
+    .dropdown:hover .dropdown-content, .dropdown:hover .content-product, .dropbtn, .topnav.responsive .search-bar {
         display: block;
         position: relative;
-        left: 0px;
+        left: 0;
     }
+
+    .topnav.responsive .search-bar{
+        z-index:1;
+    }
+
 }
 
 
