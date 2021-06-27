@@ -28,7 +28,7 @@
 </head>
 <body>
 <br><br>
-<section class="content grid-y"> <!--id="main" è duplicato sotto-->
+<section class="content grid-y">
     <fieldset class="grid-y cell w50 login">
         <legend> Profilo:</legend>
         <form action="${pageContext.request.contextPath}/cliente/update" method="post" class="agg">

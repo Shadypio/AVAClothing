@@ -67,7 +67,6 @@
     $(document).ready(function(){
         $(".delete").click(function () {
             $('form').attr('action', '${pageContext.request.contextPath}/cliente/deletepro');
-
         })
         $(".buy").click(function () {
             $('form').attr('action', '${pageContext.request.contextPath}/cliente/acquistacarrello');

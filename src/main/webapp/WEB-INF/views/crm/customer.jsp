@@ -54,7 +54,6 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-
             </table>
             <div>
                 <button id="add" class="btn primary">Aggiungi Cliente</button>
@@ -100,9 +99,7 @@
                 $(".newCustomer").hide();
             });
         });
-
     });
-
 </script>
 </body>
 </html>

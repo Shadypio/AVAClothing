@@ -63,7 +63,6 @@
 
 <body style="background-color: var(--cream)">
 <main class="app ">
-
     <aside class="sidebar" id="sideBar">
         <nav class="grid-y align-center">
             <img src="<%=request.getContextPath()%>/img/logo.png" width="100" height="115">
@@ -104,7 +103,6 @@
                 <p>N° Prodotti: <%=request.getAttribute("numeroProdotti")%>
                 </p>
             </div>
-
         </div>
     </section>
 </main>

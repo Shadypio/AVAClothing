@@ -51,7 +51,6 @@
     </style>
 </head>
 <body>
-<%-- si deve vede perche va sotto--%>
     <div class="content">
         <form class=" registerform app justify-center align-center grid-x" action="${pageContext.request.contextPath}/cliente/create"  method="post" onsubmit="return validateTelPass()">
             <div class="imgcontainer">
@@ -83,10 +82,11 @@
                 <label for="password" class="field">
                     <input onfocusout="hideInfoPassword()" onfocusin="showInfoPassword()" type="password" name="password" id="password" placeholder="Password" required><br>
                 </label>
-                    <div class="inner" id="inner">
-                        <div id="info">La password deve essere lunga tra gli 8 e i 10 caratteri, deve contenere almeno una minuscola,
+
+                <div class="inner" id="inner">
+                    <div id="info">La password deve essere lunga tra gli 8 e i 10 caratteri, deve contenere almeno una minuscola,
                         una maiuscola, un numero e un carattere speciale tra @$!%*?&</div>
-                    </div>
+                </div>
 
                 <span>Conferma  Password </span>
                 <label for="confermapassword" class="field">

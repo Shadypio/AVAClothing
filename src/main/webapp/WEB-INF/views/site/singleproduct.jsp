@@ -24,7 +24,6 @@
     </c:choose>
 </head>
 <body>
-
     <%Prodotto pro= (Prodotto) request.getSession().getAttribute("prodotto");%>
 
     <form action="${pageContext.request.contextPath}/cliente/inputcarrello" method="post">ù
@@ -46,6 +45,5 @@
             </div>
         </div>
     </form>
-
 </body>
 </html>
