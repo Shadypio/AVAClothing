@@ -1,5 +1,4 @@
 <header class=" navbar align-center">
-
     <div class="topnav" id="myTopnav">
         <a href="<%=request.getContextPath()%>/index.jsp" class="active">Home</a>
         <div class="dropdown">
