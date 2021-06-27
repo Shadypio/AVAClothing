@@ -64,11 +64,8 @@
                 </c:forEach>
                 <%i=0;%>
                 </tbody>
-
             </table>
-
             <button class="butAdd btn primary" type="button">Aggiungi Prodotto</button> <!--Button Add-->
-
             <div class="formWrapper">
                 <form action="${pageContext.request.contextPath}/crm/deletepro" method="post">
                     <select name="selezioneDelete" id="selectedDel">
@@ -90,6 +87,7 @@
                         <!--Al click Form Modify-->
                     </div>
                 </form>
+
                 <form action="<%=request.getContextPath()%>/crm/addpro" method="post" enctype="multipart/form-data">
                     <div class="newPro">
                         <!--Al click Form Add-->

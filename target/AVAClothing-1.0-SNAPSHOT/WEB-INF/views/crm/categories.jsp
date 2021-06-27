@@ -77,7 +77,6 @@
 </main>
 <script>
     let status = false;
-
     function toggleNav() {
         if (status) {
             document.getElementById("sideBar").style.width = "0";
