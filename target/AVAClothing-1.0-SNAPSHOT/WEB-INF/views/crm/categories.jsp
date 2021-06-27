@@ -49,24 +49,21 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div>
-                <select name="catSelezionata" id="selected">
-                    <c:forEach var="cate" items="${listaCat}">
-                        <option>${cate.idCategoria} </option>
-                    </c:forEach>
-                </select>
-
-                <button class="butMod btn primary" type="button">Modifica Categoria</button> <!--Button Modify-->
-                <button class="butAdd btn primary">Aggiungi Categoria</button> <!--Button Add-->
-            </div>
 
             <div class="formWrapper">
                 <form action="${pageContext.request.contextPath}/crm/updatecat" method="post">
+                    <select name="catSelezionata" id="selected">
+                        <c:forEach var="cate" items="${listaCat}">
+                            <option>${cate.idCategoria} </option>
+                        </c:forEach>
+                    </select>
+                    <button class="butMod btn primary" type="button">Modifica Categoria</button> <!--Button Modify-->
                     <div class="modCat">
                         <!--Al click Form Modify-->
                     </div>
                 </form>
                 <form action="${pageContext.request.contextPath}/crm/addcat" method="post">
+                    <button class="butAdd btn primary">Aggiungi Categoria</button> <!--Button Add-->
                     <div class="newCat">
                         <!--Al click Form Add-->
                     </div>

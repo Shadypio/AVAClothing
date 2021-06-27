@@ -71,7 +71,7 @@
     <div class="products">
         <%DecimalFormat df = new DecimalFormat("#.00");%>
         <%for (int i=0; i<offerta.size(); i++){ %>
-             <div class="product-card">
+            <div class="product-card" onclick="window.open('<%=request.getContextPath()%>/cliente/product?id=<%=offerta.get(i).getIdProdotto()%>', '_self');">
                 <div class="product-image">
                     <img src="data:image/jpg;base64,<%=offerta.get(i).getBase64Image()%>" width="350" height="370">
                 </div>
