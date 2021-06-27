@@ -29,6 +29,7 @@
             border: 1px solid var(--white);
             color: white;
             padding-top: 3%;
+            margin-top: 40px;
         }
     </style>
 
