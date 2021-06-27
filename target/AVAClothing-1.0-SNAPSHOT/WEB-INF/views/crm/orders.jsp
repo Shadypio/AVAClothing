@@ -49,16 +49,14 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <select name="ordSelezionato" id="selected">
-                <option> MODIFICA </option>
-                <c:forEach var="ord" items="${listaOrd}">
-                    <option>${ord.idOrdine}</option>
-                </c:forEach>
-            </select>
-            <div>
-                <button class="butMod btn primary" type="button">Modifica Ordine</button>
-            </div>
+
             <form action="<%=request.getContextPath()%>/crm/updateord" method="post">
+                <select name="ordSelezionato" id="selected">
+                    <c:forEach var="ord" items="${listaOrd}">
+                        <option>${ord.idOrdine}</option>
+                    </c:forEach>
+                </select>
+                <button class="butMod btn primary" type="button">Modifica Ordine</button>
                 <div class="modOrd">
 
                 </div>
