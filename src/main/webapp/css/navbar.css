@@ -30,7 +30,7 @@
     overflow: hidden;
 }
 
-.dropdown .dropbtn,.dropdown .catbtn{
+.dropdown .dropbtn,.dropdown {
     font-size: 17px;
     font-weight: normal;
     border: none;

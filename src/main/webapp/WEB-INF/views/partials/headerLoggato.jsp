@@ -1,5 +1,4 @@
 <header class=" navbar align-center">
-
     <div class="topnav" id="myTopnav">
         <a href="<%=request.getContextPath()%>/index.jsp" class="active">Home</a>
         <div class="dropdown">
@@ -26,6 +25,6 @@
             </div>
             <a href="<%=request.getContextPath()%>/cliente/carrello"><img src="<%=request.getContextPath()%>/icons/shopping-cart.png" width="15" height="15"></a>
         </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a href="javascript:void(0);" class="icon" onclick="navResponsive()">&#9776;</a>
     </div>
 </header>
