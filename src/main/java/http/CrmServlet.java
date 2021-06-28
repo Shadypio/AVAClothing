@@ -70,7 +70,8 @@ public class CrmServlet extends HttpServlet {
                 Magazzino mag=new Magazzino();
                 mag.setIdMagazzino(idMag);
                 //Upload File
-                String updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
+                String updatePath = "C:"+ File.separator+"ProgramData" +File.separator + "MySQL" + File.separator + "MySQL Server 8.0" + File.separator + "Uploads" + File.separator;
+                //String updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
                 Part filePart=request.getPart("img");
                 String fileName= Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 InputStream stream = filePart.getInputStream();
@@ -141,7 +142,9 @@ public class CrmServlet extends HttpServlet {
                 mag=new Magazzino();
                 mag.setIdMagazzino(idMag);
                 //Upload File
-                updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
+                //C:\ProgramData\MySQL\MySQL Server 8.0
+                updatePath = "C:"+ File.separator+"ProgramData" +File.separator + "MySQL" + File.separator + "MySQL Server 8.0" + File.separator + "Uploads" + File.separator;
+                //updatePath=System.getenv("Catalina") + File.separator + "Uploads"+ File.separator;
                 filePart=request.getPart("img");
                 fileName= Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 stream = filePart.getInputStream();
