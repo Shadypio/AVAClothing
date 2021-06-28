@@ -24,6 +24,10 @@ function search(){
         }
     };
     xmlhttp.open("GET","/AVAClothing_war_exploded/JSON?data="+x,true);
+    /**
+     * Questa versione funziona al di fuori di IntelliJ
+     xmlhttp.open("GET","/AVAClothing-1.0-SNAPSHOT/JSON?data="+x,true);
+     */
     xmlhttp.send();
 }
 
