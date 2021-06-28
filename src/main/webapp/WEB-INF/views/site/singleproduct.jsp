@@ -26,7 +26,7 @@
 <body>
     <%Prodotto pro= (Prodotto) request.getSession().getAttribute("prodotto");%>
 
-    <form action="${pageContext.request.contextPath}/cliente/inputcarrello" method="post">ù
+    <form action="${pageContext.request.contextPath}/cliente/inputcarrello" method="post">
         <div class="products">
             <div class="product-card-single">
                 <input type="hidden" name="id" value="<%=pro.getIdProdotto()%>">

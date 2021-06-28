@@ -91,7 +91,7 @@
             $(".allCategories").hide();
             $(".newCat").show().html("<fieldset>  <legend>AGGIUNGI CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='descrizione' id='descrizione' placeholder='Descrizione' required><br> " +
-                "<span> Genere: </span> <input type='text' name='genere' id='genere' placeholder='Genere' required><br>" +
+                "<span> Genere </span> <select name='genere' id='genere' required> <option>Uomo</option> <option>Donna</option></select><br>" +
                 "<button class='btn primary' type='submit'>Salva</button> " +
                 "<button class='btn primary' type='button' id='annulla'>Annulla</button> </fieldset>")
             $("#annulla").click(function () {
@@ -102,7 +102,7 @@
         $(".butMod").click(function () {
             $(".modCat").show().html("<fieldset>  <legend>MODIFICA CATEGORIA</legend> <span> Nome: </span> <input type='text' name='nome' id='nome' placeholder='Nome' required> <br> " +
                 "<span> Descrizione: </span> <input type='text' name='desc' id='desc' placeholder='Descrizione' required> <br>" +
-                "<span> Genere: </span> <input type='text' name='genere' id='genere' placeholder='Genere' required><br>"+
+                "<span> Genere: </span> <select name='genere' id='genere' required> <option>Uomo</option> <option>Donna</option></select><br>"+
                 "<button class='btn primary' type='submit'>Salva</button>" +
                 "<button class='btn primary' type='button' id='annulla2'>Annulla</button> </fieldset>")
             $("#annulla2").click(function () {
