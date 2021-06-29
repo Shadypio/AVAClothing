@@ -168,7 +168,7 @@ public class CrmServlet extends HttpServlet {
                 int idOrd=Integer.parseInt(idOrdine);
                 Ordine oldOrdine=ordDAO.doRetrieveById(idOrd);
                 String iva=request.getParameter("iva");
-                int ivaOrd=Integer.parseInt(iva);
+                double ivaOrd=Double.parseDouble(iva);
                 String data=request.getParameter("data");
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 df.setLenient (false);
