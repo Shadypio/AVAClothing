@@ -23,11 +23,19 @@ function search(){
             searchDB(this);
         }
     };
-    xmlhttp.open("GET","/AVAClothing_war_exploded/JSON?data="+x,true);
     /**
-     * Questa versione funziona al di fuori di IntelliJ
-     xmlhttp.open("GET","/AVAClothing-1.0-SNAPSHOT/JSON?data="+x,true);
+     * La versione a riga 34 funziona per l'applicazione all'interno di IntelliJ
+     * La versione a riga 37 funziona al di fuori di IntelliJ
      */
+    var ctx = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+    var exploded = '/AVAClothing_war_exploded';
+    var snapshot = '/AVAClothing-1.0-SNAPSHOT';
+    if(ctx == exploded){
+        xmlhttp.open("GET","/AVAClothing_war_exploded/JSON?data="+x,true);
+    }
+    else if (ctx == snapshot){
+        xmlhttp.open("GET","/AVAClothing-1.0-SNAPSHOT/JSON?data="+x,true);
+    }
     xmlhttp.send();
 }
 
@@ -39,7 +47,19 @@ function searchDB(xmlhttp){
         var x=JSON.stringify(result[i].nome);
         var y=JSON.stringify(result[i].idProdotto);
         idp = eval(y);
-        text+="<a href='/AVAClothing_war_exploded/cliente/product?id="+idp+"'>";
+        /**
+         * La versione a riga 58 funziona per l'applicazione all'interno di IntelliJ
+         * La versione a riga 61 funziona al di fuori di IntelliJ
+         */
+        var ctx = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+        var exploded = '/AVAClothing_war_exploded';
+        var snapshot = '/AVAClothing-1.0-SNAPSHOT';
+        if(ctx == exploded){
+            text+="<a href='/AVAClothing_war_exploded/cliente/product?id="+idp+"'>";
+        }
+        else if (ctx == snapshot){
+            text+="<a href='/AVAClothing-1.0-SNAPSHOT/cliente/product?id="+idp+"'>";
+        }
         text+=x+"</a>";
     }
     text+="</div>";
