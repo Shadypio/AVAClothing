@@ -160,25 +160,6 @@ button.primary:hover {
         flex-basis: 100%;
     }
 
-    .paginator {
-        list-style-type: none;
-    }
-
-    .paginator > li {
-        border: 1px solid var(--white);
-        padding: .5rem;
-        background-color: var(--cream);
-    }
-
-    .paginator > li > a {
-        text-decoration: none;
-        color: var(--white);
-    }
-
-    .paginator > li > a:hover {
-        filter: brightness(110%);
-    }
-
 }
 
 
